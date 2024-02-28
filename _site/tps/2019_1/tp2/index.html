@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TP 2</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2019_1/tp2/"> -->
+
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2019_1/tp2.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          <h1 id="twitter-y-una-implementación-del-tt">Twitter y una implementación del TT</h1>
+
+<h2 id="introducción">Introducción</h2>
+
+<p>Twitter es una red social basada en la publicación mensajes cortos (<em>tweets</em>). Una de las características de esta red
+es la publicación de los temas más comentados del momento, llamados <em>trending topics</em> (<em>TT</em>). Los usuarios pueden
+contribuir a la popularidad de ciertos temas mencionándolos usando <em>hashtags</em> que se crean agregando un caracter
+numeral a una palabra, por ejemplo <code class="language-plaintext highlighter-rouge">#Algoritmos2</code>.</p>
+
+<p>El objetivo de este trabajo práctico es modelar un sistema que calcule los <em>TT</em>’s de una serie de tweets.</p>
+
+<h2 id="count-min-sketch">Count Min Sketch</h2>
+
+<p>¿Cómo hace Twitter para llevar la cuenta de la cantidad de veces que se menciona cada hashtag?
+Una primera opción sería utilizar un diccionario cuya clave sea el hashtag, y luego como dato la cantidad de ocurrencias.
+Almacenar lo que potencialmente pueden ser millones de hashtags puede ser requerir mucha infraestructura, o incluso
+imposible, y muchas veces alcanza con tener una aproximación. Utilizaremos este enfoque para realizar este trabajo práctico.</p>
+
+<p>Para esto se propone usar una idea basada en el funcionamiento de las tablas de hash. Simplemente almacenaremos la
+cantidad de apariciones de cada hashtag en un arreglo, al que accederemos a través de una función de hashing. Por lo
+tanto, si <code class="language-plaintext highlighter-rouge">f("Algoritmos2") = 4</code>, incrementaremos en uno el valor almacenado en la posición 4 de nuestro arreglo. A esta
+ técnica se la llama <a href="https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch">Count Min Sketch</a>.</p>
+
+<p>Es cierto que aquí si 3 palabras caen en la misma posición, se le van a sumar las apariciones, lo cual puede ser un
+problema. Supongamos que tenemos <strong>2 contadores</strong>, cada uno con una función de hashing diferente (y que creamos que es
+poco probable que esas mismas palabras vuelvan a colisionar). Entonces, podríamos decir que la cantidad de apariciones
+de una palabra es igual al mínimo de los contadores que le corresponden a cada una. Esto puede ser falso, porque se
+siguen contando otras colisiones, pero si tenemos <em>k</em> contadores, y tomamos el mínimo entre ellos, entonces podemos
+decir que si bien puede haber aparecido menos veces, seguro no más. Sigue siendo una aproximación, pero es mejor.</p>
+
+<h2 id="consigna">Consigna</h2>
+<p>Implementar dos programas en C:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">procesar_tweets</code>: este programa se utilizará para contar los trending topics en un conjunto de tweets, leyendo cada
+ línea proveniente de la <em>entrada estándar</em> (<code class="language-plaintext highlighter-rouge">stdin</code>). Como se sabe que la cantidad de mensajes puede ser muy grande,
+o bien infinitos, para usarlo se requieren dos parámetros enteros, llamados <em>n</em> y <em>k</em>.</p>
+
+    <p>El programa deberá imprimir por <em>salida estándar</em> (<code class="language-plaintext highlighter-rouge">stdout</code>) el <strong>histórico</strong> de los <em>k</em> TTs aproximados cada
+   <em>n</em> lineas, ordenados por ocurrencias (en caso que dos TT tengan la misma cantidad de ocurrencias, se deberá
+   mostrar por orden alfabético). Pueden suponer que <em>n</em> y <em>k</em> serán valores tales que se pueda almacenar
+    en memoria esa cantidad de cadenas o estructuras auxiliares.</p>
+
+    <p>El tiempo de procesamiento de cada tag debe ser <em>O(1)</em>, mientras que la impresión de los <em>k</em> TT debe realizarse
+   en <em>O(n log k)</em>.</p>
+
+    <p>Ejemplo de invocación:
+      <code class="language-plaintext highlighter-rouge">~$ cat tweets.txt | ./procesar_tweets 300000 20</code></p>
+
+    <p>Recomendamos crear un TDA CountMinSketch, para lograr que el código quede modularizado. La cantidad de funciones de
+  hashing a utilizar (y por ende, contadores), así como el largo de éstos serán dejados a criterio del grupo.</p>
+
+    <p>Asimismo, se pide que se imprima la frecuencia estimada para poder realizar
+  durante la corrección una comparación con la frecuencia exacta. La salida debe ser como se indica a continuación, con separadores numerados entre cada grupo de <em>TT</em>; por ejemplo, para una entrada de 9 líneas, con <em>n=4</em> y <em>k=2</em> la salida sería del estilo:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  --- 1
+  7 pesquisa
+  2 zombietalk
+  --- 2
+  14 niley
+  3 squarespace
+  --- 3
+  1 charlotte
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">procesar_usuarios</code>: este programa tendrá como objetivo contar la cantidad de hashtags que usa cada usuario, leyendo
+cada línea del archivo pasado por parámetro. Como se sabe que la cantidad de usuarios es mucho menor a la cantidad de
+TTs, y que dicho archivo termina, consideramos que se puede almacenar en memoria todo lo necesario para procesar la entrada.</p>
+
+    <p>El programa deberá procesar la entrada y luego deberá escribir por <em>salida estándar</em> los usuarios y la cantidad de
+  hashtags que utilizaron en tiempo lineal: <em>O(u + t)</em> siendo <em>u</em> la cantidad de usuarios encontrados y <em>t</em> la
+  cantidad de hashtags diferentes, ordenados según ocurrencias. Los usuarios que tienen la misma cantidad de
+  hashtags tienen que ser impresos por orden alfabético (tener en cuenta que para ordenar alfabéticamente a los
+  usuarios, los nombres de los mismos no superan más de 15 caracteres).</p>
+
+    <p>Ejemplo de invocación:
+      <code class="language-plaintext highlighter-rouge">~$ ./procesar_usuarios tweets.txt</code></p>
+
+    <p>Ejemplo de salida:
+  El usuario Mile tiene 5 tags, Martín 3, Jorge 3, Javier 5, Nacho 8, Cami 2, Ceci 5, Ezequiel 3, Matías 2, Dato 6, Anita 1, Gian 1
+  Se debe escribir por salida estándar:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  1: Anita, Gian
+  2: Cami, Matias
+  3: Ezequiel, Jorge, Martín
+  5: Ceci, Javier, Mile
+  6: Dato
+  8: Nacho
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>En ambos casos, la entrada debe tener el siguiente formato:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	Usuario1,tag1,tag2,...
+	Usuario2,tag3,tag4,...
+	Usuario1,tag5,tag1,...
+</code></pre></div></div>
+
+<p>Donde cada línea corresponde a un tweet realizado por el usuario mencionado, continuado por una los tags en dicho
+tweet. Por eso, un mismo usuario puede aparecer más de una vez. No hay líneas que no contengan al menos un tag.</p>
+
+<p>Para esto, contarán con un <a href="https://drive.google.com/file/d/0B_oxuLrlET2hU1ZYbDJ2LXY1Z2s/view?usp=sharing">archivo de prueba provisto por el curso</a>.
+Dicho archivo fue procesado de sus originales <a href="https://snap.stanford.edu/data/twitter7.html">aquí</a>. También les
+brindamos una <a href="https://drive.google.com/file/d/0B0x0VPz_v-f_RlZydHY4LVNsSFk/view?usp=sharing">versión con los primeros cien tweets</a>
+para usar durante la etapa de desarrollo.</p>
+
+<p>Pueden crear otros archivos de pruebas que a ustedes les sirva para probar el programa.</p>
+
+<p><em>Atención</em>: tener en cuenta que el archivo provisto por el curso, descomprimido, 460 Mb, y cuenta con más 19 millones
+de líneas. Se recomienda utilizar el comando <code class="language-plaintext highlighter-rouge">less</code> de Unix para leerlo, ya que no lo carga en memoria: <code class="language-plaintext highlighter-rouge">less tweets.txt</code>.</p>
+
+<h2 id="criterios-de-aprobación">Criterios de aprobación</h2>
+<p>El código entregado debe ser claro y legible y ajustarse a las especificaciones de la consigna. Debe compilar sin
+advertencias y correr sin errores de memoria. La fecha de entrega del TP es el <strong>lunes 07/06</strong>.</p>
+
+<p>La entrega incluye, obligatoriamente, los siguientes archivos de código:</p>
+
+<ul>
+  <li>Código fuente de <code class="language-plaintext highlighter-rouge">procesar_tweets</code>.</li>
+  <li>Código fuente de <code class="language-plaintext highlighter-rouge">procesar_usuarios</code>.</li>
+  <li>El código de los TDAs programados en la cursada que se requieran.</li>
+  <li>Un archivo <code class="language-plaintext highlighter-rouge">deps.mk</code> con las dependencias del proyecto en formato make. Este
+deberá contener sólamente una línea por programa que indique qué <em>objetos</em> necesita para
+compilar el ejecutable de cada uno de los archivos, por ejemplo:</li>
+</ul>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">procesar_tweets</span><span class="o">:</span> <span class="nf">procesar_tweets.o count_min_sketch.o</span>
+<span class="nl">procesar_usuarios</span><span class="o">:</span> <span class="nf">procesar_usuarios.o hash.o</span>
+</code></pre></div></div>
+
+<p>El corrector automático va a interpretar ese archivo de dependencias y va a
+compilar todos los <code class="language-plaintext highlighter-rouge">.o</code> especificados a partir de los <code class="language-plaintext highlighter-rouge">.h</code> y <code class="language-plaintext highlighter-rouge">.c</code> que deberán
+enviar, con los siguientes flags de <code class="language-plaintext highlighter-rouge">GCC</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-g -std=c99 -Wall -Wtype-limits -pedantic -Wconversion -Wno-sign-conversion
+</code></pre></div></div>
+
+<p>La entrega se realiza:</p>
+
+<ol>
+  <li>En forma digital a través del <a href="https://algoritmos-rw.dijkstra.ar/entregas/">sistema de entregas</a>:
+todos los archivos mencionados en un único archivo ZIP.</li>
+  <li>En papel durante la clase (si su ayudante lo requiere) el código del Trabajo
+en hoja A4 <strong>abrochadas, sin folio, informe ni carátula</strong>. No es necesario
+reimprimir el código de los TDA.</li>
+</ol>
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

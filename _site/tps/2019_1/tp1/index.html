@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TP1 – Manejo de archivos, cadenas y TDAs básicos</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2019_1/tp1/"> -->
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+        crossorigin="anonymous" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+          crossorigin="anonymous" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+          onload="renderMathInElement(document.body);"></script>
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2019_1/tp1.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          
+<h1 class="no_toc" id="trabajo-práctico-1">Trabajo Práctico 1</h1>
+
+<h2 class="no_toc" id="contenido">Contenido</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#manejo-de-cadenas" id="markdown-toc-manejo-de-cadenas">Manejo de cadenas</a>    <ul>
+      <li><a href="#substr" id="markdown-toc-substr">substr()</a></li>
+      <li><a href="#split" id="markdown-toc-split">split()</a></li>
+      <li><a href="#join" id="markdown-toc-join">join()</a></li>
+      <li><a href="#free_strv" id="markdown-toc-free_strv">free_strv()</a></li>
+    </ul>
+  </li>
+  <li><a href="#fixcol" id="markdown-toc-fixcol">fixcol</a>    <ul>
+      <li><a href="#observaciones" id="markdown-toc-observaciones">Observaciones</a></li>
+    </ul>
+  </li>
+  <li><a href="#brainfuck" id="markdown-toc-brainfuck">Brainfuck</a>    <ul>
+      <li><a href="#observaciones-1" id="markdown-toc-observaciones-1">Observaciones</a></li>
+    </ul>
+  </li>
+  <li><a href="#criterios-de-aprobación" id="markdown-toc-criterios-de-aprobación">Criterios de aprobación</a></li>
+</ul>
+
+<p>El Trabajo Práctico número 1 tiene fecha de entrega para el <strong>10 de mayo</strong>, y
+está divido en tres partes:</p>
+<ul>
+  <li>implementación de funciones auxiliares para cadenas (<a href="#manejo-de-cadenas"><code class="language-plaintext highlighter-rouge">strutil</code></a>)</li>
+  <li>implementación de aplicación <a href="#fixcol">fixcol</a></li>
+  <li>implementación de interprete del lenguaje <a href="https://es.wikipedia.org/wiki/Brainfuck">Brainfuck</a></li>
+</ul>
+
+<h2 id="manejo-de-cadenas">Manejo de cadenas</h2>
+
+<p>Se pide implementar las funciones del archivo adjunto en <a href="https://algoritmos-rw.github.io/algo2_skel">el sitio de descargas</a> que se describen a
+continuación. Se permite utilizar cualquier función de <a href="http://pubs.opengroup.org/onlinepubs/7908799/xsh/string.h.html">string.h</a>, aunque se desaconseja el uso de strtok. Para la implementación de estas funciones no se puede hacer uso de TDAs.</p>
+
+<p>Se recomienda leer la documentación de las siguientes funciones del módulo de <code class="language-plaintext highlighter-rouge">string.h</code>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">strlen</code></li>
+  <li><code class="language-plaintext highlighter-rouge">strcpy</code>, <code class="language-plaintext highlighter-rouge">strncpy</code></li>
+  <li><code class="language-plaintext highlighter-rouge">strcat</code>, <code class="language-plaintext highlighter-rouge">strncat</code></li>
+  <li><code class="language-plaintext highlighter-rouge">strcmp</code></li>
+  <li><code class="language-plaintext highlighter-rouge">memcpy</code></li>
+</ul>
+
+<h3 id="substr">substr()</h3>
+
+<p>La función <code class="language-plaintext highlighter-rouge">substr()</code> permite obtener un prefijo de longitud \(k\) de una cadena dada.</p>
+
+<p>Por ejemplo, la llamada <code class="language-plaintext highlighter-rouge">substr("Hola mundo", 6)</code> devolvería la cadena <code class="language-plaintext highlighter-rouge">"Hola m"</code>. El resultado debe ser una
+nueva cadena de memoria dinámica con dichos caracteres (y, por supuesto, el carácter de fin de cadena).
+Ejemplos de uso:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">substr</span><span class="p">(</span><span class="s">"Hola mundo"</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>         <span class="err">→</span> <span class="s">"Hola m"</span>
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ejemplo</span> <span class="o">=</span> <span class="s">"Ejemplo"</span>
+<span class="n">substr</span><span class="p">(</span><span class="n">ejemplo</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>          <span class="err">→</span> <span class="s">"em"</span>
+<span class="n">substr</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                   <span class="err">→</span> <span class="s">""</span>
+<span class="n">substr</span><span class="p">(</span><span class="s">"Algoritmos"</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>        <span class="err">→</span> <span class="s">"Algoritmos"</span>
+</code></pre></div></div>
+
+<p>Complejidad algorítmica: se espera que la función tenga complejidad \(\mathcal{O}(k)\).</p>
+
+<h3 id="split">split()</h3>
+
+<p>La función <code class="language-plaintext highlighter-rouge">split()</code> divide una cadena en subcadenas en cada ocurrencia de un
+caracter de separación determinado. Por ejemplo, separando por comas:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">split</span><span class="p">(</span><span class="s">"abc,def,ghi"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">,</span> <span class="s">"ghi"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>En C, devolveremos el resultado como un arreglo dinámico de cadenas dinámicas
+terminado en <code class="language-plaintext highlighter-rouge">NULL</code>. Esto es:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Ejemplo de arreglo dinámico de cadenas</span>
+<span class="kt">char</span> <span class="o">**</span><span class="n">strv</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"abc"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"def"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"ghi"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Considerar los siguientes casos borde:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">split</span><span class="p">(</span><span class="s">"abc,,def"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"def"</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">"abc,def,"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">,</span> <span class="s">""</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">",abc,def"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">"abc"</span><span class="p">,</span> <span class="sc">'\0'</span><span class="p">)</span>      <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">]</span>
+
+<span class="n">split</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">","</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span> <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">""</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Complejidad algorítmica: se espera que la función tenga complejidad \(\mathcal{O}(n)\) (Siendo \(n\) la longitud de la
+cadena resultante).</p>
+
+<h3 id="join">join()</h3>
+
+<p>La función <code class="language-plaintext highlighter-rouge">join()</code> es la inversa de <code class="language-plaintext highlighter-rouge">split()</code>. Concatena un arreglo de cadenas terminado en NULL mediante un caracter
+de separación:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Ejemplo de uso de join</span>
+<span class="kt">char</span> <span class="o">**</span><span class="n">strv</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="s">"abc,def,ghi"</span><span class="p">,</span> <span class="sc">','</span><span class="p">);</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">resultado</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">strv</span><span class="p">,</span> <span class="sc">';'</span><span class="p">);</span>  <span class="c1">// "abc;def;ghi"</span>
+
+<span class="kt">char</span> <span class="o">**</span><span class="n">palabras</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="s">"Hola mundo"</span><span class="p">,</span> <span class="sc">' '</span><span class="p">);</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">otro_resultado</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">palabras</span><span class="p">,</span> <span class="sc">','</span><span class="p">);</span>  <span class="c1">// "Hola,mundo"</span>
+</code></pre></div></div>
+
+<p>Casos borde:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">join</span><span class="p">([</span><span class="s">""</span><span class="p">],</span> <span class="sc">','</span><span class="p">)</span>             <span class="err">→</span>  <span class="s">""</span>
+<span class="n">join</span><span class="p">([</span><span class="s">"abc"</span><span class="p">],</span> <span class="sc">','</span><span class="p">)</span>          <span class="err">→</span>  <span class="s">"abc"</span>
+<span class="n">join</span><span class="p">([</span><span class="s">""</span><span class="p">,</span> <span class="s">""</span><span class="p">],</span> <span class="sc">','</span><span class="p">)</span>         <span class="err">→</span>  <span class="s">","</span>
+<span class="n">join</span><span class="p">([],</span> <span class="sc">','</span><span class="p">)</span>               <span class="err">→</span>  <span class="s">""</span> <span class="c1">// Join de arreglo vacío, {NULL} en C.</span>
+<span class="n">join</span><span class="p">([</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">],</span> <span class="sc">'\0'</span><span class="p">)</span>  <span class="err">→</span>  <span class="s">"abcdef"</span>
+</code></pre></div></div>
+
+<p>Complejidad algorítmica: se espera que la función tenga complejidad \(\mathcal{O}(n)\) (Siendo \(n\) la longitud de la
+cadena resultante).</p>
+
+<p>Las pruebas del corrector automático proveen una indicación del comportamiento de <code class="language-plaintext highlighter-rouge">join()</code> (si bien <strong>todas las funciones deben correr en tiempo lineal</strong>, <code class="language-plaintext highlighter-rouge">join()</code> provee una dificultad de implementación mayor a <code class="language-plaintext highlighter-rouge">split()</code> o
+<code class="language-plaintext highlighter-rouge">substr()</code>).</p>
+
+<p>Este sería un test con comportamiento lineal:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ RUN      ] test_join.test_complejidad_10000
+[       OK ] test_join.test_complejidad_10000 (7 ms)
+[ RUN      ] test_join.test_complejidad_20000
+[       OK ] test_join.test_complejidad_20000 (14 ms)
+[ RUN      ] test_join.test_complejidad_30000
+[       OK ] test_join.test_complejidad_30000 (17 ms)
+[ RUN      ] test_join.test_complejidad_40000
+[       OK ] test_join.test_complejidad_40000 (27 ms)
+[ RUN      ] test_join.test_complejidad_50000
+[       OK ] test_join.test_complejidad_50000 (33 ms)
+[ RUN      ] test_join.test_complejidad_60000
+[       OK ] test_join.test_complejidad_60000 (40 ms)
+</code></pre></div></div>
+
+<p>Y este con comportamiento cuadrático:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ RUN      ] test_join.test_complejidad_10000
+[       OK ] test_join.test_complejidad_10000 (48 ms)
+[ RUN      ] test_join.test_complejidad_20000
+[       OK ] test_join.test_complejidad_20000 (618 ms)
+[ RUN      ] test_join.test_complejidad_30000
+[       OK ] test_join.test_complejidad_30000 (1354 ms)
+[ RUN      ] test_join.test_complejidad_40000
+[       OK ] test_join.test_complejidad_40000 (2425 ms)
+[ RUN      ] test_join.test_complejidad_50000
+[       OK ] test_join.test_complejidad_50000 (4019 ms)
+[ RUN      ] test_join.test_complejidad_60000
+[       OK ] test_join.test_complejidad_60000 (5722 ms)
+</code></pre></div></div>
+
+<h3 id="free_strv">free_strv()</h3>
+
+<p><code class="language-plaintext highlighter-rouge">free_strv()</code> libera la memoria asociada con un arreglo dinámico de cadenas dinámicas:</p>
+
+<p>Si bien no es obligatorio probar la biblioteca, es muy recomendable hacer pruebas unitarias para comprobar el correcto
+funcionamiento, en particular para los casos borde.</p>
+
+<h2 id="fixcol">fixcol</h2>
+
+<p>Se pide implementar una utilidad llamada <code class="language-plaintext highlighter-rouge">fixcol</code>, que dado el nombre de un archivo y un tamaño <code class="language-plaintext highlighter-rouge">n</code> en bytes, divida todas las líneas del archivo en columnas de hasta <code class="language-plaintext highlighter-rouge">n</code> columnas y las imprima por salida estándar. Por ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat lorem.txt
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</code></pre></div></div>
+
+<p>El programa deberá producir la siguiente salida al ser invocado:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./fixcol lorem.txt 75
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod te
+mpor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ali
+quip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor
+e eu fugiat nulla pariatur.
+</code></pre></div></div>
+
+<h3 id="observaciones">Observaciones</h3>
+
+<ul>
+  <li>Se deberá validar que la cantidad de parámetros en la invocación sea exactamente dos.</li>
+  <li>No se podrá considerar que entra todo el archivo a dividir en memoria.</li>
+</ul>
+
+<h2 id="brainfuck">Brainfuck</h2>
+
+<p>Los amigos del instituto del cerebro nos pidieron que implementemos un intérprete del famoso lenguaje llamado
+<a href="https://es.wikipedia.org/wiki/Brainfuck">Brainfuck</a>, este lenguaje cuenta con la característica que tiene muy pocas
+instrucciones posibles (sólo 7) y tambien por tener un compilador o
+<a href="https://es.wikipedia.org/wiki/Int%C3%A9rprete_(inform%C3%A1tica)">intérprete</a> muy pequeño y fácil de implementar.</p>
+
+<p>Un link útil para probar este lenguaje es este <a href="https://copy.sh/brainfuck/">intérprete online</a>.</p>
+
+<p>Su tarea es implementar un intérprete de Brainfuck en el lenguaje C. El programa deberá ejecutarse de la siguiente forma:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    $ ./bf &lt;ruta al archivo&gt;
+</code></pre></div></div>
+<p>Donde <code class="language-plaintext highlighter-rouge">ruta al archivo</code> es la ruta al archivo a interpretar. Por ejemplo: <code class="language-plaintext highlighter-rouge">./bf ejemplo.bf</code>. En caso que no se
+indique ruta al archivo, deberá leerse de entrada estándar (similar a como hace el intérprete de Python).</p>
+
+<p>Se brinda en <a href="https://algoritmos-rw.github.io/algo2_skel">el sitio de descargas</a> un set (reducido) de archivos de prueba de ejemplo.
+La forma de ejecutar dichas pruebas es:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    $ ./pruebas.sh ruta/a/ejecutable/bf
+</code></pre></div></div>
+
+<p>Tener en cuenta que estas pruebas contemplan casos triviales, y algunos muy complejos. Para pruebas intermedias
+recomendamos implementar las suyas, pudiendo utilizar el intérprete provisto para confirmar resultados.
+Se pueden seguir agregando pruebas utilizando el mismo formato que las anteriores: tener un archivo “xx_in” que servirá
+de entrada al programa (instrucción ‘,’), otro “xx_script” que deberá tener el código a interpretar, otro “xx_out” que
+corresponderá con la salida esperada, y otro de “xx.test” que deberá contener la descripción de la prueba.</p>
+
+<h3 id="observaciones-1">Observaciones</h3>
+
+<ul>
+  <li>Todos los caracteres diferentes a los definidos por el lenguaje deben ser ignorados.</li>
+  <li>Se puede considerar que el archivo fuente entra todo en memoria, aunque recomendamos sólo almacenar lo
+  necesario.</li>
+  <li>Se debe validar la cantidad de argumentos pasados al programa, en caso de haber una cantidad inválida, escribir
+  por salida de error (<code class="language-plaintext highlighter-rouge">stderr</code>): <code class="language-plaintext highlighter-rouge">Error: Cantidad erronea de parametros</code> (sin tildes).</li>
+  <li>Se debe validar (en caso de indicarse) que se pueda leer el archivo pasado por parámetro. En caso de no ser posible
+  escribir por salida de error (<code class="language-plaintext highlighter-rouge">stderr</code>): <code class="language-plaintext highlighter-rouge">Error: archivo fuente inaccesible</code>.</li>
+  <li>Las impresiones realizadas por el programa deben realizarse a salida estándar (<code class="language-plaintext highlighter-rouge">stdout</code>).</li>
+</ul>
+
+<h2 id="criterios-de-aprobación">Criterios de aprobación</h2>
+
+<p>El código entregado debe ser claro y legible y ajustarse a las especificaciones
+de la consigna. Debe compilar sin advertencias y correr sin errores de memoria.</p>
+
+<p>La entrega incluye, obligatoriamente, los siguientes archivos de código:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">strutil.c</code> con las implementaciones de las funciones <code class="language-plaintext highlighter-rouge">substr</code>, <code class="language-plaintext highlighter-rouge">split</code>, <code class="language-plaintext highlighter-rouge">join</code> y <code class="language-plaintext highlighter-rouge">free_strv</code>.</li>
+  <li>El código de la solución de <em>bf</em> en <code class="language-plaintext highlighter-rouge">bf.c</code> y <em>fixcol</em> en <code class="language-plaintext highlighter-rouge">fixcol.c</code>.</li>
+  <li>El código de los TDAs programados en la cursada que se requieran.</li>
+  <li>Un archivo <code class="language-plaintext highlighter-rouge">deps.mk</code> con las dependencias del proyecto en formato make. Este
+deberá contener sólamente una línea por programa que indique qué <em>objetos</em> necesita para
+compilar el ejecutable de cada uno de los archivos, por ejemplo:</li>
+</ul>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">bf</span><span class="o">:</span> <span class="nf">bf.o</span>
+<span class="nl">fixcol</span><span class="o">:</span> <span class="nf">cola.o pila.o fixcol.o</span>
+</code></pre></div></div>
+
+<p>El corrector automático va a interpretar ese archivo de dependencias y va a
+compilar todos los <code class="language-plaintext highlighter-rouge">.o</code> especificados a partir de los <code class="language-plaintext highlighter-rouge">.h</code> y <code class="language-plaintext highlighter-rouge">.c</code> que deberán
+enviar, con los siguientes flags de <code class="language-plaintext highlighter-rouge">GCC</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-g -std=c99 -Wall -Wtype-limits -pedantic -Wconversion -Wno-sign-conversion
+</code></pre></div></div>
+
+<p>La entrega se realiza:</p>
+
+<ol>
+  <li>En forma digital a través del <a href="https://algoritmos-rw.dijkstra.ar/entregas/">sistema de entregas</a>:
+todos los archivos mencionados en un único archivo ZIP.</li>
+  <li>En papel durante la clase (si su ayudante lo requiere) el código del Trabajo
+en hoja A4 <strong>abrochadas, sin folio, informe ni carátula</strong>. No es necesario
+reimprimir el código de los TDA.</li>
+</ol>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

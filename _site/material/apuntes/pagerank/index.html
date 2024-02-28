@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PageRank</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/material/apuntes/pagerank/"> -->
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+        crossorigin="anonymous" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+          crossorigin="anonymous" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+          onload="renderMathInElement(document.body);"></script>
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/material/apuntes/pagerank.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          <h1 id="pagerank">PageRank</h1>
+
+<p>El algoritmo de <a href="http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf">PageRank</a>, creado por Sergey Brin y
+Larry Page, nos permite definir un ranking, o importancia, de los distintos vértices dentro de una red.
+Esto es similar a lo que busca obtener <a href="/algo2/material/apuntes/centralidad/">la centralidad de un grafo</a>, si bien distintas
+centralidades pueden servir para objetivos diferentes. Este algoritmo fue el inicialmente utilizado
+por el <em>engine</em> de Google para rankear sus búsquedas de páginas webs.</p>
+
+<p>Éste algoritmo implica calcular:</p>
+
+\[\text{PR}\left(p_i\right) = \frac{1-d}{N} + d \sum_{p_j \in M\left(p_i\right)}
+\frac{\text{PR}\left(p_j\right)}{L\left(p_j\right)}\]
+
+<p>Donde:</p>
+<ul>
+  <li>\(\text{PR}\left(p_i\right)\): Pagerank del artículo (vértice) \(p_i\) que se está queriendo calcular.</li>
+  <li>\(d\): coeficiente de amortiguación (valor entre 0 y 1). Representa la probabilidad de seguir yendo de
+página en página utilizando links, en vez de escribir una URL en el browser.</li>
+  <li>\(N\): cantidad de artículos (vértices). <strong>Ciudado</strong>: En el paper original no aparece este término, que
+es muy importante para que el valor del pagerank se mantenga entre 0 y 1. La explicación de éste error se
+encuentra en <a href="https://en.wikipedia.org/wiki/PageRank">el artículo de Wikipedia en inglés</a> (en el artículo
+en español mantiene el error).</li>
+  <li>\(\text{PR}\left(p_j\right)\): pagerank del artículo \(p_j\), donde \(p_j\) sea un artículo que tenga un
+link hacia \(p_i\). Se consideran todos los artículos que tengan un link hacia \(p_i\). Es importante notar
+que cuando se trata de un grafo dirigido, estamos hablando de las aristas de entrada a \(p_i\), no las de
+salida.</li>
+  <li>\(L\left(p_j\right)\): cantidad de links que tiene el artículo \(j\) (mismo que
+\(\text{PR}\left(p_j\right)\)).</li>
+</ul>
+
+<p>El valor del Pagerank puede verse intuitivamente como la probabilidad de aparecer en un articulo navegando
+a través de internet, ya sea yendo a través de los links (segundo término) o accediendo de forma aleatoria
+(primer término).</p>
+
+<p>Es necesario realizar varias iteraciones de este algoritmo para que termine por converger y que la
+actualización sea asincrónica (todos tomando los valores de la iteración anterior).</p>
+
+<h2 id="pagerank-personalizado">PageRank Personalizado</h2>
+
+<p>Se puede ver a PageRank como un gigantesco <a href="/algo2/material/apuntes/random_walks/">Random Walk</a>, de algún largo arbitrario y empezando desde cualquier vértice, contando la cantidad de apariciones.</p>
+
+<p>Otra utilidad de PageRank es la de poder encontrar qué vértices son más similares a otros. Esto es, hacer un Random Walk que comience en dichos vértices de interés (que puede ser uno sólo, si queremos ver los vértices similares a uno en particular), tomando un largo arbitrario. Siempre comenzando desde ese (o esos) vértices. En caso de ser más de uno, se elige de forma aleatoria desde cuál comenzar. Los vértices que más veces aparezcan, serán los más similares. 
+Ahora bien, hay que tener en cuenta el grado de los vértices (en caso de dirigido, grado de salida). No nos 
+puede dar lo mismo movernos de un vértice <em>x</em> a un vértice <em>y</em>, donde <em>x</em> sólo tenía como adyacente a <em>y</em>, que si <em>x</em> tiene muchos adyacentes. Pensemos que este último ejemplo quiere decir que <em>x</em> referencia a muchísimas páginas (en el contexto original de pagerank), por lo que cada una debería “importar menos”.</p>
+
+<p>Entonces, si bien comenzamos con un valor de 1 el recorrido, lo que vamos a hacer es darle al siguiente vértice al que nos movamos el valor que tenemos por ahora, multiplicado por \(\frac{1}{d_{out}}(x)\) (con \(d_out(x)\) el grado de salida de <em>x</em>, que en el caso de un grafo no dirigido es directamente el grado).</p>
+
+<p>Por ejemplo, en el siguiente grafo:</p>
+
+<p><img src="/algo2/assets/img/material/pagerank-pers.png" alt="grafo pagerank personalizado" width="60%" /></p>
+
+<p>Si empezamos en <code class="language-plaintext highlighter-rouge">G</code> (no le asignamos nada por empezar allí) un recorrido de largo 5, un recorrido posible sería <code class="language-plaintext highlighter-rouge">G -&gt; E -&gt; B -&gt; G -&gt; E -&gt; H</code>. Entonces, comenzamos en <code class="language-plaintext highlighter-rouge">G</code> con un valor de PageRank de 1 a transferir. Como <code class="language-plaintext highlighter-rouge">G</code> tiene 2 adyacentes, va a transferir 0.5. En este caso, se los transmite a <code class="language-plaintext highlighter-rouge">E</code>. <code class="language-plaintext highlighter-rouge">E</code> también tiene 2 adyacentes, por lo que transmite 0.25 (a <code class="language-plaintext highlighter-rouge">B</code> en este caso). <code class="language-plaintext highlighter-rouge">B</code> también tiene 2 adyacentes, por lo que transmite 0.125 al siguiente, <code class="language-plaintext highlighter-rouge">G</code>. <code class="language-plaintext highlighter-rouge">G</code> (nuevamente) tiene 2 adyacente, por lo que transmite 0.0625 a <code class="language-plaintext highlighter-rouge">E</code>, que tiene 2 adyacentes por lo que le transmite 0.03125 a <code class="language-plaintext highlighter-rouge">H</code>. Entonces, al PageRank que se vienen acumulando se le sumaría: <code class="language-plaintext highlighter-rouge">E: 0.5625; B: 0.25; G: 0.125; H: 0.03125</code> (Si bien <code class="language-plaintext highlighter-rouge">G</code> seguramente luego lo descartemos).</p>
+
+<p>Por esto mismo es importante tener en cuenta que hay que hacer varios Random Walks (y de un largo mayor que el del ejemplo puesto aquí) para que esto tenga un resultado correcto.</p>
+
+<p>Este es por ejemplo el algoritmo que ha usado durante mucho tiempo Twitter para recomendar usuarios para seguir.</p>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

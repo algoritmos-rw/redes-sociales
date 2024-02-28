@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Pila</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/pila/"> -->
+
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tda/pila.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          
+<h1 id="pila">Pila</h1>
+
+<p>El trabajo a realizar es el de una implementación de pila dinámica (es decir, una pila sobre un arreglo que pueda crecer o reducirse según la cantidad de elementos) que contenga datos genéricos.</p>
+
+<p>En el adjunto en <a href="https://algoritmos-rw.github.io/algo2_skel">el sitio de descargas</a> encontrarán el archivo <code class="language-plaintext highlighter-rouge">pila.go</code> que tienen que utilizar. En este archivo están definidas las primitivas que tendrán que implementar, con su correspondiente documentación. Todas las primitivas tienen que funcionar en <em>tiempo constante</em>.
+Además, deben incluir la primitiva para crear la pila:</p>
+
+<div class="language-golang highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">CrearPilaDinamica</span><span class="p">[</span><span class="n">T</span> <span class="n">any</span><span class="p">]()</span> <span class="n">Pila</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="p">{</span>
+	<span class="c">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Importante notar que la función debe devolver un elemento de tipo Pila, ya que la estructura no debe exportarse.</p>
+
+<p>Hay que escribir el archivo <code class="language-plaintext highlighter-rouge">pila_dinamica.go</code>, con la implementación de la estructura de la pila y de cada una de las primitivas incluidas en el encabezado.  Además de las primitivas, pueden tener funciones auxiliares, de uso interno, que no deben estar declaradas dentro de <code class="language-plaintext highlighter-rouge">pila.go</code>. En <code class="language-plaintext highlighter-rouge">pila.go</code> se encuentran únicamente las primitivas que el usuario de la pila tiene que conocer.</p>
+
+<p>Les sugerimos la siguiente implementación para la estructura interna de la pila:</p>
+
+<div class="language-golang highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">pilaDinamica</span><span class="p">[</span><span class="n">T</span> <span class="n">any</span><span class="p">]</span> <span class="k">struct</span> <span class="p">{</span>
+	<span class="n">datos</span>    <span class="p">[]</span><span class="n">T</span>
+	<span class="n">cantidad</span> <span class="kt">int</span> <span class="c">// Cantidad de elementos almacenados.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Además de <code class="language-plaintext highlighter-rouge">pila_dinamica.go</code>, tienen que entregar otro archivo <code class="language-plaintext highlighter-rouge">pila_test.go</code>, que contenga las pruebas unitarias para verificar que la pila funciona correctamente, y que al ejecutarlo puede verificarse que todo funciona bien. Se permite (y recomienda) usar funciones auxiliares en donde crean necesario.
+Es necesario separar los tests en diferentes funciones que prueben los escenarios. No es válido tener un único test que pruebe todo.</p>
+
+<p>El archivo <code class="language-plaintext highlighter-rouge">pila_dinamica.go</code> debe ser parte del paquete <code class="language-plaintext highlighter-rouge">pila</code> (tal y como se encuentra en el archivo base adjunto), y el archivo de pruebas debe ser parte del paquete <code class="language-plaintext highlighter-rouge">pila_test</code>.</p>
+
+<p>Las pruebas deberán verificar que:</p>
+<ol>
+  <li>Se pueda crear una Pila vacía, y esta se comporta como tal.</li>
+  <li>Se puedan apilar elementos, que al desapilarlos se mantenga el invariante de pila (que esta es LIFO). Probar con elementos diferentes, y ver que salgan en el orden deseado.</li>
+  <li><em>Prueba de volumen</em>: Se pueden apilar muchos elementos (1000, 10000 elementos, o el volumen que corresponda): hacer crecer la pila, y desapilar elementos hasta que esté vacía, comprobando que siempre cumpla el invariante. Recordar <em>no apilar siempre lo mismo</em>, validar que se cumpla siempre que el tope de la pila sea el correcto paso a paso, y que el nuevo tope después de cada <code class="language-plaintext highlighter-rouge">desapilar</code> también sea el correcto.</li>
+  <li>Condición de borde: comprobar que al desapilar hasta que está vacía hace que la pila se comporte como recién creada.</li>
+  <li>Condición de borde: las acciones de desapilar y ver_tope en una pila recién creada son inválidas.</li>
+  <li>Condición de borde: la acción de esta_vacía en una pila recién creada es verdadero.</li>
+  <li>Condición de borde: las acciones de desapilar y ver_tope en una pila a la que se le apiló y desapiló hasta estar vacía son inválidas.</li>
+  <li>Probar apilar cosas diferentes: probar con una pila de enteros, con una pila de cadenas, etc…</li>
+</ol>
+
+<p>Además de todos los casos no descriptos que ustedes crean necesarios.</p>
+
+<p>Para compilar y verificar las pruebas:</p>
+<ol>
+  <li>
+    <p>Compilar todo el código:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> go build pila
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Ejecutar las pruebas:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> go test pila_test.go
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Adicionalmente, pueden utilizar el flag <code class="language-plaintext highlighter-rouge">-v</code> para que se muestre la salida de cada prueba, incluyendo logs (esto es lo que se hace en el corrector automático).</p>
+
+<p>Al igual que en los casos anteriores, deberán entregar el código en formato digital subiendo el código a la <a href="https://algoritmos-rw.dijkstra.ar/entregas/">página de entregas de la materia</a>, con el código completo. Se debe entregar un archivo <code class="language-plaintext highlighter-rouge">zip</code> con todos los archivos (sin subcarpetas). No es necesario enviar el archivo <code class="language-plaintext highlighter-rouge">pila.go</code>. Incluso, este será ignorado para evitar cualquier modificación sobre las primitivas.</p>
+
+<hr />
+<h3 id="bibliografia-recomendada">Bibliografia recomendada</h3>
+<ul>
+  <li>Weiss, Mark Allen, “Data Structures and Algorithm Analysis”: <em>3.3. The Stack ADT</em>.</li>
+  <li>Cormen, Thomas H. “Introduction to Algorithms”: <em>10.1. Stacks and queues</em>.</li>
+</ul>
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

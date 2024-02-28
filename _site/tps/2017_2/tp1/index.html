@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TP1 – Wachencoin</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2017_2/tp1/"> -->
+
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2017_2/tp1.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          <h1 class="no_toc" id="trabajo-práctico-1">Trabajo Práctico 1</h1>
+
+<h2 class="no_toc" id="contenido">Contenido</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#strutil" id="markdown-toc-strutil">strutil</a>    <ul>
+      <li><a href="#split" id="markdown-toc-split">split()</a></li>
+      <li><a href="#free_strv" id="markdown-toc-free_strv">free_strv()</a></li>
+    </ul>
+  </li>
+  <li><a href="#interludio-bitcoin" id="markdown-toc-interludio-bitcoin">Interludio: Bitcoin</a></li>
+  <li><a href="#wachencoin" id="markdown-toc-wachencoin">Wachencoin</a>    <ul>
+      <li><a href="#interfaz" id="markdown-toc-interfaz">Interfaz</a></li>
+      <li><a href="#código-de-pago" id="markdown-toc-código-de-pago">Código de pago</a></li>
+      <li><a href="#manejo-de-errores-y-precondiciones" id="markdown-toc-manejo-de-errores-y-precondiciones">Manejo de errores y precondiciones</a></li>
+      <li><a href="#diseño" id="markdown-toc-diseño">Diseño</a></li>
+      <li><a href="#ejemplos" id="markdown-toc-ejemplos">Ejemplos</a>        <ul>
+          <li><a href="#con-una-transacción-con-un-pago" id="markdown-toc-con-una-transacción-con-un-pago">Con una transacción con un pago</a></li>
+          <li><a href="#con-una-transacción-con-dos-pagos" id="markdown-toc-con-una-transacción-con-dos-pagos">Con una transacción con dos pagos</a></li>
+          <li><a href="#con-un-código-de-pago-inválido" id="markdown-toc-con-un-código-de-pago-inválido">Con un código de pago inválido</a></li>
+          <li><a href="#con-un-comando-inválido" id="markdown-toc-con-un-comando-inválido">Con un comando inválido</a></li>
+          <li><a href="#con-un-comando-inexistente" id="markdown-toc-con-un-comando-inexistente">Con un comando inexistente</a></li>
+          <li><a href="#con-impresión-de-pagos-pendientes" id="markdown-toc-con-impresión-de-pagos-pendientes">Con impresión de pagos pendientes</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#anexo-más-información-y-links" id="markdown-toc-anexo-más-información-y-links">Anexo: más información y links</a></li>
+  <li><a href="#criterios-de-aprobación" id="markdown-toc-criterios-de-aprobación">Criterios de aprobación</a></li>
+</ul>
+
+<p>El Trabajo Práctico número 1 tiene fecha de entrega para el <strong>viernes 13/10</strong>, y
+está divido en dos partes, si bien están relacionadas:</p>
+<ul>
+  <li>implementación de funciones auxiliares para cadenas (<code class="language-plaintext highlighter-rouge">strutil</code>)</li>
+  <li>implementación de un sistema similar a Bitcoin (<em>Wachencoin</em>)</li>
+</ul>
+
+<h2 id="strutil">strutil</h2>
+<p>Se pide implementar las funciones del archivo
+<a href="/algo2/assets/tps/2017_2/tp1/strutil.h">strutil.h</a> que
+se describen a continuación. Para la implementación de estas funciones no se
+puede hacer uso de TDAs:</p>
+
+<h3 id="split">split()</h3>
+
+<p>La función <code class="language-plaintext highlighter-rouge">split()</code> divide una cadena en subcadenas en cada ocurrencia de un
+caracter de separación determinado. Por ejemplo, separando por comas:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">split</span><span class="p">(</span><span class="s">"abc,def,ghi"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">,</span> <span class="s">"ghi"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>En C, devolveremos el resultado como un arreglo dinámico de cadenas dinámicas
+terminado en <code class="language-plaintext highlighter-rouge">NULL</code>. Esto es:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Ejemplo de arreglo dinámico de cadenas</span>
+<span class="kt">char</span> <span class="o">**</span><span class="n">strv</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"abc"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"def"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"ghi"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>El prototipo y la documentación de <code class="language-plaintext highlighter-rouge">split()</code> queda en:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ * Devuelve en un arreglo dinámico terminado en NULL con todos los subsegmentos
+ * de 'str' separados por el carácter 'sep'. Tanto el arreglo devuelto como las
+ * cadenas que contiene son allocadas dinámicamente.
+ *
+ * Quien llama a la función toma responsabilidad de la memoria dinámica del
+ * arreglo devuelto. La función devuelve NULL si falló alguna llamada a
+ * malloc(), o si 'sep' es '\0'.
+ */</span>
+<span class="kt">char</span><span class="o">**</span> <span class="nf">split</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">char</span> <span class="n">sep</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Considerar los siguientes casos borde:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">split</span><span class="p">(</span><span class="s">"abc,,def"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"def"</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">"abc,def,"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">,</span> <span class="s">""</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">",abc,def"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">]</span>
+
+<span class="n">split</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">","</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span> <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">""</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="free_strv">free_strv()</h3>
+
+<p><code class="language-plaintext highlighter-rouge">free_strv()</code> libera la memoria asociada con un arreglo dinámico de cadenas dinámicas:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ * Libera un arreglo dinámico de cadenas, y todas las cadenas que contiene.
+ */</span>
+<span class="kt">void</span> <span class="nf">free_strv</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">strv</span><span class="p">[]);</span>
+</code></pre></div></div>
+
+<h2 id="interludio-bitcoin">Interludio: Bitcoin</h2>
+<p><strong>Bitcoin</strong> es un sistema de pagos digital descentralizado que no requiere un
+respaldo externo (en billetes, por ejemplo) del dinero que utiliza.</p>
+
+<p>En Bitcoin y sus derivados, los pagos son en realidad programas (<em>scripts</em>)
+que se escriben en un <em>lenguaje de pila</em>.
+Un lenguaje de pila opera básicamente de dos formas: apilando y desapilando
+datos del stack, para poder usar funciones sobre ellos. Un ejemplo puede ser
+la <a href="http://www-stone.ch.cam.ac.uk/documentation/rrf/rpn.html">notación polaca inversa</a>
+que se utilizaba en las antiguas calculadoras digitales.</p>
+
+<p><strong>¡A no desesperar!</strong> Aunque Bitcoin tiene muchas decisiones de diseño
+para garantizar transferencias seguras y válidas entre los miembros de
+la red, en este TP sólo nos interesan las estructuras de datos que
+pueden ser útiles en un sistema de este estilo.</p>
+
+<h2 id="wachencoin">Wachencoin</h2>
+
+<p style="text-align: center;">
+    <img src="/algo2/assets/tps/2017_2/tp1/logo.png" />
+</p>
+
+<p>Implementaremos un programa que permita realizar pagos entre los usuarios
+de la red y mantenga el estado de los saldos de sus billeteras. Cada
+usuario será identificado unívocamente por un identificador numérico y tendrá
+asociada una coordenada que hará las funciones de contraseña.</p>
+
+<p><em>Curiosidad</em>: la unidad más pequeña del sistema Bitcoin se llama <em>satoshi</em>, por
+su creador. Parece justo, entonces, llamar a la unidad de Wachencoin un
+<em>rosita</em>.</p>
+
+<p>La ejecución de la aplicación recibe como parámetro el nombre de un archivo
+<a href="https://en.wikipedia.org/wiki/Comma-separated_values">csv</a>
+con el estado inicial de las cuentas (número, saldo, coordenadas), que tiene el
+siguiente formato:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0,13.37,14f6c9dae22
+1,58.92,916f4c31aaa
+2,9301.92,e9a7f54270d
+(...)
+</code></pre></div></div>
+
+<p>Los números de cuenta son consecutivos empezando desde 0.</p>
+
+<h3 id="interfaz">Interfaz</h3>
+
+<p>Es necesario implementar una <strong>interfaz</strong> del programa, que leerá por entrada
+estándar los siguientes comandos:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">agregar_pago &lt;id_pago&gt; &lt;monto&gt; -código de pago-</code>, que agregará a la cola de
+procesamiento la transacción. El monto es siempre positivo. El formato del
+código de pago se detalla debajo.</li>
+  <li><code class="language-plaintext highlighter-rouge">pagos_pendientes</code>: imprime por <code class="language-plaintext highlighter-rouge">stdout</code> la cantidad y el monto total de los
+pagos pendientes, separados por una coma.</li>
+  <li><code class="language-plaintext highlighter-rouge">procesar &lt;numero&gt;</code>: procesa hasta un número no negativo de pagos pendientes.</li>
+  <li><code class="language-plaintext highlighter-rouge">guardar_cuentas &lt;archivo&gt;</code>: guarda en un archivo el estado <em>actual</em> de las
+cuentas. Si no existe lo debe crear, y si existe lo sobreescribe.</li>
+  <li><code class="language-plaintext highlighter-rouge">finalizar</code>: finaliza el programa (si quedan pagos sin procesar, no se
+procesan).</li>
+</ul>
+
+<p><em>Nota</em>: recomendamos usar el siguiente formato para la impresión de números
+decimales en C: <code class="language-plaintext highlighter-rouge">%.3f</code>, que imprime el número redondeado a tres decimales.</p>
+
+<h3 id="código-de-pago">Código de pago</h3>
+
+<p>Como Bitcoin, en Wachencoin los códigos de pago (también llamados <em>scripts</em>) se
+escriben utilizando un lenguaje de pila¹ como el siguiente:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;id_usuario_1&gt;
+&lt;coordenadas_usuario_1&gt;
+validar_usuario
+&lt;id_usuario_1&gt;
+&lt;monto&gt;
+validar_pago
+&lt;monto&gt;
+&lt;id_usuario_2&gt;
+&lt;id_usuario_1&gt;
+pagar
+</code></pre></div></div>
+
+<p>Las distintas instrucciones del código de pago se ingresan en <strong>una línea</strong>
+separadas por <code class="language-plaintext highlighter-rouge">;</code>, por ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0;14f6c9dae22;validar_usuario;0;5.00;validar_pago;5.00;3;0;pagar
+</code></pre></div></div>
+
+<p>Que corresponde a un pago del usuario 0 de coordenadas 14f6c9dae22
+de 5 rositas para el usuario 3.</p>
+
+<p>Para clarificar, marcamos las siguientes operaciones:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">validar_usuario</code>: desapila dos elementos y revisa que las coordenadas
+sean apropiadas para el usuario.</li>
+  <li><code class="language-plaintext highlighter-rouge">validar_pago</code>: desapila dos elementos y revisa que el usuario tenga
+fondos suficientes para hacer la operación.</li>
+  <li><code class="language-plaintext highlighter-rouge">pagar</code>: desapila tres elementos y hace el movimiento de fondos.</li>
+  <li>por defecto: empuja un dato al stack.</li>
+</ul>
+
+<p><strong>Atención</strong>: Si bien la de arriba es una transacción bien escrita, no es
+la <em>única</em> posible. También habrá transacciones que hacen pagos a múltiples
+personas; o de varias personas a una sola.</p>
+
+<p><strong>Restricciones sobre la complejidad</strong>: todas las operaciones del lenguaje de
+pila deben ser <em>O(1)</em>. La operación de agregar un pago debe ser <em>O(1)</em>, la de
+pagos pendientes <em>O(P)</em> siendo P la cantidad de transacciones sin procesar,
+y la de guardar cuentas debe ser <em>O(C)</em> (con C la cantidad de cuentas).</p>
+
+<h3 id="manejo-de-errores-y-precondiciones">Manejo de errores y precondiciones</h3>
+
+<p>Para este Trabajo Práctico se podrá considerar:</p>
+
+<ul>
+  <li>Que el monto total de un comando <code class="language-plaintext highlighter-rouge">agregar_pago</code> es correcto. Es decir: que
+correctamente simboliza la suma de las transacciones que se van a realizar en el
+código.</li>
+  <li>Que todos los montos son flotantes positivos.</li>
+</ul>
+
+<p>La implementación deberá manejar correctamente los siguientes casos de error:</p>
+
+<ul>
+  <li>Error 1: cuando un código de pila tiene un error. Por ejemplo:
+    <ul>
+      <li>Id de usuario inexistente.</li>
+      <li>Las coordenadas de un usuario son inválidas.</li>
+      <li>El usuario no tiene saldo suficiente.</li>
+    </ul>
+  </li>
+  <li>Error 2: cuando un comando es inválido. Por ejemplo:
+    <ul>
+      <li>Se encuentra una cadena de texto cuando se espera un número entero.</li>
+      <li>Hay parámetros de más.</li>
+      <li>Faltan parámetros.</li>
+      <li>El comando no existe.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>En caso de error 1, el programa deberá imprimir por <code class="language-plaintext highlighter-rouge">stderr</code>: <code class="language-plaintext highlighter-rouge">Error en pago &lt;id&gt;</code>
+con el id de pago inválido. Queda a elección de ustedes decidir si el resto de
+los pagos del código se procesaran o no.</p>
+
+<p>En caso de error 2, el programa deberá imprimir por <code class="language-plaintext highlighter-rouge">stderr</code>: <code class="language-plaintext highlighter-rouge">Error en comando &lt;nombre&gt;</code>
+con el nombre del comando que falló. Un error de tipo 2 hará que termine la
+ejecución del programa.</p>
+
+<p>En caso de que un comando no tenga errores de tipo 2 deberá imprimir <code class="language-plaintext highlighter-rouge">OK</code> por
+<code class="language-plaintext highlighter-rouge">stdout</code>. Esta cadena deberá ser lo último impreso por la aplicación en caso de
+error.</p>
+
+<h3 id="diseño">Diseño</h3>
+
+<p>Se recomienda usar las siguientes estructuras para almacenar los usuarios y los
+pagos:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">usuario</span> <span class="p">{</span>
+	<span class="kt">size_t</span> <span class="n">id</span><span class="p">;</span>
+	<span class="kt">char</span><span class="o">*</span> <span class="n">coordenadas</span><span class="p">;</span>
+	<span class="kt">double</span> <span class="n">saldo</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">usuario_t</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="nc">pago</span> <span class="p">{</span>
+	<span class="kt">size_t</span> <span class="n">id</span><span class="p">;</span>
+	<span class="kt">char</span><span class="o">*</span> <span class="n">codigo</span><span class="p">;</span>
+	<span class="kt">double</span> <span class="n">monto</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">pago_t</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="ejemplos">Ejemplos</h3>
+
+<p>Los siguientes ejemplos son tomados a partir de un archivo de cuentas inicial
+como el siguiente:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0,23.37,14f6c9dae22
+1,5.12,916f4c31aaa
+2,5.14,c353bcb74b3
+</code></pre></div></div>
+
+<h4 id="con-una-transacción-con-un-pago">Con una transacción con un pago</h4>
+
+<p>El siguiente es un ejemplo de una ejecución bien formada:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agregar_pago 1 5.00 1;916f4c31aaa;validar_usuario;1;5.00;validar_pago;5.00;0;1;pagar
+procesar 1
+guardar_cuentas cuentas_out.csv
+finalizar
+</code></pre></div></div>
+
+<p>El programa:</p>
+
+<ol>
+  <li>Agrega un pago pendiente del usuario 1 al usuario 0 por el monto de 5
+rositas.</li>
+  <li>Procesa el pago.</li>
+  <li>Guarda el estado de las cuentas en el archivo <code class="language-plaintext highlighter-rouge">cuentas_out.csv</code>.</li>
+  <li>Finaliza la ejecución.</li>
+</ol>
+
+<p>Al finalizar esta ejecución se espera que por salida estándar se imprima:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+OK
+OK
+OK
+</code></pre></div></div>
+
+<h4 id="con-una-transacción-con-dos-pagos">Con una transacción con dos pagos</h4>
+
+<p>El siguiente ejemplo realiza dos transacciones en un mismo código de pago:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agregar_pago 1 10.02 0;14f6c9dae22;validar_usuario;1;916f4c31aaa;validar_usuario;0;5.22;validar_pago;1;4.80;validar_pago;5.22;2;0;pagar;4.80;2;1;pagar
+procesar 1
+guardar_cuentas cuentas_out.csv
+finalizar
+</code></pre></div></div>
+
+<p>El programa:</p>
+
+<ol>
+  <li>Agrega un pago pendiente del usuario 0 al usuario 2 por el monto de 5,22
+rositas; y un pago pendiente de 4,80 rositas del usuario 1 al usuario 2.</li>
+  <li>Procesa el pago (que ejecutará las dos transacciones).</li>
+  <li>Guarda el estado de las cuentas en el archivo <code class="language-plaintext highlighter-rouge">cuentas_out.csv</code>.</li>
+  <li>Finaliza la ejecución.</li>
+</ol>
+
+<p>La salida esperada en este caso es:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+OK
+OK
+OK
+</code></pre></div></div>
+
+<h4 id="con-un-código-de-pago-inválido">Con un código de pago inválido</h4>
+
+<p>El siguiente ejemplo es inválido por tener mal las coordenadas del usuario 1:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agregar_pago 1 10.00 1;fd36fbf2562;validar_usuario;1;10.00;validar_pago;10.00;0;1;pagar
+procesar 1
+finalizar
+</code></pre></div></div>
+
+<p>Deberá producir la siguiente salida (teniendo en cuenta lo mostrado por <code class="language-plaintext highlighter-rouge">stdout</code>
+y por <code class="language-plaintext highlighter-rouge">stderr</code>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+Error en pago 1
+OK
+OK
+</code></pre></div></div>
+
+<h4 id="con-un-comando-inválido">Con un comando inválido</h4>
+
+<p>El siguiente ejemplo es inválido por faltarle un parámetro al comando
+<code class="language-plaintext highlighter-rouge">procesar</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agregar_pago 1 5.00 1;916f4c31aaa;validar_usuario;1;5.00;validar_pago;5.00;0;1;pagar
+procesar
+guardar_cuentas cuentas_out.csv
+finalizar
+</code></pre></div></div>
+
+<p>Deberá producir la siguiente salida (teniendo en cuenta lo mostrado por <code class="language-plaintext highlighter-rouge">stdout</code>
+y por <code class="language-plaintext highlighter-rouge">stderr</code>)::</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+Error en comando procesar
+</code></pre></div></div>
+
+<p>Y deberá terminar la ejecución sin ejecutar los últimos dos comandos.</p>
+
+<h4 id="con-un-comando-inexistente">Con un comando inexistente</h4>
+
+<p>La siguiente serie de comandos incluye uno que es inexistente:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agregar_pago 1 5.00 1;916f4c31aaa;validar_usuario;1;5.00;validar_pago;5.00;0;1;pagar
+imprimir_deudas 4
+procesar 2
+finalizar
+</code></pre></div></div>
+
+<p>Deberá producir la siguiente salida (teniendo en cuenta lo impreso por <code class="language-plaintext highlighter-rouge">stdout</code>
+y <code class="language-plaintext highlighter-rouge">stderr</code>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+Error en comando imprimir_deudas
+</code></pre></div></div>
+
+<p>Y deberá terminar la ejecución sin ejecutar los últimos dos comandos.</p>
+
+<h4 id="con-impresión-de-pagos-pendientes">Con impresión de pagos pendientes</h4>
+
+<p>La siguiente serie de comandos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agregar_pago 1 10.02 0;14f6c9dae22;validar_usuario;1;916f4c31aaa;validar_usuario;0;5.22;validar_pago;1;4.80;validar_pago;5.22;2;0;pagar;4.80;2;1;pagar
+pagos_pendientes
+finalizar
+</code></pre></div></div>
+
+<p>Deberá producir la siguiente salida:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OK
+1,10.02
+OK
+OK
+</code></pre></div></div>
+
+<h2 id="anexo-más-información-y-links">Anexo: más información y links</h2>
+
+<p>Esta implementación de <em>Wachencoin</em> es bastante sencilla pero introduce
+algunos conceptos fundamentales de criptomonedas. A continuación se enumeran
+recursos que permiten entender otros conceptos involucrados no incluídos en
+el TP y para nada necesarios para su resolución:</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Double-spending">Double spending problem</a></li>
+  <li><a href="https://es.wikipedia.org/wiki/SHA-2">Funciones de hash SHA</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Merkle_tree">Arbol de Merkle</a></li>
+  <li><a href="https://www.youtube.com/watch?v=GSIDS_lvRv4">Criptografía de clave pública</a></li>
+  <li><a href="http://pub.gajendra.net/2012/09/an_explanation_of_the_rsa_cryptosystem">Criptografía con RSA</a></li>
+  <li><a href="http://hackingdistributed.com/2014/06/19/bitcoin-and-voting-power/">Majority Rule</a></li>
+  <li><a href="https://en.bitcoin.it/wiki/Transaction#Pay-to-PubkeyHash">Ejemplos de programas en Bitcoin Scripting Language</a></li>
+</ul>
+
+<h2 id="criterios-de-aprobación">Criterios de aprobación</h2>
+
+<p>El código entregado debe ser claro y legible y ajustarse a las especificaciones
+de la consigna. Debe compilar sin advertencias y correr sin errores de memoria.</p>
+
+<p>La entrega incluye, obligatoriamente, los siguientes archivos de código:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">strutil.c</code> con las implementaciones de las funciones <code class="language-plaintext highlighter-rouge">split</code> y <code class="language-plaintext highlighter-rouge">free_strv</code>.</li>
+  <li>el código de la solución de wachencoin.</li>
+  <li>el código de los TDAs programados en la cursada que se requieran, con las
+modificaciones que sean necesarias.</li>
+  <li>un archivo <code class="language-plaintext highlighter-rouge">deps.mk</code> con las dependencias del proyecto en formato make. Este
+deberá contener sólamente una línea que indique qué <em>objetos</em> necesita para
+compilar el ejecutable wachencoin, por ejemplo:</li>
+</ul>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">wachencoin</span><span class="o">:</span> <span class="nf">tp1.c vector.o pila.o lista.o strutil.o</span>
+</code></pre></div></div>
+
+<p>El corrector automático va a interpretar ese archivos de dependencias y va a
+compilar todos los <code class="language-plaintext highlighter-rouge">.o</code> especificados a partir de los <code class="language-plaintext highlighter-rouge">.h</code> y <code class="language-plaintext highlighter-rouge">.c</code> que deberán
+enviar, con los siguientes flags de GCC:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-g -std=c99 -Wall -Wtype-limits -pedantic -Wconversion -Wno-sign-conversion
+</code></pre></div></div>
+
+<p>La entrega se realiza:</p>
+
+<ol>
+  <li>en forma digital a través del <a href="http://entregas.algoritmos7541-rw.tk">sistema de entregas</a>:
+todos los archivos mencionados en un único archivo ZIP.</li>
+  <li>en papel durante la clase (si su ayudante lo requiere) el código del Trabajo
+en hoja A4 <strong>abrochadas, sin folio, informe ni carátula</strong>. No es necesario
+reimprimir el código de los TDA.</li>
+</ol>
+
+<hr />
+
+<p>¹ el atento lector se habrá dado cuenta de que no es necesario utilizar un
+lenguaje de pila para realizar los pagos. Sin embargo, el propósito del TP
+es <em>implementar</em> ese lenguaje de pila, y utilizarlo para realizar pagos
+– no al revés.</p>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

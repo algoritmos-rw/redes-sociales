@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Grafos: Aplicaciones y Algoritmos</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/material/guias/grafos_2/"> -->
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+        crossorigin="anonymous" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+          crossorigin="anonymous" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+          onload="renderMathInElement(document.body);"></script>
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/material/guias/grafos_2.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          <h1 class="no_toc" id="grafos-aplicaciones-y-algoritmos">Grafos: Aplicaciones y Algoritmos</h1>
+
+<h2 class="no_toc" id="contenidos">Contenidos</h2>
+
+<ol id="markdown-toc">
+  <li><a href="#ejercicio-resuelto" id="markdown-toc-ejercicio-resuelto">Ejercicio resuelto</a>    <ol>
+      <li><a href="#solución" id="markdown-toc-solución">Solución</a></li>
+    </ol>
+  </li>
+  <li><a href="#ejercicios-propuestos" id="markdown-toc-ejercicios-propuestos">Ejercicios propuestos</a></li>
+</ol>
+
+<h2 id="ejercicio-resuelto">Ejercicio resuelto</h2>
+
+<p>El diámetro de una red es el máximo de las distancias mínimas entre todos los vértices
+de la misma. Implementar un algoritmo que permita obtener el diámetro de una red, para
+el caso de un grafo no dirigido y no pesado. Indicar el orden del algoritmo propuesto.</p>
+
+<h3 id="solución">Solución</h3>
+
+<p>Vamos desglosando lo que nos dice el enunciado para entender cómo resolverlo: El diámetro de una red (grafo, etc.)
+es la distancia más grande entre todos los caminos mínimos que hayan. Por lo tanto, será necesario obtener todas las
+distancias mínimas y quedarnos con el máximo valor. En esta definición no contamos el infinito, puesto que no tiene
+mayor sentido. Particularmente vamos a asumir que el grafo es conexo, si bien puede resolverse también para otros casos
+(incluyendo que sea dirigido). Sería tan solo despreciar el caso en el que no se haya encontrado camino (ej, que
+camino mínimo devuelva <code class="language-plaintext highlighter-rouge">None</code>).</p>
+
+<p>Una primera solución podría ser:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">diametro</span><span class="p">(</span><span class="n">grafo</span><span class="p">):</span>
+    <span class="n">max_min_dist</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">grafo</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">grafo</span><span class="p">:</span>
+            <span class="n">distancia</span> <span class="o">=</span> <span class="n">camino_minimo</span><span class="p">(</span><span class="n">grafo</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+            <span class="c1"># aca podria validar si la distancia no es None o infinito
+</span>            <span class="k">if</span> <span class="n">distancia</span> <span class="o">&gt;</span> <span class="n">max_min_dist</span><span class="p">:</span>
+                <span class="n">max_min_dist</span> <span class="o">=</span> <span class="n">distancia</span>
+    <span class="k">return</span> <span class="n">max_min_dist</span>
+</code></pre></div></div>
+
+<p>El problema aquí es que el costo de todo esto va a ser \(\mathcal{O}(V^2 (V + E))\) (considerando que la forma eficiente
+de obtener los caminos mínimos en un grafo no pesado es utilizando un recorrido BFS), ya que buscamos cada camino mínimo
+para cada origen y destino posible.</p>
+
+<p>Una optimización (bastante evidente) es aprovechar que BFS nos puede devolver un diccionario con todos los caminos mínimos
+(en particular, sólo nos interesan las distancias, no las forma de reconstruirlos), y luego solo quedarnos con la distancia
+más grande:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">diametro</span><span class="p">(</span><span class="n">grafo</span><span class="p">):</span>
+    <span class="n">max_min_dist</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">grafo</span><span class="p">:</span>
+        <span class="n">distancias</span> <span class="o">=</span> <span class="n">caminos_minimos</span><span class="p">(</span><span class="n">grafo</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">distancias</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">distancias</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_min_dist</span><span class="p">:</span>
+                <span class="n">max_min_dist</span> <span class="o">=</span> <span class="n">distancias</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">max_min_dist</span>
+</code></pre></div></div>
+
+<p>Con esto, la solución pasará a ser \(\mathcal{O}(V (V + E))\). Ya que estamos, también escribimos cómo sería una
+implementación para obtener esos caminos mínimos:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">caminos_minimos</span><span class="p">(</span><span class="n">grafo</span><span class="p">,</span> <span class="n">origen</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">Cola</span><span class="p">()</span>
+    <span class="n">visitados</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">distancia</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">distancia</span><span class="p">[</span><span class="n">origen</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">visitados</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">origen</span><span class="p">)</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">encolar</span><span class="p">(</span><span class="n">origen</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="p">.</span><span class="n">esta_vacia</span><span class="p">():</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">desencolar</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">grafo</span><span class="p">.</span><span class="n">adyacentes</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visitados</span><span class="p">:</span>
+                <span class="n">distancia</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">distancia</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">encolar</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+                <span class="n">visitados</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">distancia</span>
+</code></pre></div></div>
+
+<h2 id="ejercicios-propuestos">Ejercicios propuestos</h2>
+
+<ol>
+  <li>
+    <p>(★★) a. Obtener una representación del camino mínimo desde el vértice A en el siguiente grafo
+    (representado con una matriz de adyacencias), hacia todos los demás vértices,
+    utilizando el algoritmo de Dijkstra:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|   | A | B | C | D | E | F |
+|---|---|---|---|---|---|---|
+| A | 0 | 7 | 5 | 0 | 3 | 8 |
+| B | 7 | 0 | 0 | 0 | 1 | 3 |
+| C | 5 | 0 | 0 | 5 | 3 | 2 |
+| D | 0 | 0 | 5 | 0 | 2 | 0 |
+| E | 3 | 1 | 3 | 2 | 0 | 0 |
+| F | 8 | 3 | 2 | 0 | 0 | 0 |
+</code></pre></div>    </div>
+
+    <p>b. ¿Qué condiciones debe cumplir el grafo para poder aplicar el algoritmo de Dijkstra?
+   ¿Qué característica tiene el grafo si al finalizar la ejecución del algoritmo, uno o
+   más vértices quedan a <em>distancia infinita</em>?</p>
+  </li>
+  <li>
+    <p>(★★★) a. Obtener una representación del camino mínimo desde el vértice A en el siguiente grafo
+(representado con una matriz de adyacencias), hacia todos los demás vértices,
+utilizando el algoritmo de Bellman-Ford.</p>
+
+    <p><img src="/algo2/assets/img/material/bf.png" alt="grafo bf" width="60%" /></p>
+
+    <p>b. Volver a realizar, suponiendo que la arista de <code class="language-plaintext highlighter-rouge">B</code> a <code class="language-plaintext highlighter-rouge">A</code> ahora tiene un peso de 1.</p>
+  </li>
+  <li>
+    <p>(★★) Obtener el Árbol de Tendido Mínimo del siguiente grafo:</p>
+
+    <p>a. Utilizando el Algoritmo de Kruskal.</p>
+
+    <p>b. Utilizando el Algoritmo de Prim.</p>
+
+    <p><img src="/algo2/assets/img/material/mst.png" alt="grafo mst" width="75%" /></p>
+  </li>
+  <li>
+    <p>(★★★) Dadas las matrices de adyacencia <code class="language-plaintext highlighter-rouge">M1</code>, <code class="language-plaintext highlighter-rouge">M2</code> y <code class="language-plaintext highlighter-rouge">M3</code>, responder las siguientes preguntas
+(recomendamos pasar los grafos a una representación visual para mayor facilidad):</p>
+
+    <p>a. ¿Puede ser el grafo definido por <code class="language-plaintext highlighter-rouge">M2</code> un árbol de tendido mínimo de <code class="language-plaintext highlighter-rouge">M1</code>? Justificar.</p>
+
+    <p>b. Realizar un seguimiento de aplicar el algoritmo de Kruskal para obtener un árbol de tendido
+mínimo del grafo definido por <code class="language-plaintext highlighter-rouge">M3</code>.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| M1 | A | B | C | D | E | F | G |
+|----|---|---|---|---|---|---|---|
+| A  | 0 | 3 | 4 | 0 | 0 | 0 | 0 |
+| B  | 3 | 0 | 5 | 3 | 3 | 0 | 0 |
+| C  | 4 | 5 | 0 | 2 | 0 | 0 | 6 |
+| D  | 0 | 3 | 2 | 0 | 4 | 2 | 1 |
+| E  | 0 | 3 | 0 | 4 | 0 | 6 | 0 |
+| F  | 0 | 0 | 0 | 2 | 6 | 0 | 0 |
+| G  | 0 | 0 | 6 | 1 | 0 | 0 | 0 |
+
+| M2 | A | B | C | D | E | F | G |
+|----|---|---|---|---|---|---|---|
+| A  | 0 | 3 | 4 | 0 | 0 | 0 | 0 |
+| B  | 3 | 0 | 0 | 0 | 3 | 0 | 0 |
+| C  | 4 | 0 | 0 | 2 | 0 | 0 | 6 |
+| D  | 0 | 0 | 2 | 0 | 0 | 2 | 0 |
+| E  | 0 | 3 | 0 | 0 | 0 | 0 | 0 |
+| F  | 0 | 0 | 0 | 2 | 0 | 0 | 0 |
+| G  | 0 | 0 | 6 | 0 | 0 | 0 | 0 |
+
+| M3 | A | B | C | D  | E  | F  | G  |
+|----|---|---|---|----|----|----|----|
+| A  | 0 | 6 | 0 | 4  | 0  | 0  | 0  |
+| B  | 6 | 0 | 7 | 8  | 6  | 0  | 0  |
+| C  | 0 | 7 | 0 | 0  | 4  | 0  | 0  |
+| D  | 4 | 8 | 0 | 0  | 14 | 5  | 0  |
+| E  | 0 | 6 | 4 | 14 | 0  | 7  | 8  |
+| F  | 0 | 0 | 0 | 5  | 7  | 0  | 10 |
+| G  | 0 | 0 | 0 | 0  | 8  | 10 | 0  |
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>(★★) Analizar la complejidad del algoritmo de Prim según si el grafo está implementado con
+listas de adyacencia o matriz de adyacencia.</p>
+  </li>
+  <li>
+    <p>(★★) Responder las siguientes preguntas, <strong>justificando</strong> la respuesta:</p>
+
+    <p>a. Al aplicar sobre un grafo el algoritmo de Dijkstra para encontrar caminos mínimos desde un vértice \(v\)
+cualquiera, se obtiene un árbol definido por el diccionario de padres (que permite reconstruir dichos
+caminos mínimos). Dicho árbol, ¿es siempre de tendido mínimo?</p>
+
+    <p>b. Al obtener un árbol de tendido mínimo de un grafo, se asegura que la suma de los pesos de las aristas
+sean mínimos.
+¿Es posible utilizar el árbol de tendido mínimo para encontrar el camíno mínimo entre dos pares de
+vértices cualesquiera?</p>
+
+    <p>c. Si un grafo es no pesado, ¿Se puede utilizar el Algoritmo de Dijkstra para obtener los caminos mínimos
+en dicho grafo?</p>
+  </li>
+  <li>
+    <p>(★★★) Realizar un seguimiento de aplicar el Algoritmo de Ford-Fulkerson para obtener el Flujo máximo a
+través de la red definida por el siguiente grafo.</p>
+
+    <p><img src="/algo2/assets/img/material/ff.png" alt="grafo flujo" width="70%" /></p>
+  </li>
+  <li>
+    <p>(★★★) Implementar por <strong>backtracking</strong> un algoritmo que, dado un grafo no dirigido y un número
+\(n \lt \left|\mathcal{V} \right|\), nos permita obtener un subconjunto de \(n\) vértices tal que ningún par de dichos
+vértices sean adyacentes entre sí. Se puede suponer que los vértices están identificados con números de
+0 a \(\left| \mathcal{V} \right|-1\).</p>
+  </li>
+  <li>
+    <p>(★★★) Implementar un algoritmo que reciba un grafo y un número \(n\) que, utilizando <strong>backtracking</strong>,
+indique si es posible pintar cada vértice con \(n\) colores de tal forma que no hayan dos vértices adyacentes
+con el mismo color.</p>
+  </li>
+  <li>
+    <p>(★★★★) Problema del viajante (TSP): Dada una lista de ciudades y la distancia entre cada par de ellas, ¿Cuál
+es la ruta más corta posible que visita cada ciudad exactamente una vez y al finalizar regresa a la ciudad de
+origen?</p>
+  </li>
+  <li>
+    <p>(★★★) Implementar un algoritmo que reciba un grafo, un vértice \(v\) y otro \(w\) y, utilizando <strong>backtracking</strong>,
+obtenga <strong>todos</strong> los caminos simples de \(v\) a \(w\) en el grafo.</p>
+  </li>
+  <li>
+    <p>(★★★★) Se cuenta con un grafo en el que sus aristas tiene peso 1 o 2, únicamente. Implementar un algoritmo
+que permita obtener el camino mínimo de un vértice hacia todos los demás, en tiempo \(\mathcal{O}(V + E)\).</p>
+  </li>
+  <li>
+    <p>(★★★★★) Implementar un algoritmo que, dado un grafo dirigido, un vértice \(s\) y otro \(t\) determine la cantidad
+mínima de aristas que deberían cambiar de sentido en el grafo para que exista un camino de \(s\) a \(t\).</p>
+  </li>
+  <li>
+    <p>(★★★★★) Supongamos que tenemos un sistema de una facultad en el que cada alumno puede pedir hasta 10 libros de
+la biblioteca.
+La biblioteca tiene 3 copias de cada libro. Cada alumno desea pedir libros diferentes. Implementar un algoritmo que
+nos permita obtener la forma de asignar libros a alumnos de tal forma que la cantidad de préstamos sea máxima.</p>
+  </li>
+</ol>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

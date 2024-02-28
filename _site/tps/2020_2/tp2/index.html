@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Algoritmos y Programación II</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2020_2/tp2/"> -->
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+        crossorigin="anonymous" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+          crossorigin="anonymous" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+          onload="renderMathInElement(document.body);"></script>
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2020_2/tp2.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          
+<h1 class="no_toc" id="trabajo-práctico-2">Trabajo Práctico 2</h1>
+
+<p>El trabajo práctico número 2 tiene fecha de entrega para el día <strong>17/06</strong>, y está divido en tres partes:</p>
+
+<h2 class="no_toc" id="contenido">Contenido</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#introducción" id="markdown-toc-introducción">Introducción</a></li>
+  <li><a href="#funcionamiento-de-la-clínica" id="markdown-toc-funcionamiento-de-la-clínica">Funcionamiento de la clínica</a></li>
+  <li><a href="#consigna" id="markdown-toc-consigna">Consigna</a></li>
+  <li><a href="#entradas-al-programa" id="markdown-toc-entradas-al-programa">Entradas al programa</a>    <ul>
+      <li><a href="#datos-disponibles" id="markdown-toc-datos-disponibles">Datos disponibles</a></li>
+    </ul>
+  </li>
+  <li><a href="#interacción" id="markdown-toc-interacción">Interacción</a></li>
+  <li><a href="#comandos-a-implementar" id="markdown-toc-comandos-a-implementar">Comandos a implementar</a>    <ul>
+      <li><a href="#1-pedir-turno" id="markdown-toc-1-pedir-turno">1. Pedir turno</a></li>
+      <li><a href="#2-atender-siguiente-paciente" id="markdown-toc-2-atender-siguiente-paciente">2. Atender siguiente paciente</a></li>
+      <li><a href="#3-informe-doctores" id="markdown-toc-3-informe-doctores">3. Informe doctores</a></li>
+    </ul>
+  </li>
+  <li><a href="#mensajes-de-error" id="markdown-toc-mensajes-de-error">Mensajes de error</a>    <ul>
+      <li><a href="#otras-condiciones-de-error" id="markdown-toc-otras-condiciones-de-error">Otras condiciones de error</a></li>
+    </ul>
+  </li>
+  <li><a href="#funciones-auxiliares-del-curso" id="markdown-toc-funciones-auxiliares-del-curso">Funciones auxiliares del curso</a></li>
+  <li><a href="#criterios-de-aprobación" id="markdown-toc-criterios-de-aprobación">Criterios de aprobación</a>    <ul>
+      <li><a href="#estructuras-de-datos" id="markdown-toc-estructuras-de-datos">Estructuras de datos</a></li>
+      <li><a href="#código-del-programa" id="markdown-toc-código-del-programa">Código del programa</a></li>
+      <li><a href="#complejidad" id="markdown-toc-complejidad">Complejidad</a></li>
+      <li><a href="#informe" id="markdown-toc-informe">Informe</a></li>
+      <li><a href="#entrega" id="markdown-toc-entrega">Entrega</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="introducción">Introducción</h2>
+
+<p>En Islandia, la clínica <span style="font-variant:small-caps;">Zyxcba Inc.</span> organiza sus
+listas de espera a partir del año de inscripción como paciente.
+Así, dentro de cada especialidad se da prioridad a aquellos pacientes que se hayan inscripto hace
+más tiempo, pero también considerando la urgencia de la consulta.
+Para celebrar el 75 aniversario de la clínica, <span style="font-variant:small-caps;">Zyxcba Inc.</span>
+ha decidido remplazar la implementación actual del sistema de gestión en COBOL por una más moderna en C.</p>
+
+<h2 id="funcionamiento-de-la-clínica">Funcionamiento de la clínica</h2>
+
+<p>Existe un listado de pacientes de la clínica en formato CSV; este
+listado incluye el año en el que fueron inscripto como pacientes.</p>
+
+<p>Asimismo, existe otro listado CSV de todes les doctores, y la especialidad de
+cada une.</p>
+
+<p>Les pacientes pueden pedir turno para una determinada especialidad, y el
+sistema les añade a la lista de espera correspondiente a esa especialidad.
+Les pacientes pueden venir de <em>urgencia</em>, o por un una revisión de rutina, guardia, etc.
+(se considera a todos los casos como <em>no urgentes</em>). Les pacientes <em>urgentes</em> se atienden
+por orden de llegada.</p>
+
+<p>Cuando une doctore queda libre, atiende al siguiente paciente de urgencia, si es que los hubiera,
+o a le paciente con mayor antigüedad en la clínica.</p>
+
+<h2 id="consigna">Consigna</h2>
+
+<p>Se pide implementar el sistema de gestión de turnos y generación de informes de
+la clínica.</p>
+
+<p>Cuando el sistema arranca, carga en memoria la lista de pacientes y la lista de les
+doctores. A partir de ese momento, lee de entrada estándar las operaciones a
+realizar (una por línea), tal y como se detalla a continuación.</p>
+
+<p>Tras cada operación, el sistema siempre imprime por salida estándar un mensaje,
+informando de los resultados, o cualquier error que haya ocurrido.</p>
+
+<h2 id="entradas-al-programa">Entradas al programa</h2>
+
+<p>El programa recibe como argumentos el nombre de <strong>dos archivos en formato
+CSV</strong>:</p>
+
+<ol>
+  <li>
+    <p>Archivo CSV con la lista de doctores. Tiene dos columnas: el nombre y la
+especialidad. Así:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nombre_doctor1,nombre_especialidad_A
+nombre_doctor2,nombre_especialidad_B
+nombre_doctor3,nombre_especialidad_A
+...
+</code></pre></div>    </div>
+
+    <p>Como se ve, cada doctore tiene solo una especialidad, pero una especialidad
+puede tener varies doctores.</p>
+  </li>
+  <li>
+    <p>Archivo CSV con la lista de pacientes. Tiene también dos columnas: el
+nombre y el año de su inscripción. Así:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nombre_paciente1,año_inscripcion
+nombre_paciente2,año_inscripcion
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Garantías (pre-condiciones):</p>
+
+<ul>
+  <li>
+    <p>no hay nombres duplicados dentro de cada archivo (aunque une doctore y une
+paciente sí podrían llamarse igual).</p>
+  </li>
+  <li>
+    <p>los nombres de doctor, nombre y especialidad no contienen ninguno de los
+siguientes caracteres: coma <code class="language-plaintext highlighter-rouge">','</code>, dos puntos <code class="language-plaintext highlighter-rouge">':'</code>, salto de línea <code class="language-plaintext highlighter-rouge">'\n'</code>,
+carácter nulo <code class="language-plaintext highlighter-rouge">'\0'</code>.</p>
+  </li>
+  <li>
+    <p>los años de inscripción son números enteros positivos en base 10, y
+ningune paciente se inscribió luego del presente año, ni antes del año 0
+(si bien la clínica cumple 75 años, tienen registros de clínicas anteriores
+que se fusionaron para crear la actual).</p>
+  </li>
+</ul>
+
+<h3 id="datos-disponibles">Datos disponibles</h3>
+
+<p>Se deja en del sitio de descargas un archivo con casos de prueba que pueden utilizar
+tanto de archivos de entrada, como de comandos a ser ejecutados y pruebas automatizadas, además de los
+restantes archivos que se mencionan de aquí en adelante.</p>
+
+<p>Para ejecutar las pruebas correr:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./pruebas.sh PATH-A-EJECUTABLE-TP2
+</code></pre></div></div>
+
+<h2 id="interacción">Interacción</h2>
+
+<p>Una vez en marcha, el sistema queda a la espera de instrucciones, que le llegan
+por entrada estándar (<code class="language-plaintext highlighter-rouge">stdin</code>).</p>
+
+<p>Una instrucción se compone de un comando y sus parámetros. El formato siempre
+es: nombre del comando, carácter dos puntos <code class="language-plaintext highlighter-rouge">':'</code> y parámetros del comando. Así:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    CMD1:ARG_A
+    CMD2:ARG_B,ARG_C
+</code></pre></div></div>
+
+<p>Como se ve, un comando puede tener más de un parámetro, separados por comas.</p>
+
+<p>Una vez procesada la operación, el sistema imprimirá el resultado, o un
+mensaje de error si no la pudo completar. <strong>Tanto el resultado como los mensajes
+de error se imprimen siempre por salida estándar</strong>. El programa puede por tanto utilizar
+la salida de error estándar para mensajes de depurado o <em>debugging</em>. Estos mensajes, no obstante,
+no deben quedar en el programa final.</p>
+
+<p>Formato de los mensajes de error:</p>
+
+<ul>
+  <li>
+    <p>Si una instrucción no sigue el formato <code class="language-plaintext highlighter-rouge">NOMBRE_COMANDO:PARAMETROS</code>, el
+sistema imprime el siguiente mensaje de error:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: formato de comando incorrecto ('LINEA_INGRESADA')
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Si el formato es correcto pero no existe el comando, el sistema imprime:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: no existe el comando 'NOMBRE_CMD'
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Si no se tienen la cantidad de parámetros necesarios, el sistema imprime:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: cantidad de parametros invalidos para comando 'NOMBRE_CMD'
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="comandos-a-implementar">Comandos a implementar</h2>
+
+<p>El sistema implementa los tres comandos que se detallan a continuación.</p>
+
+<h3 id="1-pedir-turno">1. Pedir turno</h3>
+
+<p>Se recibe un nombre de paciente y el nombre de una especialidad, y el
+sistema le añade a la lista de espera de la especialidad
+correspondiente.</p>
+
+<p>Formato:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    PEDIR_TURNO:NOMBRE_PACIENTE,NOMBRE_ESPECIALIDAD,URGENCIA
+</code></pre></div></div>
+
+<p>Los valores válidos para <code class="language-plaintext highlighter-rouge">URGENCIA</code> son: <code class="language-plaintext highlighter-rouge">URGENTE</code> o <code class="language-plaintext highlighter-rouge">REGULAR</code>.</p>
+
+<p>Salida (dos líneas):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Paciente NOMBRE_PACIENTE encolado
+    N paciente(s) en espera para NOMBRE_ESPECIALIDAD
+</code></pre></div></div>
+
+<p>Mensajes de error, cuando corresponda (imprimir cada mensaje por cada error encontrado, no detenerse ante el primer error):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ERROR: no existe le paciente 'NOMBRE_PACIENTE'
+    ERROR: no existe la especialidad 'NOMBRE_ESPECIALIDAD'
+    ERROR: grado de urgencia no identificado ('URGENCIA')
+</code></pre></div></div>
+
+<p>Garantías (pre-condiciones):</p>
+
+<ul>
+  <li>une paciente nunca solicitará turno para una especialidad si ya está en la
+lista de espera de la misma. No obstante, puede estar simultáneamente en la
+lista de espera de dos o más especialidades distintas.</li>
+</ul>
+
+<h3 id="2-atender-siguiente-paciente">2. Atender siguiente paciente</h3>
+
+<p>Se recibe el nombre de le doctore que quedó libre, y este atiende al siguiente paciente urgente
+(por orden de llegada). Si no hubiera ningún paciente urgente, atiende al siguiente paciente
+con mayor antigüedad como paciente en la clínica.</p>
+
+<p>Formato:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ATENDER_SIGUIENTE:NOMBRE_DOCTOR
+</code></pre></div></div>
+
+<p>Salida si se atendió a une paciente (dos líneas):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Se atiende a NOMBRE_PACIENTE
+    N paciente(s) en espera para NOMBRE_ESPECIALIDAD
+</code></pre></div></div>
+
+<p>donde \(N\) es el número de pacientes que quedaron en espera tras atender al
+paciente actual (que puede ser 0).</p>
+
+<p>Salida si no había previamente pacientes en la lista de espera (una línea):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    No hay pacientes en espera
+</code></pre></div></div>
+
+<p>Mensajes de error, cuando corresponda:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ERROR: no existe el doctor 'NOMBRE_DOCTOR'
+</code></pre></div></div>
+
+<h3 id="3-informe-doctores">3. Informe doctores</h3>
+
+<p>El sistema imprime la lista de doctores <strong>en orden alfabético</strong>, junto con su
+especialidad y el número de pacientes que atendieron desde que arrancó el
+sistema. Opcionalmente, se puede especificar el rango (alfabético) de doctores
+sobre los que se desean informes.</p>
+
+<p>Formato:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    INFORME:[INICIO],[FIN]
+</code></pre></div></div>
+
+<p>En caso de no quererse indicar un inicio o fin, simplemente se deja vacío, por ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    INFORME:Gonzalez,Gutierrez
+    INFORME:,Gutierrez
+    INFORME:Gonzalez,
+    INFORME:,
+</code></pre></div></div>
+
+<p>Salida (\(N + 1\) líneas, donde \(N\) es el número de doctores en el sistema que se encuentran en dicho rango):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    N doctor(es) en el sistema
+    1: NOMBRE, especialidad ESPECIALIDAD, X paciente(s) atendido(s)
+    2: NOMBRE, especialidad ESPECIALIDAD, Y paciente(s) atendido(s)
+    ...
+    N: NOMBRE, especialidad ESPECIALIDAD, Z paciente(s) atendido(s)
+</code></pre></div></div>
+
+<h2 id="mensajes-de-error">Mensajes de error</h2>
+
+<p>Para facilitar los mensajes de la aplicación sean <em>exactamente</em> los
+especificados, se proporciona un archivo <code class="language-plaintext highlighter-rouge">mensajes.h</code> que contiene las
+definiciones de todos los mensajes, tal que:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    #define PACIENTE_ENCOLADO "Paciente %s encolado\n"
+    #define ENOENT_DOCTOR "ERROR: no existe el doctor '%s'\n"
+    // etc.
+</code></pre></div></div>
+
+<p>La manera de usarlos, entonces, es:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    #include "mensajes.h"
+    #include &lt;stdio.h&gt;
+
+    printf(PACIENTE_ENCOLADO, "Ingeniero Barrios");
+</code></pre></div></div>
+
+<p>Si hay alguna discrepancia entre esta consigna y el archivo <code class="language-plaintext highlighter-rouge">mensajes.h</code>, este
+último es la versión canónica.</p>
+
+<h4 id="otras-condiciones-de-error">Otras condiciones de error</h4>
+
+<p>El sistema aborta con código numérico 1 ante cualquiera de los siguientes
+errores <strong>durante la fase de inicialización</strong>:</p>
+
+<ul>
+  <li>
+    <p>no se recibieron exactamente dos argumentos por la línea de comandos;</p>
+  </li>
+  <li>
+    <p>alguno de los archivos CSV no existe, o no pudo ser leído;</p>
+  </li>
+  <li>
+    <p>algún año no es un valor numérico.</p>
+  </li>
+</ul>
+
+<h2 id="funciones-auxiliares-del-curso">Funciones auxiliares del curso</h2>
+
+<p>Además del archivo <code class="language-plaintext highlighter-rouge">mensajes.h</code> ya mencionado, se proporcionan dos archivos
+auxiliares, <code class="language-plaintext highlighter-rouge">csv.h</code> y <code class="language-plaintext highlighter-rouge">csv.c</code>, para ayudar con la lectura tanto de los archivos
+CSV, como de los comandos. Su uso es opcional; cada grupo puede emplear sus
+propias funciones de lectura, o las proporcionadas por el curso en TPs
+anteriores.</p>
+
+<p>Además, se añade un esqueleto del programa principal del Trabajo Práctico <code class="language-plaintext highlighter-rouge">zyxcba.c</code>.
+Pueden bien utilizarlo, en cuyo caso deberán modificarlo para adaptar su uso a
+la estructuras de datos que utilicen. No es obligatorio su uso.</p>
+
+<h2 id="criterios-de-aprobación">Criterios de aprobación</h2>
+
+<p>Los siguientes aspectos son condición necesaria para la aprobación del trabajo
+práctico.</p>
+
+<h3 id="estructuras-de-datos">Estructuras de datos</h3>
+
+<p>Es necesario emplear la estructura de datos más apropiada para cada función del
+programa, en particular <strong>teniendo en cuenta la complejidad temporal</strong>. También
+es necesario utilizar dicha estructura de la forma más apropiada posible para
+optimizar de manera correcta el funcionamiento de la clínica.</p>
+
+<p>Se puede (y alentamos) implementar otros TDAs o estructuras que faciliten o mejoren la
+implementación de este Trabajo Práctico. Les recordamos que un TDA no es un simple <code class="language-plaintext highlighter-rouge">struct</code>
+donde se guarda información, sino que debe tener comportamiento. Esto será un punto muy
+importante en la evaluación del Trabajo Práctico.</p>
+
+<p>Todas las estructuras deben estar implementadas de la forma más genérica
+posible y correctamente documentadas. En general, pueden emplear sin modificar
+los tipos implementados en entregas anteriores en la materia. Potencialmente,
+deberán modificar el TDA Árbol Binario de Búsqueda. En cualquier caso, si fuera
+necesario modificar algún TDA, la funcionalidad agregada debe estar implementada
+de forma completamente abstracta al presente trabajo práctico.</p>
+
+<h3 id="código-del-programa">Código del programa</h3>
+
+<p>El código entregado debe:</p>
+
+<ul>
+  <li>
+    <p>ser claro y legible, y estar estructurado en funciones lo más genéricas
+posible, adecuadamente documentadas.</p>
+  </li>
+  <li>
+    <p>compilar sin advertencias y correr sin errores de memoria.</p>
+  </li>
+  <li>
+    <p>ajustarse a la especificación de la consigna y pasar todas las pruebas
+automáticas.</p>
+  </li>
+</ul>
+
+<h3 id="complejidad">Complejidad</h3>
+
+<p>Cada comando debería funcionar de forma acorde, pero además deberá cumplir con los siguientes requisitos de complejidad:</p>
+
+<ol>
+  <li>
+    <p>Comando Pedir Turno: Si se tratase de un caso urgente, deberá funcionar en \(\mathcal{O}(1)\).
+Si, en cambio, se tratara de un caso regular, se puede relajar a que funcione en
+\(\mathcal{O}(\log n)\) siendo \(n\) la cantidad de pacientes encolados <strong>en la especialidad</strong>
+indicada (no el total de los pacientes existentes).</p>
+  </li>
+  <li>
+    <p>Comando Atender siguiente paciente: Siendo \(d\) la cantidad de doctores en el sistema, debe
+funcionar en \(\mathcal{O}(\log d)\) si el siguiente caso a tratar en la especialidad de dicho
+doctor es un caso urgente, o bien \(\mathcal{O}(\log d + \log n)\) si se tratara de un caso regular.</p>
+  </li>
+  <li>
+    <p>Comando Informe doctores: debe ser \(\mathcal{O}(d)\) en el peor caso (en el que se tenga que
+mostrar todos los doctores del sistema), \(\mathcal{O}(\log{d})\) en un caso promedio (en el caso
+en el que no se pidan mostrar demasiados doctores).</p>
+  </li>
+</ol>
+
+<h3 id="informe">Informe</h3>
+
+<p>Este trabajo práctico tiene como principal foco en el diseño del mismo (modularización, creación de nuevas
+estructuras y TDAs específicos del TP) así como el uso apropiado de las estructuras de datos vistas en clase.
+Por lo tanto, se les pide que escriban un informe de dicho diseño, puesto que además de ser capaces de
+escribir código correcto, también es necesario que aprendan a poder <em>transmitir</em> el porqué de sus
+decisiones, utilizando el lenguage técnico y justificaciones correspondientes.</p>
+
+<p>El informe deberá consistir de las siguientes partes:</p>
+
+<ul>
+  <li>
+    <p>carátula con los datos personales del grupo, y ayudante asignado.</p>
+  </li>
+  <li>
+    <p>análisis y diseño de la solución, en particular: algoritmos y estructuras de
+datos utilizados, justificando conforme a los requisitos pedidos en este TP.</p>
+  </li>
+</ul>
+
+<h3 id="entrega">Entrega</h3>
+
+<p>La entrega incluye, obligatoriamente, los siguientes archivos:</p>
+
+<ul>
+  <li>El código de los TDAs utilizados.</li>
+  <li>El código del TP.</li>
+  <li>El informe (en formato <code class="language-plaintext highlighter-rouge">.pdf</code>).</li>
+  <li>
+    <p>Un archivo <em>deps.mk</em> que exprese las dependencias del proyecto en formato
+  makefile. Este archivo deberá contener solamente dos líneas que indiquen,
+  para cada programa, de qué <em>objetos</em> depende su ejecutable; por ejemplo:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # Ejemplo de archivo deps.mk para el TP2
+  zyxcba: zyxcba.o csv.o hash.o
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>La entrega se realiza exclusivamnete en forma digital a través del <a href="https://algoritmos-rw.dijkstra.ar/entregas/">sistema de entregas</a>,
+con todos los archivos mencionados en un único archivo ZIP.</p>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

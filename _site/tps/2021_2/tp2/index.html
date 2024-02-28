@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Algoritmos y Programación II</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2021_2/tp2/"> -->
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+        crossorigin="anonymous" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+          crossorigin="anonymous" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+          onload="renderMathInElement(document.body);"></script>
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2021_2/tp2.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          
+<h1 class="no_toc" id="trabajo-práctico-2">Trabajo Práctico 2</h1>
+
+<p>El trabajo práctico número 2 tiene fecha de entrega para el día <strong>17/06</strong>, y está divido en tres partes:</p>
+
+<h2 class="no_toc" id="contenido">Contenido</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#introducción" id="markdown-toc-introducción">Introducción</a></li>
+  <li><a href="#funcionamiento-de-la-red-social" id="markdown-toc-funcionamiento-de-la-red-social">Funcionamiento de la red social</a>    <ul>
+      <li><a href="#datos-disponibles" id="markdown-toc-datos-disponibles">Datos disponibles</a></li>
+    </ul>
+  </li>
+  <li><a href="#interacción" id="markdown-toc-interacción">Interacción</a></li>
+  <li><a href="#comandos-a-implementar" id="markdown-toc-comandos-a-implementar">Comandos a implementar</a>    <ul>
+      <li><a href="#1-login" id="markdown-toc-1-login">1. Login</a></li>
+      <li><a href="#2-logout" id="markdown-toc-2-logout">2. Logout</a></li>
+      <li><a href="#3-publicar-un-post" id="markdown-toc-3-publicar-un-post">3. Publicar un post</a></li>
+      <li><a href="#4-ver-proximo-post-en-el-feed" id="markdown-toc-4-ver-proximo-post-en-el-feed">4. Ver proximo post en el feed</a></li>
+      <li><a href="#5-likear-un-post" id="markdown-toc-5-likear-un-post">5. Likear un post</a></li>
+      <li><a href="#6-mostrar-likes" id="markdown-toc-6-mostrar-likes">6. Mostrar likes</a></li>
+    </ul>
+  </li>
+  <li><a href="#criterios-de-aprobación" id="markdown-toc-criterios-de-aprobación">Criterios de aprobación</a>    <ul>
+      <li><a href="#estructuras-de-datos" id="markdown-toc-estructuras-de-datos">Estructuras de datos</a></li>
+      <li><a href="#complejidad-de-los-comandos" id="markdown-toc-complejidad-de-los-comandos">Complejidad de los comandos</a></li>
+      <li><a href="#código-del-programa" id="markdown-toc-código-del-programa">Código del programa</a></li>
+      <li><a href="#informe" id="markdown-toc-informe">Informe</a></li>
+      <li><a href="#entrega" id="markdown-toc-entrega">Entrega</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="introducción">Introducción</h2>
+
+<p>Se quiere implementar una nueva red social llamada AlgoGram. De momento, debemos realizar la implementación del sistema de posteos y que esto le llegue a los demás usuarios, y que cada usuario pueda tener un <em>feed</em> que priorice la relación con otros usuarios, poder <em>likear</em> un <em>post</em>, entre otras opciones.</p>
+
+<h2 id="funcionamiento-de-la-red-social">Funcionamiento de la red social</h2>
+
+<p>Para simplificar esta etapa, la red social deberá funcionar como una <em>aplicación de consola</em>: al iniciar deberá leer un archivo donde se encontrarán los usuarios registrados (con un formato definido a continuación). Luego, la aplicación se quedará pidiendo <em>órdenes</em> (o <em>comandos</em>) por entrada estándar. Algunas de estas órdenes requieren que haya un usuario <em>loggeado</em>.</p>
+
+<p>El programa recibirá la ruta del archivo de usarios como argumento del mismo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./tp2 usuarios.txt
+</code></pre></div></div>
+
+<p>Dicho archivo contiene un nombre de usuario por línea, y nada más. Cada línea corresponde a un usuario diferente.
+Se les garantiza que no habrán nombres duplicados dentro del sistema.</p>
+
+<h3 id="datos-disponibles">Datos disponibles</h3>
+
+<p>Se deja en el sitio de descargas un archivo con casos de prueba que pueden utilizar
+tanto de archivos de entrada, como de comandos a ser ejecutados y pruebas automatizadas, además de los
+restantes archivos que se mencionan de aquí en adelante.</p>
+
+<p>Para ejecutar las pruebas correr:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./pruebas.sh PATH-A-EJECUTABLE-TP2
+</code></pre></div></div>
+
+<h2 id="interacción">Interacción</h2>
+
+<p>Como se indica antes, una vez que el programa carga los usuarios, debe quedarse esperando por comandos a ejecutar. La mayoría de los comandos requerirán de parámetros (que pueden ser más de uno). Por simplificación, cada parámetro vendrá en líneas separadas. Algunos comandos pueden tener casos de error, que serán detallados en cada caso. Todas las salidas (correctas o de error) deben hacerse a salida estándar.</p>
+
+<p>El programa terminará cuando termine la entrada estándar.</p>
+
+<h2 id="comandos-a-implementar">Comandos a implementar</h2>
+
+<h3 id="1-login">1. Login</h3>
+
+<p>Se recibe por parámetro nombre de usuario. Por ejemplo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>login
+chicho1994
+</code></pre></div></div>
+
+<p>Si no había ya un usuario que se haya loggeado, el programa debe escribir por salida estándar <code class="language-plaintext highlighter-rouge">Hola &lt;USUARIO&gt;</code>. En nuestro ejemplo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hola chicho1994
+</code></pre></div></div>
+
+<p>En caso que ya hubiera un usuario loggeado, debe escribir: <code class="language-plaintext highlighter-rouge">Error: Ya habia un usuario loggeado</code>.
+En caso que el usuario indicado no exista, debe escribir: <code class="language-plaintext highlighter-rouge">Error: usuario no existente</code>. Para nuestro ejemplo, <code class="language-plaintext highlighter-rouge">chicho1994</code> existe.</p>
+
+<h3 id="2-logout">2. Logout</h3>
+
+<p>No se reciben parámetros. Ejemplo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>logout
+</code></pre></div></div>
+
+<p>Si había un usuario loggeado (i.e. se había utilizado el comando anterior), este se debe “desloggear”, e imprimir <code class="language-plaintext highlighter-rouge">Adios</code>. Cualquiera de los comandos que requieran un usuario loggeado (incluyendo este) no deben considerar más al usuario anteriormente loggeado.</p>
+
+<p>En caso que no haya habido un usuario loggeado, debe imprimir <code class="language-plaintext highlighter-rouge">Error: no habia usuario loggeado</code>.</p>
+
+<p>Por ejemplo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>login
+chicho1994
+logout
+logout
+</code></pre></div></div>
+<p>Debe tener la siguiente salida:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hola chicho1994
+Adios
+Error: no habia usuario loggeado
+</code></pre></div></div>
+
+<h3 id="3-publicar-un-post">3. Publicar un post</h3>
+
+<p>Se crea un post con un texto determinado, cuyo publicador es el usuario loggeado actualmente. Dicho post se le publicará al resto de los usuarios (que podrán verlo cuando se loggeen, según se indicará en el siguiente comando).</p>
+
+<p>El texto a publicar es el único comando del programa. 
+Por ejemplo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>publicar
+Tiene todo el dinero del mundo, pero hay algo que no puede comprar... un dinosaurio
+</code></pre></div></div>
+
+<p>Si hay un usuario loggeado, se debe crear dicho post como es indicado antes, y todos los usuarios (salvo el loggeado actualmente) deben ahora tenerlo para ver en sus respectivos <em>feeds</em>. El post debe generarse con un <code class="language-plaintext highlighter-rouge">id</code>, comenzando en 0 y aumentando en 1 por cada post publicado (para simplificar las pruebas de este trabajo).
+Se debe imprimir <code class="language-plaintext highlighter-rouge">Post publicado</code>.</p>
+
+<p>En caso que no hubiera un usuario loggeado, se debe imprimir <code class="language-plaintext highlighter-rouge">Error: no habia usuario loggeado</code>.</p>
+
+<h3 id="4-ver-proximo-post-en-el-feed">4. Ver proximo post en el feed</h3>
+
+<p>Este comando permite visualizar la información del siguiente post del feed. ¿Cuál es el siguiente post? de todos los posts que queden para ver, será el del usuario con <em>más afinidad</em> (dentro de los publicadores de esos posts) al usuario loggeado.</p>
+
+<p>¿Cómo se define la afinidad? Por simplicidad en esta etapa, será simplemente quienes se encuentren <em>más cerca</em> en el archivo de usuarios (más adelante en la materia veremos otras formas de hacer esto). Por ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chorch
+cacatua2030
+mondi
+chicho1994
+eldiego
+</code></pre></div></div>
+
+<p>Según la lógica planteada, <code class="language-plaintext highlighter-rouge">chicho1994</code> tiene más afinidad con <code class="language-plaintext highlighter-rouge">mondi</code> y <code class="language-plaintext highlighter-rouge">eldiego</code> que con <code class="language-plaintext highlighter-rouge">cacatua2030</code>, pero tiene más afinidad con este que con <code class="language-plaintext highlighter-rouge">chorch</code>. A su vez, tiene la misma afinidad con <code class="language-plaintext highlighter-rouge">mondi</code> que con <code class="language-plaintext highlighter-rouge">eldiego</code>.</p>
+
+<p>En caso que dos posts tengan sendos usuarios con misma afinidad al loggeado (sea como el caso entre <code class="language-plaintext highlighter-rouge">mondi</code> y <code class="language-plaintext highlighter-rouge">eldiego</code>, o porque se trata del mismo usuario), se debe visualizar el post que primero se haya creado.</p>
+
+<p>Al determinarse cuál es el siguiente post a revisar, se debe imprimir su información: su ID, su publicador, qué se dijo, y cuántos likes tiene. El formato exacto se muestra en el ejemplo a continuación:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>login
+chicho1994
+publicar
+Tiene todo el dinero del mundo, pero hay algo que no puede comprar... un dinosaurio
+logout
+login
+chorch
+publicar
+te corto internet
+publicar
+es por el teorema de chuck norris
+logout
+login
+cacatua2030
+ver_siguiente_feed
+ver_siguiente_feed
+ver_siguiente_feed
+logout
+login
+mondi
+ver_siguiente_feed
+ver_siguiente_feed
+logout
+login
+chicho1994
+ver_siguiente_feed
+</code></pre></div></div>
+
+<p>El resultado esperado en este caso será:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hola chicho1994
+Post publicado
+Adios
+Hola chorch
+Post publicado
+Post publicado
+Adios
+Hola cacatua2030
+Post ID 1
+chorch dijo: te corto internet
+Likes: 0
+Post ID 2
+chorch dijo: es por el teorema de chuck norris
+Likes: 0
+Post ID 0
+chicho1994 dijo: Tiene todo el dinero del mundo, pero hay algo que no puede comprar... un dinosaurio
+Likes: 0
+Adios
+Hola mondi
+Post ID 0
+chicho1994 dijo: Tiene todo el dinero del mundo, pero hay algo que no puede comprar... un dinosaurio
+Likes: 0
+Post ID 1
+chorch dijo: te corto internet
+Likes: 0
+Adios
+Hola chicho 1994
+Post ID 1
+chorch dijo: te corto internet
+Likes: 0
+</code></pre></div></div>
+
+<p>En caso que un usuario no tenga más posts para ver, o bien que no haya usuario loggeado, imprimir <code class="language-plaintext highlighter-rouge">Usuario no loggeado o no hay mas posts para ver</code>.</p>
+
+<h3 id="5-likear-un-post">5. Likear un post</h3>
+
+<p>Se recibe el id del post a likear, y se agrega al usuario loggeado entre los que likean a dicho post. Ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>login
+chicho1994
+publicar
+a la grande le puse cuca
+likear_post
+0
+</code></pre></div></div>
+<p>Suponiendo que el post de <code class="language-plaintext highlighter-rouge">chicho1994</code> es el primer post (y se auto-likeó), los demás usuarios al ver el post en el feed verán que tiene 1 like (a diferencia del ejemplo anterior, donde todos los posts tenían 0).</p>
+
+<p>En caso que haya un usuario loggeado y el post en cuestión exista, se debe imprimir <code class="language-plaintext highlighter-rouge">Post likeado</code>. En caso contrario: <code class="language-plaintext highlighter-rouge">Error: Usuario no loggeado o Post inexistente</code>. En caso que un usuario likee dos veces el mismo post, se debe simplemente imprimir <code class="language-plaintext highlighter-rouge">Post likeado</code>, pero no contará como otro like más.</p>
+
+<h3 id="6-mostrar-likes">6. Mostrar likes</h3>
+
+<p>Se recibe el id de un post, y se muestran los nombres de todos los usuarios que <em>le dieron like</em>, en orden alfabético, uno por línea. No se requiere que haya un usuario loggeado para aplicar esta operación.</p>
+
+<p>Ejemplo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mostrar_likes
+0
+</code></pre></div></div>
+
+<p>Una salida podría ser:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>El post tiene 4 likes:
+  chorch
+  chicho1994
+  eldiego
+  mondi
+</code></pre></div></div>
+<p>Suponiendo que, por supuesto, dichos 4 usuarios le dieron like a esa publicación, y son los únicos que así lo hicieron. Notar que la separación es con un caracter de tabulación. 
+En caso que un post no tenga likes, o bien no exista el id, imprimir <code class="language-plaintext highlighter-rouge">Error: Post inexistente o sin likes</code>.</p>
+
+<h2 id="criterios-de-aprobación">Criterios de aprobación</h2>
+
+<p>Los siguientes aspectos son condición necesaria para la aprobación del trabajo
+práctico.</p>
+
+<h3 id="estructuras-de-datos">Estructuras de datos</h3>
+
+<p>Es necesario emplear la estructura de datos más apropiada para cada función del
+programa, en particular <strong>teniendo en cuenta la complejidad temporal</strong>. También
+es necesario utilizar dicha estructura de la forma más apropiada posible para
+optimizar de manera correcta su funcionamiento.</p>
+
+<p>Se puede (y alentamos fuertemente) implementar otros TDAs o estructuras que faciliten o mejoren la
+implementación de este Trabajo Práctico. Les recordamos que un TDA no es un simple <code class="language-plaintext highlighter-rouge">struct</code>
+donde se guarda información, sino que debe tener comportamiento. Esto será un punto muy
+importante en la evaluación del Trabajo Práctico.</p>
+
+<p>Todas las estructuras deben estar implementadas de la forma más genérica
+posible y correctamente documentadas. No deben modificar los TDAs ya implementados hasta ahora.</p>
+
+<h3 id="complejidad-de-los-comandos">Complejidad de los comandos</h3>
+
+<p>Estudios de mercado han determinado que es muy probable que hayan muchos usuarios utilizando la red social social en muy poco tiempo (<a href="https://imgsnotigram.s3.amazonaws.com/uploads/2020/05/arial.jpg">fuente del estudio</a>). Por esto, es necesario que el programa sea muy eficiente. Se impusieron las siguientes restricciones para los comandos:</p>
+
+<ul>
+  <li>Login: debe funcionar en \(\mathcal{O}(1)\).</li>
+  <li>Logout: debe funcionar en \(\mathcal{O}(1)\).</li>
+  <li>Publicar Post: debe funcionar en \(\mathcal{O}(u \log(p))\), siendo \(u\) la cantidad de usuarios y \(p\) la cantidad de posts que se hayan creado hasta ese momento.</li>
+  <li>Ver próximo post en el feed: debe funcionar en \(\mathcal{O}(\log(p))\).</li>
+  <li>Likear un post: debe funcionar en \(\mathcal{O}(\log u)\).</li>
+  <li>Mostrar likes: debe funcionar en \(\mathcal{O}(u)\).</li>
+</ul>
+
+<h3 id="código-del-programa">Código del programa</h3>
+
+<p>El código entregado debe:</p>
+
+<ul>
+  <li>
+    <p>ser claro y legible, y estar estructurado en funciones lo más genéricas
+posible, adecuadamente documentadas.</p>
+  </li>
+  <li>
+    <p>compilar sin advertencias y correr sin errores de memoria.</p>
+  </li>
+  <li>
+    <p>ajustarse a la especificación de la consigna y pasar todas las pruebas
+automáticas.</p>
+  </li>
+</ul>
+
+<h3 id="informe">Informe</h3>
+
+<p>Este trabajo práctico tiene como principal foco el diseño del mismo (modularización, creación de nuevas
+estructuras y TDAs específicos del TP) así como el uso apropiado de las estructuras de datos vistas en clase.
+Por lo tanto, se les pide que escriban un informe de dicho diseño, puesto que además de ser capaces de
+escribir código correcto, también es necesario que aprendan a poder <em>transmitir</em> el porqué de sus
+decisiones, utilizando el lenguage técnico y justificaciones correspondientes.</p>
+
+<p>El informe deberá consistir de las siguientes partes:</p>
+
+<ul>
+  <li>
+    <p>carátula con los datos personales del grupo, y ayudante asignado.</p>
+  </li>
+  <li>
+    <p>análisis y diseño de la solución, en particular: algoritmos y estructuras de
+datos utilizados, justificando conforme a los requisitos pedidos en este TP.</p>
+  </li>
+</ul>
+
+<h3 id="entrega">Entrega</h3>
+
+<p>La entrega incluye, obligatoriamente, los siguientes archivos:</p>
+
+<ul>
+  <li>El código de los TDAs utilizados.</li>
+  <li>El código del TP.</li>
+  <li>El informe (en formato <code class="language-plaintext highlighter-rouge">.pdf</code>).</li>
+  <li>
+    <p>Un archivo <em>deps.mk</em> que exprese las dependencias del proyecto en formato
+  makefile. Este archivo deberá contener solamente dos líneas que indiquen,
+  para cada programa, de qué <em>objetos</em> depende su ejecutable; por ejemplo:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  # Ejemplo de archivo deps.mk para el TP2
+  algogram: tp2.o algogram.o hash.o
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>La entrega se realiza exclusivamente en forma digital a través del <a href="https://algoritmos-rw.dijkstra.ar/entregas/">sistema de entregas</a>,
+con todos los archivos mencionados en un único archivo ZIP.</p>
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

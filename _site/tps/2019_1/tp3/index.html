@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TP3 – Grafos y la red de delincuencia</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2019_1/tp3/"> -->
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+        crossorigin="anonymous" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+          crossorigin="anonymous" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+          onload="renderMathInElement(document.body);"></script>
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2019_1/tp3.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          <h1 id="trabajo-práctico-3">Trabajo Práctico 3</h1>
+
+<p class="no_toc">El Trabajo Práctico número 3 es de elaboración grupal, y tiene fecha de entrega
+para el <strong>viernes 28 de junio</strong>.</p>
+
+<h2 class="no_toc" id="contenido">Contenido</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#trabajo-práctico-3" id="markdown-toc-trabajo-práctico-3">Trabajo Práctico 3</a>    <ul>
+      <li><a href="#introducción" id="markdown-toc-introducción">Introducción</a></li>
+      <li><a href="#análisis-de-la-situación" id="markdown-toc-análisis-de-la-situación">Análisis de la situación</a></li>
+      <li><a href="#datos-disponibles" id="markdown-toc-datos-disponibles">Datos disponibles</a>        <ul>
+          <li><a href="#aclaraciones" id="markdown-toc-aclaraciones">Aclaraciones</a></li>
+        </ul>
+      </li>
+      <li><a href="#implementación" id="markdown-toc-implementación">Implementación</a>        <ul>
+          <li><a href="#mínimos-seguimientos" id="markdown-toc-mínimos-seguimientos">Mínimos Seguimientos</a></li>
+          <li><a href="#delincuentes-más-importantes" id="markdown-toc-delincuentes-más-importantes">Delincuentes más importantes</a></li>
+          <li><a href="#persecución-rápida" id="markdown-toc-persecución-rápida">Persecución rápida</a></li>
+          <li><a href="#comunidades" id="markdown-toc-comunidades">Comunidades</a></li>
+          <li><a href="#divulgación-de-rumor" id="markdown-toc-divulgación-de-rumor">Divulgación de rumor</a></li>
+          <li><a href="#ciclo-de-largo-n" id="markdown-toc-ciclo-de-largo-n">Ciclo de largo n</a></li>
+          <li><a href="#componentes-fuertemente-conexas" id="markdown-toc-componentes-fuertemente-conexas">Componentes Fuertemente Conexas</a></li>
+        </ul>
+      </li>
+      <li><a href="#entrega" id="markdown-toc-entrega">Entrega</a></li>
+      <li><a href="#criterios-de-aprobación" id="markdown-toc-criterios-de-aprobación">Criterios de aprobación</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="introducción">Introducción</h2>
+
+<p>Luego de una ardua investigación por parte del FBI sobre una red de delincuentes, lograron encontrar
+una serie de mensajes enviados que los pueden llegar a comprometer. Lograron obtener los datos de
+más de 420.000 mensajes enviados por distintos medios: algunos son mensajes de texto, otros llamadas
+telefónicas, otros mensajitos por diversas redes sociales, mails, etc. Todos estos conectan a 260.000
+sospechosos a nivel mundial. El problema que ahora enfrentan es que no saben bien cómo trabajar con
+estos datos, por lo que le pidieron a alumnes de la FIUBA si pueden ayudar con esta tarea.</p>
+
+<h2 id="análisis-de-la-situación">Análisis de la situación</h2>
+
+<p>Los agentes del FBI se contactaron pidiendo que se implementen las siguientes funcionalidades (o
+<em>features</em>). Cada uno de estos ítems se corresponde a una de las funcionalidades pedida en la segunda mitad de la consigna, y quizá sea conveniente una lectura a la par:</p>
+<ol>
+  <li>Tienen a algunos de los delincuentes menores bien vigilados, y saben que se van a contactar con los
+demás. Eventualmente, si siguen el rastro pueden acabar encontrando y atrapando a algún <em>pez gordo</em> de
+la lista de más buscados del mundo. Por esto, quieren poder obtener la mínima cantidad de seguimientos
+de personas que debe realizar un agente para dar con dicho <em>pez gordo</em>. Por ejemplo, ese tal
+<em>Toni, el Gordo</em> es un delincuente muy buscado en una ciudad de Estados Unidos.</li>
+  <li>Con tantos datos obtenidos, no tienen forma de definir cuáles son los delincuentes más importantes,
+para saber contra quiénes conviene apuntar en esta operación. En función de esto, les interesa poder tener
+una lista de cuáles pueden ser esos delincuentes.
+El problema es que son tantos, que saben que un algoritmo exacto puede tomar demasiado tiempo en calcular
+esto, y temen que los delincuentes se enteren que el FBI ha obtenido todos estos datos, y escapen.
+Por lo tanto, aceptan una buena aproximación.</li>
+  <li>Otra cosa que desean es, dada una lista de delincuentes a los que están siguiendo en estos momentos,
+determinar cuál es el mínimo esfuerzo para encontrar a alguno de los delincuentes más importantes.</li>
+  <li>Algo más que les permitiría entender como está conformada esta red de delincuentes sería poder determinar
+comunidades dentro de esta red.</li>
+  <li>Además de esto, cuentan con agentes infiltrados. Les interesa saber, si alguno de estos agentes comienza
+una noticia/rumor, hasta dónde pueda llegar.</li>
+  <li>En conjunto con lo anterior, les interesa poder saber si existe algún camino de un determinado largo que
+empiece en un delincuente en particular (que en realidad será un agente encubierto), y que termine en dicho
+agente otra vez.</li>
+  <li>Les interesaría poder obtener los conjuntos de delincuentes entre los cuales todos se conectan con todos.
+Pueden ser más de uno estos conjuntos.</li>
+</ol>
+
+<h2 id="datos-disponibles">Datos disponibles</h2>
+
+<p>Se cuenta con un <a href="mensajes.zip">set de datos</a><sup>1</sup> de los
+mensajes, comunicaciones, encuentros, etc. entre los mencionados delincuentes (y agentes encubiertos).
+Por motivos tanto legales como de seguridad para les alumnes, solo se han dejado los números de
+identificación de dichos delincuentes, sin ningún dato personal.
+El formato del archivo es un tsv (los campos se separan por tabuladores):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>id_vertice1	id_vertice2
+id_vertice1	id_vertice3
+...
+id_vertice2	id_vertice1
+id_vertice2	id_vertice3
+...
+id_vertice3	id_vertice5
+</code></pre></div></div>
+
+<p>Adicionalmente, se cuenta con el siguiente <a href="minimo.tsv">set mínimo de pruebas inventado</a>, por lo que no
+representa un escenario real donde valga la pena realizar todas las operaciones pedidas, pero puede servir
+de prueba, y se utilizará este set de datos para los ejemplos. Además se deja un <a href="script_generador.py">script generador</a>
+para que se puedan realizar más sets de prueba (aleatorios).</p>
+
+<p><sup>1</sup>El set de datos corresponde a un set de Emails enviados entre investigadores de la Unión
+Europea, obtenidos por la Universidad de Stanford.
+<a href="https://snap.stanford.edu/data/email-EuAll.html">Fuente real aquí</a>.</p>
+
+<h3 id="aclaraciones">Aclaraciones</h3>
+
+<ul>
+  <li>Que un delincuente se comunique con otro no implica que también suceda la recíproca.</li>
+  <li>Se ha visto también que hay delincuentes que se han enviado mensajes <strong>a sí mismos</strong>. Téngase esto en cuenta
+a la hora de procesar los datos.</li>
+  <li>Aunque dos delincuentes se comuniquen 1, 2 o <em>n</em> veces, la comunicación sólo aparece una vez en el archivo (que
+quiere decir que se hace esa comunicación <em>al menos una vez</em>).</li>
+</ul>
+
+<h2 id="implementación">Implementación</h2>
+
+<p>El trabajo puede realizarse en lenguaje a elección, siendo aceptados Python y C, y cualquier otro a ser
+discutido con le correctore asignade.</p>
+
+<p>El trabajo consiste de 3 partes:</p>
+<ol>
+  <li>El TDA Grafo, con sus primitivas.</li>
+  <li>Una biblioteca de funciones de grafos, que permitan hacer distintas operaciones sobre un grafo que
+luego se utilicen particularmente para el caso de la red de delincuentes. Esta biblioteca no debería tener
+referencias a delincuentes, sino simplemente aplicar algoritmos sobre grafos.</li>
+  <li>El programa <code class="language-plaintext highlighter-rouge">AlgoPoli</code> que utilice tanto el TDA como la biblioteca para poder implementar todo
+lo requerido.</li>
+</ol>
+
+<p>El programa debe recibir por parámetro y cargar en memoria el set de datos (<code class="language-plaintext highlighter-rouge">$ ./algopoli
+mensajes.tsv</code>) y luego esperar la recepción de comandos por entrada estándar,
+del estilo <code class="language-plaintext highlighter-rouge">&lt;comando&gt; parametro1,parametro2</code>. Notar que esto permite tener un archivo de instrucciones a ser
+ejecutadas (i.e. <code class="language-plaintext highlighter-rouge">$ ./algopoli mensajes.tsv &lt; comandos.txt</code>).</p>
+
+<p>A continuación, se explica cada comando, con ejemplos de salida utilizando el set de datos reducido (para no
+adelantar los resultados para el set grande).</p>
+
+<h3 id="mínimos-seguimientos">Mínimos Seguimientos</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">min_seguimientos</code>.</li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">origen</code> y <code class="language-plaintext highlighter-rouge">destino</code>.</li>
+  <li>Utilidad: nos imprime una lista con los <strong>delincuentes</strong> (su código identificador) con los cuáles vamos del
+<strong>delincuente</strong> <code class="language-plaintext highlighter-rouge">origen</code> al <strong>delincuente</strong> <code class="language-plaintext highlighter-rouge">destino</code> de la forma más rápida. En caso de no poder
+hacer el seguimiento (i.e. no existe camino), imprimir <code class="language-plaintext highlighter-rouge">Seguimiento imposible</code>.</li>
+  <li>Ejemplo: <br />
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  min_seguimientos 10 4
+  min_seguimientos 30 12
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  10 -&gt; 57 -&gt; 4
+  30 -&gt; 36 -&gt; 38 -&gt; 20 -&gt; 45 -&gt; 12
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="delincuentes-más-importantes">Delincuentes más importantes</h3>
+
+<p>Usualmente nos gustaría determinar cuáles son los vértices más importantes en un grafo en función
+de su centralidad exacta. Teniendo en cuenta que se cuenta con demasiados delincuentes, el cálculo
+exacto de la centralidad puede consumir una cantidad excesiva de tiempo.
+Por lo tanto, se pide realizar una aproximación para determinar los delincuentes más importantes.
+Las formas posibles son:</p>
+<ul>
+  <li><a href="/algo2/material/apuntes/centralidad">Betweeness Centrality, aproximado</a>.</li>
+  <li><a href="/algo2/material/apuntes/pagerank">PageRank</a>.</li>
+</ul>
+
+<p>Por lo tanto, el comando pedido debe ser:</p>
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">mas_imp</code>.</li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">cant</code>.</li>
+  <li>Utildad: Imprime, de mayor a menor importancia, los <code class="language-plaintext highlighter-rouge">cant</code> delincuentes más importantes.</li>
+  <li>Ejemplo: <br />
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mas_imp 10
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>20, 89, 42, 3, 49, 47, 56, 28, 22, 8
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="persecución-rápida">Persecución rápida</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">persecucion</code>.</li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">delincuente1,delincuente2,...,delincuenteN</code> y <code class="language-plaintext highlighter-rouge">K</code>.</li>
+  <li>Utilidad: Dado cada uno de los delincuentes pasados (agentes encubiertos), obtener cuál es el camino más corto
+para llegar desde alguno de los delincuentes pasados por parámetro, a alguno de los <code class="language-plaintext highlighter-rouge">K</code> delincuentes más importantes.
+En caso de tener caminos de igual largo, priorizar los que vayan a un delincuente más importante.</li>
+  <li>Ejemplo: <br />
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>persecucion 10,14,17 5
+persecucion 19,11,7,12 3
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>17 -&gt; 35 -&gt; 20
+19 -&gt; 42
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="comunidades">Comunidades</h3>
+
+<p>Para implementar esto, utilizaremos el algoritmo de <a href="/algo2/material/apuntes/label_propagation">Label Propagation</a>
+para detectar comunidades.</p>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">comunidades</code>.</li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">n</code>.</li>
+  <li>Utilidad: Imprime un listado de comunidades de al menos <code class="language-plaintext highlighter-rouge">n</code> integrantes.</li>
+  <li>Ejemplo: <br />
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>comunidades 10
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Comunidad 1: 0, 39, 59, 1, 47, 62, 2, 20, 3, 37, 31, 96, 16, 32, 80, 14, 40, 13, 89, 64, 72, 21, 15, 50, 97, 4, 17, 67, 6, 74, 54, 73, 93, 11, 65, 57, 70, 75, 7, 29, 8, 19, 55, 69, 33, 78, 44, 84, 43, 9, 42, 10, 53, 58, 35, 48, 45, 12, 25, 52, 71, 66, 36, 41, 79, 99, 92, 28, 56, 23, 18, 91, 34, 86, 30, 81, 38, 51, 87, 88, 22, 46, 63, 24, 95, 82, 49, 26, 27, 83, 90, 68, 94, 98, 61, 85, 76, 77, 60
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Tener en cuenta que siendo un archivo generado de forma aleatoria, los resultados obtenibles para este punto tienen muy poco sentido con la realidad.</p>
+
+<h3 id="divulgación-de-rumor">Divulgación de rumor</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">divulgar</code>.</li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">delincuente</code> y <code class="language-plaintext highlighter-rouge">n</code>.</li>
+  <li>Utilidad: Imprime una lista con todos los delincuentes a los cuales les termina llegando un rumor que
+comienza en el delincuente pasado por parámetro, y a lo sumo realiza <code class="language-plaintext highlighter-rouge">n</code> saltos (luego, se empieza a tergiversar
+el mensaje), teniendo en cuenta que <em>todos</em> los delincuentes transmitirán
+el rumor a sus allegados.</li>
+  <li>Ejemplo: <br />
+Entrada
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>divulgar 30 4
+divulgar 30 1
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>36, 79, 84, 38, 71, 48, 13, 76, 77, 20, 64, 72, 57, 23, 7, 24, 85, 61, 47, 19, 25, 40, 37, 52, 56, 74, 66, 1, 18, 27, 26, 80, 62, 97, 86, 15, 53, 31, 78, 99, 81, 6, 29, 11, 33, 45, 51, 65, 87, 42, 50, 93, 41, 90, 4, 70, 92, 67, 95, 0, 82, 63, 60, 5, 9, 68, 59, 89, 34, 8, 14, 73, 28, 16, 49, 43, 83, 75, 39, 21, 32, 54, 55, 17, 91, 46
+36, 79, 84
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="ciclo-de-largo-n">Ciclo de largo n</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">divulgar_ciclo</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">delincuente</code> y <code class="language-plaintext highlighter-rouge">n</code>.</li>
+  <li>Utilidad: Permite encontrar un camino simple que empiece y termine en el delincuente pasado por parámetro,
+de largo <code class="language-plaintext highlighter-rouge">n</code>. En caso de no encontrarse un ciclo de ese largo y dicho comienzo, imprimir <code class="language-plaintext highlighter-rouge">No se encontro recorrido</code>.</li>
+  <li>Ejemplo: <br />
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>divulgar_ciclo 74 5
+divulgar_ciclo 19 11
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>74 -&gt; 21 -&gt; 81 -&gt; 18 -&gt; 42 -&gt; 74
+19 -&gt; 34 -&gt; 12 -&gt; 33 -&gt; 54 -&gt; 28 -&gt; 79 -&gt; 71 -&gt; 57 -&gt; 41 -&gt; 56 -&gt; 19
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="componentes-fuertemente-conexas">Componentes Fuertemente Conexas</h3>
+
+<p>Se debe leer el apunte sobre <a href="/algo2/material/apuntes/cfc">componentes fuertemente conexas</a>.</p>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">cfc</code></li>
+  <li>Parámetros: ninguno.</li>
+  <li>Utilidad: Imprime cada conjunto de vértices entre los cuales todos están conectados con todos.</li>
+  <li>Ejemplo: <br />
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfc
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CFC 1: 10
+CFC 2: 77, 18, 73, 47, 91, 57, 30, 64, 82, 60, 85, 58, 22, 87, 50, 89, 14, 70, 32, 96, 37, 3, 29, 7, 40, 17, 4, 35, 53, 24, 75, 94, 43, 31, 78, 2, 52, 44, 45, 99, 69, 8, 16, 25, 13, 79, 15, 97, 20, 38, 36, 41, 46, 95, 1, 92, 23, 51, 62, 11, 68, 80, 93, 67, 5, 65, 83, 27, 28, 54, 33, 12, 34, 19, 56, 76, 84, 63, 81, 21, 74, 6, 90, 55, 66, 86, 98, 88, 42, 9, 61, 48, 49, 59, 26, 72, 71, 39, 0
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="entrega">Entrega</h2>
+
+<p>Adicionalmente a los archivos propios del trabajo práctico debe agregarse un archivo <code class="language-plaintext highlighter-rouge">entrega.mk</code> que contenga la regla <code class="language-plaintext highlighter-rouge">algopoli</code> para generar el ejecutable de dicho programa (sea compilando o los comandos que fueren necesarios). Por ejemplo, teniendo un TP elaborado en Python, podría ser:</p>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">algopoli</span><span class="o">:</span> <span class="nf">algopoli.py grafo.py biblioteca.py</span>
+	<span class="nb">cp </span>algopoli.py algopoli
+	<span class="nb">chmod</span> +x algopoli
+</code></pre></div></div>
+
+<p><strong>Importante</strong>: En caso de recibir un error <code class="language-plaintext highlighter-rouge">FileNotFoundError: [Errno 2] No such file or directory: './algopoli': './algopoli'</code>, tener en cuenta que para el caso de enviar código escrito en Python es necesario además indicar la ruta del intérprete. Esto puede hacerse agregando como primera línea del archivo principal (en el ejemplo, sería <code class="language-plaintext highlighter-rouge">algopoli.py</code>) la línea: <code class="language-plaintext highlighter-rouge">#!/usr/bin/python3</code>.</p>
+
+<h2 id="criterios-de-aprobación">Criterios de aprobación</h2>
+
+<p>El código entregado debe ser claro y legible y ajustarse a las especificaciones
+de la consigna. Debe compilar sin advertencias y correr sin errores de memoria.</p>
+
+<p>La entrega incluye, obligatoriamente, los siguientes archivos de código:</p>
+
+<ul>
+  <li>el código del TDA Grafo programado, y cualquier otro TDA que fuere necesario.</li>
+  <li>el código de la solución del TP.</li>
+</ul>
+
+<p>La entrega se realiza:</p>
+
+<ol>
+  <li>en forma digital a través del <a href="https://algoritmos-rw.dijkstra.ar/entregas/">sistema de entregas</a>,
+con todos los archivos mencionados en un único archivo ZIP.</li>
+  <li>en papel durante la clase (si su ayudante lo requiere) el código del Trabajo
+en hoja A4 <strong>abrochadas, sin folio, informe ni carátula</strong>.</li>
+</ol>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

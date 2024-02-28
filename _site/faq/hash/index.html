@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>FAQ - Hash</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/faq/hash/"> -->
+
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/faq/hash.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          <h1 class="no_toc" id="faq---hash">FAQ - Hash</h1>
+
+<ul id="markdown-toc">
+  <li><a href="#qué-son-las-claves-y-los-datos-dentro-del-hash" id="markdown-toc-qué-son-las-claves-y-los-datos-dentro-del-hash">¿Qué son las claves y los datos dentro del hash?</a></li>
+  <li><a href="#cómo-se-itera-un-hash-abierto" id="markdown-toc-cómo-se-itera-un-hash-abierto">¿Cómo se itera un hash abierto?</a></li>
+  <li><a href="#debo-codificar-una-función-de-hashing-propia" id="markdown-toc-debo-codificar-una-función-de-hashing-propia">¿Debo codificar una función de hashing propia?</a></li>
+  <li><a href="#por-qué-la-capacidad-de-una-tabla-de-hash-debe-ser-un-número-primo" id="markdown-toc-por-qué-la-capacidad-de-una-tabla-de-hash-debe-ser-un-número-primo">¿Por qué la capacidad de una tabla de hash debe ser un número primo?</a></li>
+</ul>
+
+<h2 id="qué-son-las-claves-y-los-datos-dentro-del-hash">¿Qué son las claves y los datos dentro del hash?</h2>
+
+<p>La clave es la cadena mediante la cual se ubica el dato, tanto al guardarlo como al obtenerlo o borrarlo. Por ejemplo, si se guarda una estructura <code class="language-plaintext highlighter-rouge">Alumno</code>, la clave podría ser el padrón (como cadena o número) o el apellido, según con qué criterio se quiere guardar y luego encontrar los datos.</p>
+
+<p>A esta clave será necesario aplicar la función de hashing, que debe devolver un número, y luego debemos asegurar que quede entre 0 y <em>m-1</em>, siendo <em>m</em> el largo de la tabla de hash. La forma más usada de obtener un valor en este rango es aplicando la operación módulo <em>m</em>, que devuelve el resto de la división entera entre un número y <em>m</em>.</p>
+
+<p>Las claves y los datos asociados se guardan en la tabla de hash como una pareja. Para esto usamos una estructura adicional (que se puede llamar, por ejemplo, <code class="language-plaintext highlighter-rouge">hash_campo</code> o <code class="language-plaintext highlighter-rouge">hash_elem</code>).  De esta forma es posible recuperar el dato asociado a la clave cuando así se lo solicite.</p>
+
+<h2 id="cómo-se-itera-un-hash-abierto">¿Cómo se itera un hash abierto?</h2>
+
+<p>El objetivo del iterador es permitir recorrer todos los elementos de la tabla de hash, sin importar el orden en que se encuentren. Cada vez que se pide ver el elemento actual, se deben devolver tanto la clave como el dato, ya que el usuario no sabe cuál es ninguno de los dos.</p>
+
+<p>Al crear el iterador, tiene que quedar apuntando al “primer” elemento que hay en el hash.  Para ello, tiene que verificar cuál es el primer balde que contiene una lista no-vacía, y de esa lista crear un iterador.</p>
+
+<p>Al avanzar el iterador de hash, debe avanzar el iterador de la lista actual, y en el caso de que llegue al final, buscar la siguiente lista no vacía.</p>
+
+<p>Debe indicar que llegó al final cuando ya no queden listas por recorrer.</p>
+
+<h2 id="debo-codificar-una-función-de-hashing-propia">¿Debo codificar una función de hashing propia?</h2>
+
+<p>No. Las funciones de hashing son un tema muy extenso en la computación, y no se pretende que se codifique una. Cabe destacar que estas pueden llegar a impactar sobre el rendimiento de la tabla de hash, así que de encontrarse con un hash que no rinde como uno esperaría, uno de las primeras cosas a probar es cambiar la función de hash.</p>
+
+<h2 id="por-qué-la-capacidad-de-una-tabla-de-hash-debe-ser-un-número-primo">¿Por qué la capacidad de una tabla de hash debe ser un número primo?</h2>
+
+<p>Para obtener el mejor rendimiento de nuestra tabla de hash, queremos que las claves esten lo mejor distribuidas posibles en la capacidad. Es decir, que reduzcamos al mínimo posible las colisiones que obtendremos. Recordemos que una colisión es cuando dos claves van a parar al mismo ‘balde’ de la tabla de hash, sin importar si es abierto o cerrado.</p>
+
+<p>A lo que nos referimos con esto es que si tenemos un hash con 5 baldes y tiene un elemento en cada uno de esos 5 baldes, la búsqueda de un elemento será más rápida que si tenemos los 5 elementos sobre el mismo balde, lo cual necesita de más operaciones.</p>
+
+<p>Por otro lado, el concepto básico de una función de hashing es el de tomar una cadena y convertirla en un número. Más alla de la implementación de la función, ese número puede ser cualquier número. Ahora, suponiendo que la cadena ‘holamundo’ se encripte al número ‘3310’, pero mi tabla de hash tiene una capacidad de 30 bloques, de alguna forma tengo que reducir el 3310 a un número entre 0 y 30. ¿Cómo hago esto? Facil! Con el operador de módulo (en código, el <code class="language-plaintext highlighter-rouge">%</code>), que es el resto de la división entre dos números. En este caso, <code class="language-plaintext highlighter-rouge">3310 mod 30 = 10</code>.</p>
+
+<p>Entonces, con la idea de que queremos generar la menor cantidad de colisiones posibles, y que una colisión nos sucedera cuando el aplicarle modulo a dos números distintos sobre la capacidad nos de el mismo resultado, estamos en búsqueda de un número que distribuya lo mas variado posible los resultados al aplicarsele modulo.</p>
+
+<p>Claramente, si se hace un modulo de un multiplo de un número a otro, el resultado sera 0, ya que la división es perfecta, sin resto.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4 mod 2 = 0
+8 mod 2 = 0
+16 mod 2 = 0
+...
+</code></pre></div></div>
+
+<p>Extendiendo un poco esto, con la notación <code class="language-plaintext highlighter-rouge">n mod d = r</code>, cualquier n que comparta un factor común con d nos dará como resultado ese factor común. Entonces, cualquier multiplo de este n nos dara como resultado un multiplo de ese r. Por ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>18 mod 16 = 2 //18 y 16 comparten factor común 2
+36 mod 16 = 4 //36 es múltiplo de 18, y su resultado es múltiplo de 2
+54 mod 16 = 6
+72 mod 16 = 8
+...
+20 mod 16 = 4 //20 también comparte factor común con 16, haciendo que vuelva a parar en el 4. Acá tenemos una colisión
+40 mod 16 = 8//40 es múltiplo de 20, haciendo que vaya a parar a donde ya paró el 72. Otra colisión!
+</code></pre></div></div>
+
+<p>Entonces, estamos en búsqueda de un d que contenga la menor cantidad posible de factores, para que todo n que usemos comparta pocos factores con el, así logrando que la distribución sea variada. Y sabiendo que los números primos solo pueden dividirse por 1 o por si mismos, son un muy buen número para utilizar!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>18 mod 7 = 4
+36 mod 7 = 1
+54 mod 7 = 5
+20 mod 7 = 6
+</code></pre></div></div>
+
+<p>Cabe destacar que si las claves originales vienen distribuidas uniformemente, esto no soluciona el problema, porque nos dara resultados similares para cualquier capacidad utilizada. Pero, como en la mayoría de los casos las claves no vienen con distribución específica, terminamos concluyendo que lo mejor es usar un número primo como capacidad de la tabla de hash.</p>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

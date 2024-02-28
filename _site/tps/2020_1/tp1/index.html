@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Algoritmos y Programación II</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2020_1/tp1/"> -->
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+        crossorigin="anonymous" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+          crossorigin="anonymous" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+          onload="renderMathInElement(document.body);"></script>
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2020_1/tp1.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          
+<h1 class="no_toc" id="tp1-manejo-de-archivos-y-cadenas">TP1: Manejo de archivos y cadenas</h1>
+
+<p>El trabajo práctico número 1 tiene fecha de entrega para el día <strong>25/04</strong>, y está divido en tres partes:</p>
+
+<ol>
+  <li>una serie de funciones para manejo de cadenas <em>(strutil.c)</em></li>
+  <li>una calculadora en notación posfija <em>(dc.c)</em></li>
+  <li>un conversor de notación infija a notación posfija <em>(infix.c)</em></li>
+</ol>
+
+<h2 class="no_toc" id="contenido">Contenido</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#strutil" id="markdown-toc-strutil">Manejo de cadenas</a>    <ul>
+      <li><a href="#substr" id="markdown-toc-substr">substr()</a></li>
+      <li><a href="#split" id="markdown-toc-split">split()</a></li>
+      <li><a href="#join" id="markdown-toc-join">join()</a></li>
+      <li><a href="#free_strv" id="markdown-toc-free_strv">free_strv()</a></li>
+    </ul>
+  </li>
+  <li><a href="#dc" id="markdown-toc-dc">Calculadora en notación posfija</a>    <ul>
+      <li><a href="#funcionamiento" id="markdown-toc-funcionamiento">Funcionamiento</a></li>
+      <li><a href="#formato-de-entrada" id="markdown-toc-formato-de-entrada">Formato de entrada</a></li>
+      <li><a href="#condiciones-de-error" id="markdown-toc-condiciones-de-error">Condiciones de error</a></li>
+    </ul>
+  </li>
+  <li><a href="#infix" id="markdown-toc-infix">Conversor desde notación infija</a>    <ul>
+      <li><a href="#formato-de-entrada-1" id="markdown-toc-formato-de-entrada-1">Formato de entrada</a></li>
+      <li><a href="#asociatividad-y-precedencia" id="markdown-toc-asociatividad-y-precedencia">Asociatividad y precedencia</a></li>
+    </ul>
+  </li>
+  <li><a href="#criterios-de-aprobación" id="markdown-toc-criterios-de-aprobación">Criterios de aprobación</a></li>
+</ul>
+
+<h2 id="strutil">Manejo de cadenas</h2>
+
+<p>Se pide implementar las funciones de manejo que cadenas que se describen a continuación. Adjunto en el <a href="https://algoritmos-rw.github.io/algo2_skel">sitio de descargas</a> se puede encontrar un archivo <em>strutil.h</em> con todos sus prototipos.</p>
+
+<p>Para la implementación de estas funciones no se permite el usod uso de TDAs. Sí se permite, no obstante, el uso de las funciones de la biblioteca estándar de C <a href="http://pubs.opengroup.org/onlinepubs/7908799/xsh/string.h.html">string.h</a> (excepto <code class="language-plaintext highlighter-rouge">strtok</code>). Se recomiendan, en particular:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">strlen</code></li>
+  <li><code class="language-plaintext highlighter-rouge">strcpy</code>/<code class="language-plaintext highlighter-rouge">strncpy</code></li>
+  <li><code class="language-plaintext highlighter-rouge">strdup</code>/<code class="language-plaintext highlighter-rouge">strndup</code></li>
+  <li><code class="language-plaintext highlighter-rouge">snprintf</code></li>
+</ul>
+
+<p>Se dsescriben a continuación las cuatro funciones a implementar.</p>
+
+<h3 id="substr">substr()</h3>
+
+<p>La función <code class="language-plaintext highlighter-rouge">substr()</code> permite obtener un prefijo de longitud \(k\) de una cadena dada.</p>
+
+<p>Por ejemplo, la llamada <code class="language-plaintext highlighter-rouge">substr("Hola mundo", 6)</code> devolvería la cadena <code class="language-plaintext highlighter-rouge">"Hola m"</code>. El resultado debe ser una nueva cadena de memoria dinámica con dichos caracteres (y, por supuesto, el carácter de fin de cadena).
+Ejemplos de uso:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">substr</span><span class="p">(</span><span class="s">"Hola mundo"</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>         <span class="err">→</span> <span class="s">"Hola m"</span>
+<span class="n">substr</span><span class="p">(</span><span class="s">"Algoritmos"</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>        <span class="err">→</span> <span class="s">"Algoritmos"</span>
+<span class="n">substr</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                   <span class="err">→</span> <span class="s">""</span>
+
+<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ejemplo</span> <span class="o">=</span> <span class="s">"Ejemplo"</span><span class="p">;</span>
+<span class="n">substr</span><span class="p">(</span><span class="n">ejemplo</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>              <span class="err">→</span> <span class="s">"Ej"</span>
+<span class="n">substr</span><span class="p">(</span><span class="n">ejemplo</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>          <span class="err">→</span> <span class="s">"pl"</span>
+</code></pre></div></div>
+
+<p>Complejidad algorítmica: se espera que la función tenga complejidad \(\mathcal{O}(k)\).</p>
+
+<h3 id="split">split()</h3>
+
+<p>La función <code class="language-plaintext highlighter-rouge">split()</code> divide una cadena en subcadenas, con una división por cada ocurrencia de un caracter de separación determinado. Por ejemplo, separando por comas:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">split</span><span class="p">(</span><span class="s">"abc,def,ghi"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">,</span> <span class="s">"ghi"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>En C, devolveremos el resultado como un arreglo dinámico de cadenas dinámicas terminado en <code class="language-plaintext highlighter-rouge">NULL</code>. Esto es:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Ejemplo de arreglo dinámico de cadenas</span>
+<span class="kt">char</span> <span class="o">**</span><span class="n">strv</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"abc"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"def"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"ghi"</span><span class="p">);</span>
+<span class="n">strv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Considerar los siguientes casos borde:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">split</span><span class="p">(</span><span class="s">"abc,,def"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">"def"</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">"abc,def,"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">,</span> <span class="s">""</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">",abc,def"</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">"abc"</span><span class="p">,</span> <span class="sc">'\0'</span><span class="p">)</span>      <span class="err">→</span>  <span class="p">[</span><span class="s">"abc"</span><span class="p">]</span>
+
+<span class="n">split</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span>  <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">]</span>
+<span class="n">split</span><span class="p">(</span><span class="s">","</span><span class="p">,</span> <span class="sc">','</span><span class="p">)</span> <span class="err">→</span>  <span class="p">[</span><span class="s">""</span><span class="p">,</span> <span class="s">""</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Complejidad algorítmica: se espera que la función tenga complejidad \(\mathcal{O}(n)\), siendo \(n\) la longitud de la cadena inicial.</p>
+
+<h3 id="join">join()</h3>
+
+<p>La función <code class="language-plaintext highlighter-rouge">join()</code> es la inversa de <code class="language-plaintext highlighter-rouge">split()</code>. Concatena un arreglo de cadenas terminado en NULL mediante un caracter de separación:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Ejemplo de uso de join</span>
+<span class="kt">char</span> <span class="o">**</span><span class="n">strv</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="s">"abc,def,ghi"</span><span class="p">,</span> <span class="sc">','</span><span class="p">);</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">resultado</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">strv</span><span class="p">,</span> <span class="sc">';'</span><span class="p">);</span>  <span class="c1">// "abc;def;ghi"</span>
+
+<span class="kt">char</span> <span class="o">**</span><span class="n">palabras</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="s">"Hola mundo"</span><span class="p">,</span> <span class="sc">' '</span><span class="p">);</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">otro_resultado</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">palabras</span><span class="p">,</span> <span class="sc">','</span><span class="p">);</span>  <span class="c1">// "Hola,mundo"</span>
+</code></pre></div></div>
+
+<p>Casos borde:</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">join</span><span class="p">([</span><span class="s">""</span><span class="p">],</span> <span class="sc">','</span><span class="p">)</span>             <span class="err">→</span>  <span class="s">""</span>
+<span class="n">join</span><span class="p">([</span><span class="s">"abc"</span><span class="p">],</span> <span class="sc">','</span><span class="p">)</span>          <span class="err">→</span>  <span class="s">"abc"</span>
+<span class="n">join</span><span class="p">([</span><span class="s">""</span><span class="p">,</span> <span class="s">""</span><span class="p">],</span> <span class="sc">','</span><span class="p">)</span>         <span class="err">→</span>  <span class="s">","</span>
+<span class="n">join</span><span class="p">([],</span> <span class="sc">','</span><span class="p">)</span>               <span class="err">→</span>  <span class="s">""</span> <span class="c1">// Join de arreglo vacío, {NULL} en C.</span>
+<span class="n">join</span><span class="p">([</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="p">],</span> <span class="sc">'\0'</span><span class="p">)</span>  <span class="err">→</span>  <span class="s">"abcdef"</span>
+</code></pre></div></div>
+
+<p>Complejidad algorítmica: se espera que la función tenga complejidad \(\mathcal{O}(n)\), siendo \(n\) la longitud de la cadena resultante.</p>
+
+<p>Las pruebas del corrector automático proveen una indicación del comportamiento de <code class="language-plaintext highlighter-rouge">join()</code> (si bien <strong>todas las funciones deben correr en tiempo lineal</strong>, <code class="language-plaintext highlighter-rouge">join()</code> provee una dificultad de implementación mayor a <code class="language-plaintext highlighter-rouge">split()</code> o <code class="language-plaintext highlighter-rouge">substr()</code>).</p>
+
+<p>Este sería un test con comportamiento lineal:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ RUN      ] test_join.test_complejidad_10000
+[       OK ] test_join.test_complejidad_10000 (7 ms)
+[ RUN      ] test_join.test_complejidad_20000
+[       OK ] test_join.test_complejidad_20000 (14 ms)
+[ RUN      ] test_join.test_complejidad_30000
+[       OK ] test_join.test_complejidad_30000 (17 ms)
+[ RUN      ] test_join.test_complejidad_40000
+[       OK ] test_join.test_complejidad_40000 (27 ms)
+[ RUN      ] test_join.test_complejidad_50000
+[       OK ] test_join.test_complejidad_50000 (33 ms)
+[ RUN      ] test_join.test_complejidad_60000
+[       OK ] test_join.test_complejidad_60000 (40 ms)
+</code></pre></div></div>
+
+<p>Y este con comportamiento cuadrático:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ RUN      ] test_join.test_complejidad_10000
+[       OK ] test_join.test_complejidad_10000 (48 ms)
+[ RUN      ] test_join.test_complejidad_20000
+[       OK ] test_join.test_complejidad_20000 (618 ms)
+[ RUN      ] test_join.test_complejidad_30000
+[       OK ] test_join.test_complejidad_30000 (1354 ms)
+[ RUN      ] test_join.test_complejidad_40000
+[       OK ] test_join.test_complejidad_40000 (2425 ms)
+[ RUN      ] test_join.test_complejidad_50000
+[       OK ] test_join.test_complejidad_50000 (4019 ms)
+[ RUN      ] test_join.test_complejidad_60000
+[       OK ] test_join.test_complejidad_60000 (5722 ms)
+</code></pre></div></div>
+
+<h3 id="free_strv">free_strv()</h3>
+
+<p><code class="language-plaintext highlighter-rouge">free_strv()</code> libera la memoria asociada con un arreglo dinámico de cadenas dinámicas:</p>
+
+<p>Si bien no es obligatorio probar la biblioteca, es muy recomendable hacer pruebas unitarias para comprobar el correcto
+funcionamiento, en particular para los casos borde.</p>
+
+<h2 id="dc">Calculadora en notación posfija</h2>
+
+<p>Se pide implementar un programa <code class="language-plaintext highlighter-rouge">dc</code> que permita realizar operaciones matemáticas. La calculadora leerá exclusivamente de entrada estándar (no toma argumentos por línea de comantos), interpretando cada línea como una operación en <a href="https://es.wikipedia.org/wiki/Notaci%C3%B3n_polaca_inversa">notación polaca inversa</a> (también llamada <em>notación posfija</em>, en inglés <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation"><em>reverse Polish notation</em></a>); para cada línea, se imprimirá por salida estándar el resultado del cálculo.</p>
+
+<p>Ejemplo de varias operaciones, y su resultado:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat oper.txt
+5 3 +
+5 3 -
+5 3 /
+3 5 8 + +
+3 5 8 + -
+3 5 - 8 +
+2 2 + +
+0 1 ?
+1 -1 0 ?
+5 sqrt
+
+$ ./dc &lt; oper.txt
+8
+2
+1
+16
+-10
+6
+ERROR
+ERROR
+-1
+2
+</code></pre></div></div>
+
+<h3 id="funcionamiento">Funcionamiento</h3>
+
+<ul>
+  <li>
+    <p>Todas las operaciones trabajarán con números enteros, y devolverán números enteros. Se recomienda usar el tipo de C <code class="language-plaintext highlighter-rouge">long</code> para permitir operaciones de más de 32 bits (p.ej. \(3^{3^3}\)).</p>
+  </li>
+  <li>
+    <p>El conjunto de operadores posibles es: suma (<code class="language-plaintext highlighter-rouge">+</code>), resta (<code class="language-plaintext highlighter-rouge">-</code>), multiplicación (<code class="language-plaintext highlighter-rouge">*</code>), división entera (<code class="language-plaintext highlighter-rouge">/</code>), raíz cuadrada (<code class="language-plaintext highlighter-rouge">sqrt</code>), exponenciación (<code class="language-plaintext highlighter-rouge">^</code>), logaritmo (<code class="language-plaintext highlighter-rouge">log</code>) en base arbitraria, y operador ternario (<code class="language-plaintext highlighter-rouge">?</code>).</p>
+
+    <ul>
+      <li>
+        <!-- https://github.com/gettalong/kramdown/issues/486 -->
+
+        <p>Todos los operadores funcionan con dos operandos, excepto <code class="language-plaintext highlighter-rouge">sqrt</code> (toma un solo argumento) y el operador ternario (toma tres).</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Tal y como se describe en la bibliografía enlazada, cualquier operación aritmética <em>a op b</em> se escribe en postfijo como <code class="language-plaintext nowrap highlighter-rouge">a b op</code> (por ejemplo, \(3 - 2\) se escribe en postfijo como <code class="language-plaintext nowrap highlighter-rouge">3 2 -</code>).</p>
+
+    <p>Es útil modelar la expresión como una pila cuyo tope es el extremo derecho de la misma (por ejemplo en <code class="language-plaintext highlighter-rouge">3 2 -</code>, el tope es <code class="language-plaintext highlighter-rouge">-</code>); entonces, se puede decir que lo primero que se desapila es el operador, y luego los operandos <strong>en orden inverso</strong>.</p>
+
+    <ul>
+      <li>
+        <!-- gettalong/kramdown#486 -->
+
+        <p>Para operaciones con un solo operando, el formato es obviamente <code class="language-plaintext nowrap highlighter-rouge">a op</code> (por ejemplo, <code class="language-plaintext nowrap highlighter-rouge">5 sqrt</code>). Por su parte, para el operador ternario, el ordenamiento de los argumentos seguiría el mismo principio, transformándose <code class="language-plaintext nowrap highlighter-rouge">a ? b : c</code> en <code class="language-plaintext nowrap highlighter-rouge">a b c ?</code>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Ejemplos (nótese que toda la aritmética es entera, y el resultado siempre se trunca):</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">20 11 -</code> → <code class="language-plaintext highlighter-rouge">20-11 = 9</code></li>
+      <li><code class="language-plaintext highlighter-rouge">20 -3 /</code> → <code class="language-plaintext highlighter-rouge">20/-3 = -6</code></li>
+      <li><code class="language-plaintext highlighter-rouge">20 10 ^</code> → <code class="language-plaintext highlighter-rouge">20^10 = 10240000000000</code></li>
+      <li><code class="language-plaintext highlighter-rouge">60 sqrt</code> → <code class="language-plaintext highlighter-rouge">√60 = 7</code></li>
+      <li><code class="language-plaintext highlighter-rouge">256 4 ^ 2 log</code> → <code class="language-plaintext highlighter-rouge">log₂(256⁴) = 32</code></li>
+      <li><code class="language-plaintext highlighter-rouge">1 -1 0 ?</code> → <code class="language-plaintext highlighter-rouge">1 ? -1 : 0 = -1</code> (funciona <a href="https://syntaxdb.com/ref/c/ternary">como en C</a>)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="formato-de-entrada">Formato de entrada</h3>
+
+<ul>
+  <li>
+    <p>Cada línea de la entrada estándar representa una operación en su totalidad (produce un único resultado); y cada una de estas operaciones operación es independiente de las demás.</p>
+  </li>
+  <li>
+    <p>Los símbolos en la expresión pueden ser números, u operadores. Todos ellos estarán siempre separados por uno o más espacios; la presencia de múltiples espacios debe tenerse en cuenta a la hora de realizar la separación en tokens.</p>
+
+    <ul>
+      <li>
+        <!-- gettalong/kramdown#486 -->
+        <p>Nota adicional: puede haber también múltiples espacios al comienzo de la línea, antes del primer token; por otra parte, no necesariamente habrá un espacio entre el último token y el caracter salto de línea que le sigue.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>El resultado final de cada operación debe imprimirse en una sola línea por salida estándar (<em>stdout</em>). En caso de error, debe imprimirse —para esa operación— la cadena <code class="language-plaintext highlighter-rouge">ERROR</code>, <em>también</em> por salida estándar, y sin ningún tipo de resultado parcial. Tras cualquier error en una operación, el programa continuará procesando el resto de líneas con normalidad.</p>
+  </li>
+  <li>
+    <p>Está permitido, para el cálculo de potencias, raíces y logaritmos, el uso de las funciónes de la biblioteca estándar <code class="language-plaintext highlighter-rouge">&lt;math.h&gt;</code>.</p>
+  </li>
+</ul>
+
+<h3 id="condiciones-de-error">Condiciones de error</h3>
+
+<p>El mensaje <code class="language-plaintext highlighter-rouge">ERROR</code> debe imprimirse como resultado en cualquiera de las siguientes situaciones:</p>
+
+<ol>
+  <li>
+    <p>cantidad de operandos insuficiente (<code class="language-plaintext highlighter-rouge">1 +</code>)</p>
+  </li>
+  <li>
+    <p>al finalizar la evaluación, queda más de un valor en la pila (por ejemplo <code class="language-plaintext highlighter-rouge">1 2 3 +</code>, o <code class="language-plaintext highlighter-rouge">+ 2 3 -</code>)</p>
+  </li>
+  <li>
+    <p><strong>errores propios de cada operación matemática</strong>, descritos a continuación:</p>
+
+    <ul>
+      <li>división por 0</li>
+      <li>raíz de un número negativo</li>
+      <li>base del logaritmo menor a 2</li>
+      <li>potencia con exponente negativo</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="infix">Conversor desde notación infija</h2>
+
+<p>Una vez implementada la calculadora en notación postfija, se desea agregarle soporte para operaciones expresadas en notación infija, es decir, notación aritmética común:</p>
+
+<ul>
+  <li>
+    <p>\(4 + 2 - 1\).</p>
+  </li>
+  <li>
+    <p>\(5 / 3\).</p>
+  </li>
+  <li>
+    <p>\(2 * (3 + 7)\).</p>
+  </li>
+</ul>
+
+<p>No obstante, en lugar de modificar el código de <code class="language-plaintext highlighter-rouge">dc</code>, se pide escribir un segundo programa, <code class="language-plaintext highlighter-rouge">infix</code>, que actúe como <em>filtro de conversión</em>, esto es: leerá de entrada estándar operaciones en notación infija (una por línea), e imprimirá por salida estándar la representación en postfijo de la misma operación. Ejemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat arith.txt
+3 + 5
+5 - 3
+8 / 2 + 1
+9 - 2 * 4
+(9-2) * 4
+5 + 4 ^ 3 ^ 2
+
+$ ./infix &lt; arith.txt
+3 5 +
+5 3 -
+8 2 / 1 +
+9 2 4 * -
+9 2 - 4 *
+5 4 3 2 ^ ^ +
+
+$ ./infix &lt; arith.txt | ./dc
+8
+2
+5
+1
+28
+262149
+</code></pre></div></div>
+
+<p>Como referencia bibliográfica, la conversión se puede realizar mediante el algoritmo <em>shunting yard</em> (ver página de Wikipedia <a href="https://es.wikipedia.org/wiki/Algoritmo_shunting_yard">en castellano</a> o <a href="https://en.wikipedia.org/wiki/Shunting-yard_algorithm">en inglés</a>).</p>
+
+<h3 id="formato-de-entrada-1">Formato de entrada</h3>
+
+<p>Cada línea de la entrada consistirá de una secuencia de <em>tokens</em>; cada uno de ellos podrá ser:</p>
+
+<ul>
+  <li>uno de los cinco operadores aritméticos <code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">-</code> <code class="language-plaintext highlighter-rouge">*</code> <code class="language-plaintext highlighter-rouge">/</code> <code class="language-plaintext highlighter-rouge">^</code></li>
+  <li>un paréntesis de apertura, <code class="language-plaintext highlighter-rouge">(</code>; o de cierre, <code class="language-plaintext highlighter-rouge">)</code></li>
+  <li>un número entero, no negativo y en base decimal</li>
+</ul>
+
+<p>Se debe aceptar espacios en blanco en cualquier punto de la expresión, excepto entre los dígitos de un valor numérico.</p>
+
+<p><strong>Se garantiza, por último, que todas las expresiones de entrada estarán bien formadas:</strong> paréntesis balanceados, espaciado conforme a norma, etc.</p>
+
+<h3 id="asociatividad-y-precedencia">Asociatividad y precedencia</h3>
+
+<p>Todos los operadores asocian por la izquierda, excepto la exponenciación, <code class="language-plaintext highlighter-rouge">^</code>, que asocia por la derecha.</p>
+
+<p>Por otra parte, <code class="language-plaintext highlighter-rouge">^</code> es el operador de mayor precedencia, seguido de <code class="language-plaintext highlighter-rouge">*</code> y <code class="language-plaintext highlighter-rouge">/</code> (ambos al mismo nivel); <code class="language-plaintext highlighter-rouge">+</code> y <code class="language-plaintext highlighter-rouge">-</code> son, ambos, los operadores de menor precedencia.</p>
+
+<h2 id="criterios-de-aprobación">Criterios de aprobación</h2>
+
+<p>El código entregado debe ser claro y legible y ajustarse a las especificaciones
+de la consigna. Debe compilar sin advertencias y correr sin errores de memoria.</p>
+
+<p>La entrega incluye, obligatoriamente, los siguientes archivos de código:</p>
+
+<ul>
+  <li>
+    <p><em>strutil.c</em> con las implementaciones de las funciones <code class="language-plaintext highlighter-rouge">substr</code>, <code class="language-plaintext highlighter-rouge">split</code>,
+<code class="language-plaintext highlighter-rouge">join</code> y <code class="language-plaintext highlighter-rouge">free_strv</code>.</p>
+  </li>
+  <li>
+    <p>el código de <code class="language-plaintext highlighter-rouge">dc</code> en <em>dc.c</em> y el de <code class="language-plaintext highlighter-rouge">infix</code> en <em>infix.c</em></p>
+  </li>
+  <li>
+    <p>el código de los TDAs auxiliares requeridos por los programas (incluyendo
+<em>.c</em> y <em>.h</em>)</p>
+  </li>
+  <li>
+    <p>un archivo <em>deps.mk</em> que exprese las dependencias del proyecto en formato
+makefile. Este archivo deberá contener solamente dos líneas que indiquen,
+para cada programa, de qué <em>objetos</em> depende su ejecutable; por ejemplo:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Ejemplo de archivo deps.mk para el TP1
+dc: dc.o pila.o
+infix: infix.o strutil.o
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>La entrega se realiza únicamente en forma digital a través del <a href="https://algoritmos-rw.dijkstra.ar/entregas/">sistema de
+entregas</a>, con todos los archivos mencionados en un único
+archivo ZIP.</p>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

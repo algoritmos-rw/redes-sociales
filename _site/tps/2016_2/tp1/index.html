@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TP 1</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2016_2/tp1/"> -->
+
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2016_2/tp1.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          <h1 class="no_toc" id="tp-1-manejo-de-archivos-y-cadenas">TP 1: manejo de archivos y cadenas</h1>
+
+<p>Este trabajo práctico es <em>individual</em> y consiste de cuatro partes separadas, a ser entregadas el viernes 14 de octubre.</p>
+
+<h2 class="no_toc" id="contenido">Contenido</h2>
+
+<ol id="markdown-toc">
+  <li><a href="#aplicaciones" id="markdown-toc-aplicaciones">Aplicaciones</a>    <ol>
+      <li><a href="#paste" id="markdown-toc-paste">paste</a></li>
+      <li><a href="#more" id="markdown-toc-more">more</a></li>
+      <li><a href="#dc" id="markdown-toc-dc">dc</a></li>
+    </ol>
+  </li>
+  <li><a href="#manejo-de-cadenas" id="markdown-toc-manejo-de-cadenas">Manejo de cadenas</a>    <ol>
+      <li><a href="#split" id="markdown-toc-split">split()</a></li>
+      <li><a href="#join" id="markdown-toc-join">join()</a></li>
+      <li><a href="#free_strv" id="markdown-toc-free_strv">free_strv()</a></li>
+    </ol>
+  </li>
+  <li><a href="#consideraciones" id="markdown-toc-consideraciones">Consideraciones</a>    <ol>
+      <li><a href="#lectura-de-archivos" id="markdown-toc-lectura-de-archivos">Lectura de archivos</a></li>
+      <li><a href="#depsmk" id="markdown-toc-depsmk">deps.mk</a></li>
+    </ol>
+  </li>
+  <li><a href="#criterios-de-aprobación" id="markdown-toc-criterios-de-aprobación">Criterios de aprobación</a></li>
+</ol>
+
+<h1 id="aplicaciones">Aplicaciones</h1>
+
+<h2 id="paste">paste</h2>
+
+<p>Se pide implementar una utilidad similar al programa <a href="http://ss64.com/bash/paste.html">paste</a>, que dados dos archivos, concatena su contenido de a líneas e imprime el resultado por salida estándar.</p>
+
+<p>Por ejemplo, dado el siguiente par de archivos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat anios.txt
+1996
+2007
+2013
+2016
+2016
+
+$ cat ciudades.txt
+Bogotá
+La Boca
+Lanús
+Nuñez
+Avellaneda
+</code></pre></div></div>
+
+<p>Al invocar el programa, su salida deberá ser la siguiente:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./paste anios.txt ciudades.txt
+1996  Bogotá
+2007  La Boca
+2013  Lanús
+2016  Nuñez
+2016  Avellaneda
+</code></pre></div></div>
+
+<p>Con las siguientes consideraciones:</p>
+
+<ul>
+  <li>Se deberá validar que la cantidad de parámetros en la invocación sea exactamente dos.</li>
+  <li>El separador que se usará para cada línea será ‘\t’ (el caracter de tabulación).</li>
+  <li>Si los archivos tienen una cantidad diferente de líneas, se imprimirán sólo aquéllas líneas que tengan registros para los dos archivos y se emitirá una salida de error (-1) para informar al usuario.</li>
+  <li>El programa sólo debe almacenar en memoria una línea del archivo por vez.</li>
+</ul>
+
+<h2 id="more">more</h2>
+
+<p>En este ejercicio se pide implementar una simplificación de la utilidad de Unix <a href="http://ss64.com/bash/more.html">more</a> para mostrar por pantalla el contenido de un archivo.</p>
+
+<p>El programa recibirá dos parámetros: el nombre de un archivo y un número entero <em>N</em> que indica la cantidad inicial de líneas del archivo a ser mostradas por pantalla. Una vez impresas las primeras <em>N</em> líneas, el programa mostrará una nueva línea del archivo cada vez que el usuario envíe un salto de línea (con la tecla enter) por entrada estándar.</p>
+
+<p>Se deberá validar que el archivo exista y que el número <em>N</em> sea entero positivo.</p>
+
+<h2 id="dc">dc</h2>
+
+<p>Para este ejercicio se pide implementar una simplificación del programa <a href="http://ss64.com/bash/dc.html">dc</a>. Este programa procesará la entrada estándar y la interpretará como un cálculo en <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">notación polaca inversa</a>, imprimiendo por salida estándar el resultado.</p>
+
+<p>El siguiente será el comportamiento esperado:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "4 2 +" | ./dc
+6
+$ echo "2 9 4 + *" | ./dc
+26
+</code></pre></div></div>
+
+<p>Con las siguientes consideraciones:</p>
+
+<ul>
+  <li>Los símbolos en la entrada pueden ser o bien números u operaciones. Todos ellos deben estar separados por espacios.</li>
+  <li>Por simplicidad, sólo se esperan las siguientes operaciones: suma (+), resta (-), multiplicación (*) y división (/).</li>
+  <li>Si la entrada consta de varias líneas, se considerarán como cálculos independientes; y sus resultados se imprimirán de forma separada en líneas separadas.</li>
+  <li>Si la expresión en la entrada no es válida, se interrumpirá inmediatamente el programa y se devolverá al sistema operativo un código de error.</li>
+</ul>
+
+<h1 id="manejo-de-cadenas">Manejo de cadenas</h1>
+
+<p>Se pide implementar las funciones del archivo <a href="strutil.h">strutil.h</a> que se describen a continuación. Para la implementación de estas funciones no se puede hacer uso de TDAs:</p>
+
+<h2 id="split">split()</h2>
+
+<p>La función split() divide una cadena en subcadenas en cada ocurrencia de un caracter de separación determinado. Por ejemplo, separando por comas:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>split("abc,def,ghi", ',')  →  ["abc", "def", "ghi"]
+</code></pre></div></div>
+
+<p>En C, devolveremos el resultado como un arreglo dinámico de cadenas dinámicas terminado en <code class="language-plaintext highlighter-rouge">NULL</code>. Esto es:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Ejemplo de arreglo dinámico de cadenas
+char **strv = malloc(sizeof(char*) * 4);
+strv[0] = strdup("abc");
+strv[1] = strdup("def");
+strv[2] = strdup("ghi");
+strv[3] = NULL;
+</code></pre></div></div>
+
+<p>El prototipo y la documentación de <code class="language-plaintext highlighter-rouge">split()</code>` queda en:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/*
+ * Devuelve en un arreglo dinámico terminado en NULL con todos los subsegmentos
+ * de ‘str’ separados por el carácter ‘sep’. Tanto el arreglo devuelto como las
+ * cadenas que contiene son allocadas dinámicamente.
+ *
+ * Quien llama a la función toma responsabilidad de la memoria dinámica del
+ * arreglo devuelto. La función devuelve NULL si falló alguna llamada a
+ * malloc(), o si ‘sep’ es '\0'.
+ */
+char** split(const char* str, char sep);
+</code></pre></div></div>
+
+<p>Considerar los siguientes casos borde:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>split("abc,,def", ',')  →  ["abc", "", "def"]
+split("abc,def,", ',')  →  ["abc", "def", ""]
+split(",abc,def", ',')  →  ["", "abc", "def"]
+
+split("", ',')  →  [""]
+split(",", ',') →  ["", ""]
+</code></pre></div></div>
+
+<h2 id="join">join()</h2>
+
+<p>La función <code class="language-plaintext highlighter-rouge">join()</code> es la inversa de <code class="language-plaintext highlighter-rouge">split()</code>`. Concatena un arreglo de cadenas terminado en NULL mediante un caracter de separación:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Ejemplo de uso de join
+char **strv = split("abc,def,ghi", ',');
+char *resultado = join(strv, ';');  // "abc;def;ghi"
+
+char **palabras = split("Hola mundo", ' ');
+char *otro_resultado = join(palabras, ',');  // "Hola,mundo"
+</code></pre></div></div>
+
+<p>El prototipo y documentación es:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/*
+ * Devuelve una cadena, allocada dinámicamente, resultado de unir todas las
+ * cadenas del arreglo terminado en NULL ‘strv’.
+ *
+ * Quien llama a la función toma responsabilidad de la memoria dinámica de la
+ * cadena devuelta. La función devuelve NULL si no se pudo allocar memoria.
+ */
+char* join(char** strv, char sep);
+</code></pre></div></div>
+
+<p>Casos borde:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>join([])        →  ""
+join([""])      →  ""
+join(["abc"])   →  "abc"
+join(["", ""])  →  ","
+</code></pre></div></div>
+
+<p>Complejidad algorítmica: se espera que la función tenga complejidad O(n) (Siendo n la longitud de la cadena resultante).</p>
+
+<p>Las pruebas del corrector automático proveen una indicación. Este sería un test con comportamiento lineal:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ RUN      ] test_join.test_cuadratico_10000
+[       OK ] test_join.test_cuadratico_10000 (7 ms)
+[ RUN      ] test_join.test_cuadratico_20000
+[       OK ] test_join.test_cuadratico_20000 (14 ms)
+[ RUN      ] test_join.test_cuadratico_30000
+[       OK ] test_join.test_cuadratico_30000 (17 ms)
+[ RUN      ] test_join.test_cuadratico_40000
+[       OK ] test_join.test_cuadratico_40000 (27 ms)
+[ RUN      ] test_join.test_cuadratico_50000
+[       OK ] test_join.test_cuadratico_50000 (33 ms)
+[ RUN      ] test_join.test_cuadratico_60000
+[       OK ] test_join.test_cuadratico_60000 (40 ms)
+</code></pre></div></div>
+
+<p>Y este con comportamiento cuadrático:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ RUN      ] test_join.test_cuadratico_10000
+[       OK ] test_join.test_cuadratico_10000 (48 ms)
+[ RUN      ] test_join.test_cuadratico_20000
+[       OK ] test_join.test_cuadratico_20000 (618 ms)
+[ RUN      ] test_join.test_cuadratico_30000
+[       OK ] test_join.test_cuadratico_30000 (1354 ms)
+[ RUN      ] test_join.test_cuadratico_40000
+[       OK ] test_join.test_cuadratico_40000 (2425 ms)
+[ RUN      ] test_join.test_cuadratico_50000
+[       OK ] test_join.test_cuadratico_50000 (4019 ms)
+[ RUN      ] test_join.test_cuadratico_60000
+[       OK ] test_join.test_cuadratico_60000 (5722 ms)
+</code></pre></div></div>
+
+<h2 id="free_strv">free_strv()</h2>
+
+<p><code class="language-plaintext highlighter-rouge">free_strv()</code> libera la memoria asociada con un arreglo dinámico de cadenas dinámicas:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/*
+ * Libera un arreglo dinámico de cadenas, y todas las cadenas que contiene.
+ */
+void free_strv(char *strv[]);
+</code></pre></div></div>
+
+<h1 id="consideraciones">Consideraciones</h1>
+
+<h2 id="lectura-de-archivos">Lectura de archivos</h2>
+
+<p>Para la lectura de flujos se recomienda usar la función <a href="http://man7.org/linux/man-pages/man3/getline.3.html">getline()</a>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssize_t getline(char** buffer, size_t* capacidad, FILE* archivo);
+</code></pre></div></div>
+
+<p>La principal ventaja de esta función es que automáticamente reserva la memoria dinámica necesaria para almacenar la línea. No se necesita invocar manualmente malloc() a mano, ni preocuparse por los tamaños de los buffers.</p>
+
+<p>Sí se necesita, no obstante, liberar memoria al terminar: getline() llama a malloc() pero transfiere la responsabilidad de la memoria al usuario.</p>
+
+<p>La reserva de memoria dinámica se consigue llamando a la función punteros a un buffer igual a NULL y a una capacidad 0:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>char* linea = NULL;
+size_t capacidad = 0;
+ssize_t longitud = getline(&amp;linea, &amp;capacidad, archivo);
+// Se debe liberar la memoria al terminar de usarla.
+free(linea);
+</code></pre></div></div>
+
+<p>La función getline() se encuentra definida en la cabecera <code class="language-plaintext highlighter-rouge">stdio.h</code>. Como es una función de POSIX.1-2008, hay que declarar un identificador para indicar que la queremos usar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Al principio de tail.c y tac.c (antes de otros include):
+#define _POSIX_C_SOURCE 200809L
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+</code></pre></div></div>
+
+<h2 id="depsmk">deps.mk</h2>
+
+<p>Se debe incluir un archivo deps.mk para indicar al corrector automático cómo compilar la entrega.
+En particular, se debe indicar qué TDA emplea cada programa.</p>
+
+<p>Por ejemplo, si more usara un hash y dc usase un árbol, el archivo <code class="language-plaintext highlighter-rouge">deps.mk</code> consistiría de las siguientes dos líneas:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># deps.mk: cada línea indica de qué OBJETOS se compone el programa.
+tac: tac.o hash.o
+tail: tail.o arbol.o
+</code></pre></div></div>
+
+<p>En el caso de haber creado una biblioteca de funcionalidad común, <code class="language-plaintext highlighter-rouge">lib.c</code>, se debería indicar también <code class="language-plaintext highlighter-rouge">lib.o</code> como dependencia:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tac: tac.o lib.o hash.o
+tail: tail.o lib.o arbol.o
+</code></pre></div></div>
+
+<p>Para la compilación, pueden invocar a gcc a mano como hasta ahora o, de manera opcional, emplear el siguiente Makefile:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Flags de gcc. Se usan automáticamente para compilar *.c → *.o
+CFLAGS := -g -std=c99 -Wall -Wformat=2
+CFLAGS += -Wshadow -Wpointer-arith -Wunreachable-code
+CFLAGS += -Wconversion -Wno-sign-conversion -Wbad-function-cast
+
+# Se pueden comentar durante el desarrollo.
+CFLAGS += -Werror
+
+# Si se ejecuta `make` a secas, se compilarán paste, more, bc y strutil.
+#
+# También se puede invocar `make paste`, `make more`, `make dc` o `make strutil.o` para
+# compilar una parte del TP solamente.
+
+all: paste more dc strutil.o
+
+include deps.mk
+</code></pre></div></div>
+
+<h1 id="criterios-de-aprobación">Criterios de aprobación</h1>
+
+<p>El código entregado debe ser claro y legible y ajustarse a las especificaciones de la consigna. Debe compilar sin advertencias y correr sin errores de memoria.
+La entrega incluye, obligatoriamente, un informe en formato PDF y los siguientes archivos de código:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">paste.c</code></li>
+  <li><code class="language-plaintext highlighter-rouge">more.c</code></li>
+  <li><code class="language-plaintext highlighter-rouge">dc.c</code></li>
+  <li><code class="language-plaintext highlighter-rouge">strutil.c</code> con las imlementaciones de las funciones <code class="language-plaintext highlighter-rouge">split</code>, <code class="language-plaintext highlighter-rouge">join</code> y <code class="language-plaintext highlighter-rouge">free_strv</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">pila.c</code>, <code class="language-plaintext highlighter-rouge">cola.c</code> y <code class="language-plaintext highlighter-rouge">lista.c</code> (las implementaciones del alumno de estos TDA; se debe incluir los archivos .h también)</li>
+  <li>un archivo <code class="language-plaintext highlighter-rouge">deps.mk</code> con las dependencias del proyecto en formato make</li>
+</ul>
+
+<p>La entrega se realiza:</p>
+
+<ol>
+  <li>por mail a la casilla de TPs (tps.7541rw@gmail.com): todos los archivos mencionados en un único archivo ZIP, más el informe como un adjunto PDF sin comprimir. En el asunto deben indicar: <code class="language-plaintext highlighter-rouge">TP1 - &lt;Padrón&gt; - &lt;Apellido&gt;</code>.</li>
+  <li>en papel durante la clase (si su ayudante lo requiere), tanto el informe como el código. No es necesario reimprimir el código de los TDA.</li>
+</ol>
+
+<p>El informe deberá consistir de las siguientes partes:</p>
+
+<ul>
+  <li>carátula con los datos personales del alumno y el ayudante asignado.</li>
+  <li>análisis y diseño de la solución, en particular: algoritmos y estructuras de datos utilizados; orden de ejecución de cada programa o función.</li>
+</ul>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

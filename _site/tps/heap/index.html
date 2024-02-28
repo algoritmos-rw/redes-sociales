@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Heap</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/heap/"> -->
+
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tda/heap.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          
+<h1 id="heap">Heap</h1>
+
+<p>Se incluye en <a href="https://algoritmos-rw.github.io/algo2_skel">el sitio de descargas</a> el archivo <code class="language-plaintext highlighter-rouge">cola_prioridad.go</code> correspondiente al ejercicio de la cola de prioridad.</p>
+
+<p>El trabajo que deben entregar de <strong>forma grupal</strong> es el tipo de dato abstracto Cola de Prioridad, utilizando un Heap.</p>
+
+<h4 id="primitivas-de-la-cola-de-prioridad">Primitivas de la cola de prioridad</h4>
+<div class="language-golang highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">ColaPrioridad</span><span class="p">[</span><span class="n">T</span> <span class="n">comparable</span><span class="p">]</span> <span class="k">interface</span> <span class="p">{</span>
+
+	<span class="c">// EstaVacia devuelve true si la cantidad de elementos en el heap es 0, false en caso contrario. */</span>
+	<span class="n">EstaVacia</span><span class="p">()</span> <span class="kt">bool</span>
+
+	<span class="c">// Encolar Agrega un elemento al heap.</span>
+	<span class="n">Encolar</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+
+	<span class="c">// VerMax devuelve el elemento con máxima prioridad. Si está vacía, entra en pánico con un mensaje</span>
+	<span class="c">// "La cola está vacia".</span>
+	<span class="n">VerMax</span><span class="p">()</span> <span class="n">T</span>
+
+	<span class="c">// Desencolar elimina el elemento con máxima prioridad, y lo devuelve. Si está vacía, entra en pánico con un</span>
+	<span class="c">// mensaje "El heap esta vacia"</span>
+	<span class="n">Desencolar</span><span class="p">()</span> <span class="n">T</span>
+
+	<span class="c">// Cantidad devuelve la cantidad de elementos que hay en la cola de prioridad.</span>
+	<span class="n">Cantidad</span><span class="p">()</span> <span class="kt">int</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Además, las primitivas de creación del Heap deberán ser:</p>
+<div class="language-golang highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">CrearHeap</span><span class="p">[</span><span class="n">T</span> <span class="n">comparable</span><span class="p">](</span><span class="n">funcion_cmp</span> <span class="k">func</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="kt">int</span><span class="p">)</span> <span class="n">ColaPrioridad</span><span class="p">[</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">]</span>
+<span class="k">func</span> <span class="n">CrearHeapArr</span><span class="p">[</span><span class="n">T</span> <span class="n">comparable</span><span class="p">](</span><span class="n">arreglo</span> <span class="p">[]</span><span class="n">T</span><span class="p">,</span> <span class="n">funcion_cmp</span> <span class="k">func</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="kt">int</span><span class="p">)</span> <span class="n">ColaPrioridad</span><span class="p">[</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>La función de comparación funciona tal cual el caso del ABB. La segunda primitiva de creación debe ejecutar en tiempo lineal, permitiendo crear el heap con los elementos pasados por parámetro.</p>
+
+<p>Además, deben implementar el ordenamiento heapsort, sobre un arreglo de genérico; y las pruebas unitarias de todas las primitivas implementadas.</p>
+<div class="language-golang highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">HeapSort</span><span class="p">[</span><span class="n">T</span> <span class="n">comparable</span><span class="p">](</span><span class="n">elementos</span> <span class="p">[]</span><span class="n">T</span><span class="p">,</span> <span class="n">funcion_cmp</span> <span class="k">func</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="kt">int</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Como siempre, deben subir el código completo a la <a href="https://algoritmos-rw.dijkstra.ar/entregas/">página de entregas de la materia</a>.</p>
+
+<p><strong>No olviden revisar las <a href="/algo2/faq/heap">preguntas frecuentes del heap</a></strong></p>
+
+<hr />
+<h3 id="bibliografia-recomendada">Bibliografia recomendada</h3>
+<ul>
+  <li>Weiss, Mark Allen, “Data Structures and Algorithm Analysis”: <em>Chapter 6: Priority Queues (Heaps)</em>.</li>
+  <li>Cormen, Thomas H. “Introduction to Algorithms”: <em>6.5. Priority queues</em>, <em>6.1. Heaps</em>, <em>6.2. Maintaining the heap property</em>.</li>
+</ul>
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

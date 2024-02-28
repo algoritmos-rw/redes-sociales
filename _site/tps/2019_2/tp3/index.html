@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TP3 – Grafos y aeropuertos</title>
+  <meta name="description" content="Página de la materia Algoritmos y Programación II, curso Buchwald. Facultad de Ingeniería, Universidad de Buenos Aires.">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link rel="stylesheet" href="/algo2/assets/main.css" type="text/css" />
+  <link rel="shortcut icon" href="/algo2/assets/img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="canonical" href="http://localhost:4000/algo2/tps/2019_2/tp3/"> -->
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+        crossorigin="anonymous" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+          crossorigin="anonymous" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"
+          onload="renderMathInElement(document.body);"></script>
+  
+</head>
+
+
+  <body>
+    <header role="banner" class="sticky-top container-fluid px-1">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-none" href="#">Algoritmos y Programación II</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 small mx-auto">
+        <li class="nav-item "><a class="nav-link" href="/algo2/"><span class="fa fa-home"></span> Inicio</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/docentes/"><span class="fa fa-chalkboard-teacher"></span> Docentes</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/regimen/"><span class="fa fa-tasks"></span> Régimen</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/calendario/"><span class="fa fa-calendar-alt"></span> Calendario</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/tps/"><span class="fa fa-briefcase"></span> TPs</a></li>
+        
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="matDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-paperclip"></span> Material</a>
+          <ul class="dropdown-menu">
+            <li class=""><a class="dropdown-item" href="/algo2/bibliografia/"><span class="fa fa-book"></span> Bibliografía</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/"><span class="fa fa-book-reader"></span> Apuntes del curso</a></li>
+            <li class=""><a class="dropdown-item" href="/algo2/material/guias/"><span class="fa fa-dumbbell"></span> Guías de ejercicios</a></li>
+            <li>
+              <a class="dropdown-item" href="https://drive.google.com/drive/folders/0B0x0VPz_v-f_ekhhQUpkay13RnM?resourcekey=0-BqMLnLNd6T8lRDzv-VL4xA&usp=sharing" target="_blank"><span class="fab fa-google-drive"></span> Drive</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCnmq-CGB2lEiwxhpa_Q63qQ" target="_blank"><span class="fab fa-youtube"></span> Canal</a>
+            </li>
+            <li><a class="dropdown-item" href="/algo2/faq/"><span class="fas fa-question-circle"></span> FAQ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="aluDropdown"
+                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-user-friends"></span> Alumno</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="https://algoritmos-rw.github.io/algo2_skel"><span class="fa fa-file-download"></span> Descargas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/entregas/"><span class="fa fa-file-upload"></span> Entregas</a></li>
+            <li><a class="dropdown-item" href="https://algoritmos-rw.dijkstra.ar/notas/"><span class="fa fa-pencil-alt"></span> Notas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/encuestas/"><span class="fa fa-poll"></span> Encuestas</a></li>
+        <li class="nav-item "><a class="nav-link" href="/algo2/infraestructura/"><span class="fa fa-network-wired"></span> Infraestructura</a></li>
+        <li class="nav-item">
+          <a href="https://github.com/algoritmos-rw/algo2/blob/master/tps/2019_2/tp3.md" class="nav-link" target="_blank"><span class="fab fa-github"></span> Editar en GitHub</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="container" role="main">
+      <div class="row justify-content-center">
+        <div class="col col-xl-8">
+          <h1 class="no_toc" id="trabajo-práctico-3">Trabajo Práctico 3</h1>
+
+<p>El Trabajo Práctico número 3 es de elaboración grupal, y tiene fecha de entrega
+para el <strong>viernes 6 de diciembre</strong>.</p>
+
+<h2 class="no_toc" id="contenido">Contenido</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#introducción" id="markdown-toc-introducción">Introducción</a></li>
+  <li><a href="#análisis-de-la-situación" id="markdown-toc-análisis-de-la-situación">Análisis de la situación</a></li>
+  <li><a href="#datos-disponibles" id="markdown-toc-datos-disponibles">Datos disponibles</a>    <ul>
+      <li><a href="#aclaraciones" id="markdown-toc-aclaraciones">Aclaraciones</a></li>
+    </ul>
+  </li>
+  <li><a href="#implementación" id="markdown-toc-implementación">Implementación</a>    <ul>
+      <li><a href="#listar-operaciones-obligatorio-sin-puntos" id="markdown-toc-listar-operaciones-obligatorio-sin-puntos">Listar operaciones (obligatorio, sin puntos)</a></li>
+      <li><a href="#caminos-mínimos-obligatorio-implementar-al-menos-uno" id="markdown-toc-caminos-mínimos-obligatorio-implementar-al-menos-uno">Caminos mínimos (obligatorio implementar al menos uno)</a>        <ul>
+          <li><a href="#camino-más-barato-y-camino-más-rápido-" id="markdown-toc-camino-más-barato-y-camino-más-rápido-">Camino más barato y camino más rápido (★)</a></li>
+          <li><a href="#camino-con-menor-cantidad-de-escalas-" id="markdown-toc-camino-con-menor-cantidad-de-escalas-">Camino con menor cantidad de escalas (★)</a></li>
+        </ul>
+      </li>
+      <li><a href="#aeropuertos-más-importantes-obligatorio-implementar-al-menos-uno" id="markdown-toc-aeropuertos-más-importantes-obligatorio-implementar-al-menos-uno">Aeropuertos más importantes (obligatorio implementar al menos uno)</a>        <ul>
+          <li><a href="#betweeness-centrality-" id="markdown-toc-betweeness-centrality-">Betweeness Centrality (★★★)</a></li>
+          <li><a href="#betweeness-centrality-aproximada-" id="markdown-toc-betweeness-centrality-aproximada-">Betweeness Centrality aproximada (★)</a></li>
+          <li><a href="#pagerank-" id="markdown-toc-pagerank-">Pagerank (★★)</a></li>
+        </ul>
+      </li>
+      <li><a href="#optimización-de-rutas-para-nueva-aerolínea-" id="markdown-toc-optimización-de-rutas-para-nueva-aerolínea-">Optimización de rutas para nueva aerolínea (★★)</a></li>
+      <li><a href="#recorrer-el-mundo-de-forma-óptima-" id="markdown-toc-recorrer-el-mundo-de-forma-óptima-">Recorrer el mundo, de forma óptima (★★★)</a></li>
+      <li><a href="#recorrer-el-mundo-de-forma-aproximada-" id="markdown-toc-recorrer-el-mundo-de-forma-aproximada-">Recorrer el mundo, de forma aproximada (★)</a></li>
+      <li><a href="#viaje-de-n-lugares-" id="markdown-toc-viaje-de-n-lugares-">Viaje de N lugares (★★★)</a></li>
+      <li><a href="#itinerario-cultural-" id="markdown-toc-itinerario-cultural-">Itinerario cultural (★★)</a></li>
+      <li><a href="#exportar-a-archivo-kml-" id="markdown-toc-exportar-a-archivo-kml-">Exportar a archivo KML (★)</a></li>
+    </ul>
+  </li>
+  <li><a href="#entrega" id="markdown-toc-entrega">Entrega</a></li>
+  <li><a href="#criterios-de-aprobación" id="markdown-toc-criterios-de-aprobación">Criterios de aprobación</a></li>
+</ul>
+
+<h2 id="introducción">Introducción</h2>
+
+<p>Debido al éxito rotundo del nuevo software en el aeropuerto de Algueiza, las distintas
+aerolíneas del mundo (!) nos han pedido que desarollemos un programa que permita
+dar información sobre las conexiones entre los aeropuertos. Son tantos, pero tantos los
+pedidos que será necesario limitar la cantidad de <em>features</em> a implementar para poder
+llegar con la fecha de entrega. Eso sí, será necesario lograr que el programa tenga el
+suficiente valor para poder dejar a todos medianamente contentos.</p>
+
+<h2 id="análisis-de-la-situación">Análisis de la situación</h2>
+
+<p>Aerolíneas de distintas partes del mundo, requieren distintos tipos de funcionalidades:</p>
+<ul>
+  <li>Todas las aerolíneas quieren que los clientes puedan buscar el camino más rápido,
+el más barato, o el de menor cantidad de escalas, a gusto.</li>
+  <li>Para poder entender dónde conviene invertir en mayor infraestructura, se quiere obtener
+cuáles son los aeropuertos más importantes, teniendo en cuenta en cuáles es más frecuente
+terminar haciendo escalas para poder ir entre cualquier parte del mundo a otra.</li>
+  <li>Una nueva aerolínea (bAIRros Airlines, con sede principal en el aeropuerto de Lanús)
+quiere poder conectar absolutamente todo el mundo, pero quiere utilizar las rutas más baratas
+posibles para ello. Entre tantos datos que hay, no saben por dónde empezar!</li>
+  <li>Algunas aerolíneas querrían poder agregar (en sus sofisticados sistemas de recomendación) la
+posibilidad de ofrecer un viaje alrededor del mundo: poder visitar todo el mundo, con el menor
+costo o tiempo posible. Algunas aerolíneas quieren que sea la mejor solución posible, sin excepciones.
+Otras, entienden que la capacidad de cómputo de dicha solución puede llevar mucho tiempo para sus
+<em>no tan capaces</em> servidores (comparten capacidad junto con el sistema SIU Guaraní de la FIUBA).
+Por ello, aceptarían una <em>buena solución</em> que se calcule rápidamente.</li>
+  <li>Algunas aerolíneas querrían ofrecer un viaje que empiece desde la ciudad del cliente, y
+haga un viaje por alguna cantidad de ciudades del mundo y vuelva luego a la ciudad origen
+(así pueden ofrecer descuentos para tentar a los clientes).</li>
+  <li>Otras aerolíneas pidieron poder ofrecer un viaje cultural: que se pueda indicar qué ciudades se
+quieren conocer, y además si hay alguna ciudad que deba visitarse antes que otra (para poder
+disfrutar más del viaje).</li>
+  <li>Muchas de las aerolíneas quisieran poder exportar un mapa que nos permita visualizar las rutas de vuelo.</li>
+</ul>
+
+<h2 id="datos-disponibles">Datos disponibles</h2>
+
+<p>Se cuenta con los datos de los <a href="https://www.kaggle.com/usdot/flight-delays/version/1#airports.csv">aeropuertos de Estados Unidos</a>, así como de más de medio millón de <a href="https://www.kaggle.com/usdot/flight-delays/version/1#flights.csv">vuelos</a> durante el año 2015.</p>
+
+<p>Una consultora uso un <a href="parser.py">innovador script</a> para parsear dichos datos en los siguientes archivos:</p>
+<ul>
+  <li>El archivo <a href="aeropuertos.csv">aeropuertos.csv</a> con el formato:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ciudad,codigo_aeropuerto,latitud,longitud
+</code></pre></div>    </div>
+  </li>
+  <li>El archivo <a href="vuelos.csv">vuelos.csv</a> con el formato:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  aeropuerto_i,aeropuerto_j,tiempo_promedio,precio,cant_vuelos_entre_aeropuertos
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Adicionalmente, para poder realizar algunas pruebas rápidas (especialmente en los algoritmos que
+más tiempo puedan demorar) se crea este otro set con <a href="aeropuertos_inventados.csv">aeropuertos</a> y
+<a href="vuelos_inventados.csv">vuelos</a> inventados.</p>
+
+<h3 id="aclaraciones">Aclaraciones</h3>
+
+<ul>
+  <li>Una ciudad puede tener <strong>uno o más aeropuertos</strong> asociados.</li>
+  <li>El tiempo promedio es el promedio (redondeado) de todos los tiempos de los vuelos entre ese par de
+ciudades.</li>
+  <li>Los precios han sido inventados completamente (puede verse en el script generador) y no tienen
+ninguna relación con la realidad. El curso no se hace responsable por las recomendaciones que pueda
+hacer alguno de los programas implementados.</li>
+  <li>Sería de mayor interés tener los datos disponibles de todo el mundo, o de diversos países. De todas
+formas, hay que considerar que se tratan de casi 6 millones de vuelos sólo considerando un país, en un
+año.</li>
+  <li>Más allá de tener los datos de un país en especial, el programa debería funcionar para cualquier
+parte del mundo.</li>
+</ul>
+
+<h2 id="implementación">Implementación</h2>
+
+<p>El trabajo puede realizarse en lenguaje a elección, siendo aceptados Python y C, y cualquier otro a ser discutido con el corrector asignado.</p>
+
+<p>El trabajo consiste de 3 partes:</p>
+<ol>
+  <li>El TDA Grafo, con sus primitivas.</li>
+  <li>Una biblioteca de funciones de grafos, que permitan hacer distintas operaciones sobre un grafo de aeropuertos del mundo, sin importar cuál sea el aeropuerto ni país al que pertence.</li>
+  <li>El programa <code class="language-plaintext highlighter-rouge">FlyCombi</code> que utilice tanto el TDA como la biblioteca para poder implementar todo
+lo requerido.</li>
+</ol>
+
+<p>El programa debe recibir por parámetro y cargar en memoria el set de datos (<code class="language-plaintext highlighter-rouge">$ ./flycombi
+aeropuertos.csv vuelos.csv</code>) y luego solicitar el ingreso de comandos por entrada estándar,
+del estilo <code class="language-plaintext highlighter-rouge">&lt;comando&gt; 'parametro'</code>. Notar que esto permite tener un archivo de instrucciones a ser
+ejecutadas (i.e. <code class="language-plaintext highlighter-rouge">$ ./flycombi aeropuertos.csv vuelos.csv &lt; entrada.txt</code>).</p>
+
+<p>De todas las funcionalidades, algunas son obligatorias, y las que lo son tienen más de una opción
+para ser implementadas. Algunas consideraciones:</p>
+<ol>
+  <li>Cada funcionalidad e implementación otorga distinta cantidad de puntos, basado en dificultad y
+el interés del curso en que implementen dicha funcionalidad o implementación
+particular de la misma. (Cada estrella ★ corresponde a un punto.)</li>
+  <li>Se pueden implementar todas las implementaciones posibles de una misma funcionalidad. Se tomarán
+en cuenta los puntos de todas las partes implementadas.</li>
+  <li>Se deben conseguir al menos 10 puntos para poder aprobar el TP.</li>
+  <li>En caso de obtener menos de 12 puntos, la nota máxima será 9.</li>
+  <li>En caso de obtener 16 puntos o más la nota máxima del trabajo práctico puede llegar a 11.</li>
+  <li>El total de puntos entre todas las funcionalidades es 20.</li>
+</ol>
+
+<h3 id="listar-operaciones-obligatorio-sin-puntos">Listar operaciones (obligatorio, sin puntos)</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">listar_operaciones</code>.</li>
+  <li>Parámetros: ninguno.</li>
+  <li>Utilidad: Dado que no todas las funcionalidades o implementaciones son obligatorias, debe
+existir un comando que nos permita saber cuáles son las funcionalidades disponibles. Debe
+imprimirse una línea por cada <strong>comando</strong> que esté implementado.</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(1)\).</li>
+  <li>Ejemplo:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  listar_operaciones
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  camino_mas
+  camino_escalas
+  centralidad
+  nueva_aerolinea
+  vacaciones
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="caminos-mínimos-obligatorio-implementar-al-menos-uno">Caminos mínimos (obligatorio implementar al menos uno)</h3>
+
+<h4 id="camino-más-barato-y-camino-más-rápido-">Camino más barato y camino más rápido (★)</h4>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">camino_mas</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">barato</code> ó <code class="language-plaintext highlighter-rouge">rapido</code>, <code class="language-plaintext highlighter-rouge">origen</code> y <code class="language-plaintext highlighter-rouge">destino</code>. Origen y destino son <strong>ciudades</strong>.</li>
+  <li>Utilidad: nos imprime una lista con los <strong>aeropuertos</strong> (código) con los cuales vamos de la
+<strong>ciudad</strong> <code class="language-plaintext highlighter-rouge">origen</code> a la <strong>ciudad</strong> <code class="language-plaintext highlighter-rouge">destino</code> de la forma más rápida o más barata, según corresponda.
+Tener en cuenta que tanto la ciudad <code class="language-plaintext highlighter-rouge">origen</code> como la <code class="language-plaintext highlighter-rouge">destino</code> pueden tener más de un aeropuerto, y
+nos interesa la mejor forma (rápida o barata) entre todas las combinaciones posibles.</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(F \log(A))\), siendo \(A\) la cantidad
+de aeropuertos, y \(F\) la cantidad de vuelos entre aeropuertos (sin contar frecuencia).
+Podemos considerar que la cantidad de aeropuertos que tenga cada ciudad es despreciable.</li>
+  <li>Ejemplo:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  camino_mas rapido,San Diego,New York
+  camino_mas barato,San Diego,New York
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  SAN -&gt; JFK
+  SAN -&gt; DEN -&gt; JFK
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="camino-con-menor-cantidad-de-escalas-">Camino con menor cantidad de escalas (★)</h4>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">camino_escalas</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">origen</code> y <code class="language-plaintext highlighter-rouge">destino</code>.</li>
+  <li>Utilidad: nos imprime una lista con los <strong>aeropuertos</strong> (código) con los cuales vamos de la
+<strong>ciudad</strong> <code class="language-plaintext highlighter-rouge">origen</code> a la <strong>ciudad</strong> <code class="language-plaintext highlighter-rouge">destino</code> con la menor cantidad de escalas. Tener en cuenta
+que tanto la ciudad <code class="language-plaintext highlighter-rouge">origen</code> como la <code class="language-plaintext highlighter-rouge">destino</code> pueden tener más de un aeropuerto, y
+nos interesa la mejor forma (en cantidad de escalas) entre todas las combinaciones posibles.</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(F + A)\), siendo \(A\) la cantidad
+de aeropuertos, y \(F\) la cantidad de vuelos entre aeropuertos (sin contar frecuencia).
+Podemos considerar que la cantidad de aeropuertos que tenga cada ciudad es despreciable.</li>
+  <li>Ejemplos:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  camino_escalas San Diego,New York
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  SAN -&gt; JFK
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="aeropuertos-más-importantes-obligatorio-implementar-al-menos-uno">Aeropuertos más importantes (obligatorio implementar al menos uno)</h3>
+
+<p>Utlizaremos alguno (o algunos) de estos comandos para poder obtener cuáles son los aeropuertos
+más importantes. Esto lo podemos hacer obteniendo cuáles son los aeropuertos más centrales,
+o bien usando un algoritmo como el de PageRank. Es necesario tener en cuenta además la frecuencia
+de vuelos: no es lo mismo un aeropuerto que se conecte contra todos con un vuelo al año, que uno que
+se conecte al 80% con muchos vuelos al año. ¡Cuantos más vuelos, mejor!</p>
+
+<p>Dejamos un apunte para la explicación de qué es y cómo se calcula el
+<a href="/algo2/material/apuntes/centralidad">Betweeness Centrality</a> y otro sobre
+<a href="/algo2/material/apuntes/pagerank">PageRank</a>.</p>
+
+<p><em>Nota</em>: PageRank en realidad realiza una aproximación de otro tipo de centralidad (<em>Eigenvector Centrality</em>) que
+la que realmente buscamos en este ejercicio. De todas formas, la consideramos como una implementación válida para
+este punto.</p>
+
+<h4 id="betweeness-centrality-">Betweeness Centrality (★★★)</h4>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">centralidad</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">n</code>, la cantidad de aeropuertos más importantes a mostrar.</li>
+  <li>Utilidad: nos muestra los <code class="language-plaintext highlighter-rouge">n</code> aeropuertos más centrales/importantes del mundo,
+de mayor importancia a menor importancia.</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(A \times F\log(A))\).</li>
+  <li>Ejemplo:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  centralidad 5
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ATL, ORD, LAX, DFW, DEN
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="betweeness-centrality-aproximada-">Betweeness Centrality aproximada (★)</h4>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">centralidad_aprox</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">n</code>, la cantidad de aeropuertos más importantes a mostrar.</li>
+  <li>Utilidad: nos muestra los <code class="language-plaintext highlighter-rouge">n</code> aeropuertos más centrales/importantes del mundo de forma aproximada,
+de mayor importancia a menor importancia.</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(A + F)\).</li>
+  <li>Ejemplo:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  centralidad_aprox 3
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ATL, ORD, DFW
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="pagerank-">Pagerank (★★)</h4>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">pagerank</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">n</code>, la cantidad de aeropuertos más importantes a mostrar.</li>
+  <li>Utilidad: nos muestra los <code class="language-plaintext highlighter-rouge">n</code> aeropuertos más centrales/importantes del mundo según el algoritmo de
+pagerank, de mayor importancia a menor importancia.</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(K(A + F))\), siendo \(K\) la cantidad de
+iteraciones a realizar para llegar a la convergencia (puede simplificarse a \(\mathcal{O}(A + F)\)).
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pagerank 5
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ATL, DFW, ORD, DEN, MSP
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="optimización-de-rutas-para-nueva-aerolínea-">Optimización de rutas para nueva aerolínea (★★)</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">nueva_aerolinea</code>.</li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">ruta</code>, ruta del archivo de salida.</li>
+  <li>Utilidad: exportar un archivo con las rutas que permitan implementar una nueva aerolínea tal que se
+pueda comunicar a todos los aeropuertos (en esta primera iteración, sólo de Estados Unidos) con dicha
+aerolínea, pero que el costo total de la licitación de las rutas aéreas sea mínima. Se considera que
+el costo de las rutas es proporcional al costo de los pasajes, por lo que se puede trabajar
+directamente con dicho costo.
+Se busca que la nueva aerolínea pueda llegar a todos los <strong>aeropuertos</strong> de alguna forma.
+La salida de este comando debe ser un archivo con el mismo formato del archivo <code class="language-plaintext highlighter-rouge">vuelos.csv</code>, pero
+únicamente con las rutas de vuelo a utilizar por ésta aerolínea.</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(F\log(A))\).</li>
+  <li>Ejemplo:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  nueva_aerolinea bAIRos.csv
+</code></pre></div>    </div>
+    <p>Salida (aparte del archivo creado):</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  OK
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="recorrer-el-mundo-de-forma-óptima-">Recorrer el mundo, de forma óptima (★★★)</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">recorrer_mundo</code>.</li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">origen</code>, ciudad desde la que se parte para comenzar el recorrido.</li>
+  <li>Utilidad: nos devuelve una lista en orden de cómo debemos movernos por el mundo para visitar todas
+<strong>las ciudades</strong> del mundo, demorando lo menos posible. Podemos volver a usar un aeropuerto ya usado,
+u otro de alguna ciudad ya visitada, si eso mejora la duración de nuestro viaje.</li>
+  <li>Complejidad: que demore lo que deba demorar para obtener el resultado óptimo. <em>Cuidado</em>: considerar optimizarlo, puesto que hay un límite de tiempo en el corrector automático.</li>
+  <li>Ejemplo:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  recorrer_mundo San Diego
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  (Recorrido con el formato de caminos mínimos)
+  Costo: costo del recorrido
+</code></pre></div>    </div>
+    <p>Debido a que este comando puede demorar mucho tiempo, se recomienda realizar pruebas con el set
+de aeropuertos y vuelos inventados antes de hacer la prueba sobre el set de datos real. Ejemplo:
+Entrada:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  recorrer_mundo Gotica
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  BAT -&gt; LAN -&gt; ASH -&gt; BH6 -&gt; JFK -&gt; ATL -&gt; NAR -&gt; SHE -&gt; RIV -&gt; WAC
+  Costo: 2580
+</code></pre></div>    </div>
+    <p><em>Aclaración</em>: pueden ser otros los caminos, siempre y cuando sean válidos y se trate de un costo
+mínimo.</p>
+  </li>
+</ul>
+
+<h3 id="recorrer-el-mundo-de-forma-aproximada-">Recorrer el mundo, de forma aproximada (★)</h3>
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">recorrer_mundo_aprox</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">origen</code>, ciudad desde la que se parte para comenzar el recorrido.</li>
+  <li>Utilidad: nos devuelve una lista en orden de cómo debemos movernos por el mundo para visitar todas
+<strong>las ciudades</strong> del mundo, demorando <strong>aproximadamente</strong> lo menos posible. Podemos volver a usar un
+aeropuerto ya usado, u otro de alguna ciudad ya visitada, si eso mejora la duración de nuestro viaje.</li>
+  <li>Complejidad: idealmente, que sea un algoritmo cuanto mucho cuadrático.</li>
+  <li>Ejemplo:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  recorrer_mundo_aprox Kansas City
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  MCI -&gt; DEN -&gt; MMH -&gt; SFO -&gt; SLC -&gt; DFW -&gt; GPT -&gt; DFW -&gt; OMA -&gt; MSP -&gt; HIB -&gt; MSP -&gt; PIT -&gt; ORD -&gt; SPI -&gt; DFW -&gt; GCK -&gt; DFW -&gt; OGG -&gt; KOA -&gt; OGG -&gt; ORD -&gt; AVP -&gt; EWR -&gt; PVD -&gt; DTW -&gt; SEA -&gt; SFO -&gt; SBP -&gt; PHX -&gt; ATL -&gt; MYR -&gt; PBG -&gt; MYR -&gt; DFW -&gt; GGG -&gt; DFW -&gt; DEN -&gt; MOT -&gt; MSP -&gt; BOS -&gt; ACK -&gt; BOS -&gt; SLC -&gt; BTM -&gt; SLC -&gt; MSO -&gt; SFO -&gt; CEC -&gt; SFO -&gt; FLL -&gt; STT -&gt; ORD -&gt; BIL -&gt; DEN -&gt; BNA -&gt; DCA -&gt; SYR -&gt; ORD -&gt; STC -&gt; ORD -&gt; DEN -&gt; CPR -&gt; DEN -&gt; RDU -&gt; DFW -&gt; ACT -&gt; DFW -&gt; DTW -&gt; BUF -&gt; BOS -&gt; ACY -&gt; DTW -&gt; SLC -&gt; PIH -&gt; SLC -&gt; ORD -&gt; FWA -&gt; ORD -&gt; PIA -&gt; DEN -&gt; EUG -&gt; SLC -&gt; HOU -&gt; CRP -&gt; HOU -&gt; JFK -&gt; DFW -&gt; BRO -&gt; IAH -&gt; IAD -&gt; UST -&gt; IAD -&gt; ORD -&gt; CWA -&gt; ORD -&gt; ATL -&gt; MLB -&gt; ATL -&gt; ORD -&gt; CMI -&gt; ORD -&gt; AZO -&gt; ORD -&gt; DEN -&gt; LAR -&gt; DEN -&gt; ICT -&gt; DEN -&gt; RNO -&gt; DEN -&gt; PUB -&gt; DEN -&gt; DTW -&gt; APN -&gt; DTW -&gt; CLT -&gt; ILM -&gt; ATL -&gt; ECP -&gt; ATL -&gt; MYR -&gt; LBE -&gt; ORD -&gt; LAN -&gt; ORD -&gt; OKC -&gt; SLC -&gt; PSC -&gt; DEN -&gt; SDF -&gt; DEN -&gt; JAC -&gt; ATL -&gt; GSP -&gt; MDW -&gt; SEA -&gt; SIT -&gt; SEA -&gt; DEN -&gt; FSD -&gt; DEN -&gt; BOI -&gt; PDX -&gt; ANC -&gt; OTZ -&gt; ANC -&gt; DEN -&gt; MAF -&gt; DEN -&gt; SLC -&gt; VEL -&gt; SLC -&gt; AUS -&gt; DTW -&gt; ELM -&gt; DTW -&gt; CID -&gt; DEN -&gt; LAX -&gt; SMX -&gt; LAX -&gt; HOU -&gt; JAX -&gt; DFW -&gt; LAW -&gt; DFW -&gt; ORD -&gt; TVC -&gt; ORD -&gt; EAU -&gt; ORD -&gt; DSM -&gt; ATL -&gt; TLH -&gt; ATL -&gt; GRR -&gt; ORD -&gt; LNK -&gt; DEN -&gt; RDM -&gt; SLC -&gt; ATL -&gt; SAV -&gt; ATL -&gt; ROA -&gt; ORD -&gt; ANC -&gt; SCC -&gt; ANC -&gt; SFO -&gt; ACV -&gt; SFO -&gt; DEN -&gt; BMI -&gt; DEN -&gt; BUR -&gt; DEN -&gt; DVL -&gt; DEN -&gt; ATL -&gt; DHN -&gt; ATL -&gt; LAS -&gt; SLC -&gt; CNY -&gt; SLC -&gt; DFW -&gt; JLN -&gt; DFW -&gt; CMH -&gt; MSP -&gt; ISN -&gt; MSP -&gt; FAI -&gt; BRW -&gt; ANC -&gt; OME -&gt; ANC -&gt; MSP -&gt; BWI -&gt; MCO -&gt; MSP -&gt; ABR -&gt; MSP -&gt; HNL -&gt; GUM -&gt; HNL -&gt; DFW -&gt; ROW -&gt; DFW -&gt; SLC -&gt; CDC -&gt; SLC -&gt; DEN -&gt; DAY -&gt; DTW -&gt; MQT -&gt; ORD -&gt; GRB -&gt; MSP -&gt; DEN -&gt; SAF -&gt; LAX -&gt; MRY -&gt; SFO -&gt; ORD -&gt; ALO -&gt; ORD -&gt; COS -&gt; ORD -&gt; DBQ -&gt; ORD -&gt; SUX -&gt; ORD -&gt; ANC -&gt; BET -&gt; ANC -&gt; DFW -&gt; FSM -&gt; DFW -&gt; ANC -&gt; CDV -&gt; ANC -&gt; SLC -&gt; RAP -&gt; SLC -&gt; LGB -&gt; OAK -&gt; IAH -&gt; LCH -&gt; IAH -&gt; SBN -&gt; DTW -&gt; MYR -&gt; IAG -&gt; MYR -&gt; ATL -&gt; SLC -&gt; LWS -&gt; SLC -&gt; HNL -&gt; PPG -&gt; HNL -&gt; DEN -&gt; MLI -&gt; ORD -&gt; BWI -&gt; ISP -&gt; BWI -&gt; MDW -&gt; TUS -&gt; DEN -&gt; ASE -&gt; DEN -&gt; PHL -&gt; BWI -&gt; MKE -&gt; ORD -&gt; MKG -&gt; ORD -&gt; LAX -&gt; CLD -&gt; LAX -&gt; DFW -&gt; SPS -&gt; DFW -&gt; ORD -&gt; ATW -&gt; ORD -&gt; CHO -&gt; ORD -&gt; SFO -&gt; RDD -&gt; SFO -&gt; SEA -&gt; JNU -&gt; GST -&gt; JNU -&gt; SEA -&gt; ATL -&gt; GTR -&gt; ATL -&gt; PHX -&gt; FLG -&gt; PHX -&gt; LAS -&gt; LBB -&gt; DAL -&gt; TUL -&gt; ATL -&gt; GSO -&gt; DTW -&gt; CAK -&gt; DTW -&gt; SEA -&gt; JNU -&gt; YAK -&gt; JNU -&gt; SEA -&gt; DFW -&gt; BPT -&gt; DFW -&gt; PHX -&gt; YUM -&gt; PHX -&gt; JFK -&gt; HYA -&gt; JFK -&gt; ORD -&gt; COU -&gt; DFW -&gt; SLC -&gt; SUN -&gt; SLC -&gt; ANC -&gt; ADQ -&gt; ANC -&gt; DFW -&gt; MFE -&gt; IAH -&gt; BZN -&gt; SEA -&gt; KTN -&gt; WRG -&gt; KTN -&gt; SEA -&gt; SLC -&gt; EKO -&gt; SLC -&gt; MSP -&gt; BRD -&gt; MSP -&gt; ORD -&gt; CMX -&gt; ORD -&gt; MSP -&gt; GEG -&gt; DEN -&gt; ATL -&gt; FAY -&gt; ATL -&gt; IAH -&gt; LRD -&gt; IAH -&gt; GRK -&gt; DFW -&gt; SHV -&gt; ATL -&gt; LGA -&gt; BGR -&gt; DTW -&gt; LEX -&gt; MSP -&gt; ANC -&gt; DLG -&gt; ANC -&gt; DFW -&gt; ABI -&gt; DFW -&gt; CLE -&gt; BDL -&gt; DCA -&gt; BTR -&gt; DFW -&gt; DEN -&gt; IDA -&gt; DEN -&gt; DFW -&gt; TXK -&gt; DFW -&gt; ANC -&gt; AKN -&gt; ANC -&gt; DFW -&gt; LFT -&gt; IAH -&gt; MEM -&gt; DEN -&gt; GCC -&gt; DEN -&gt; SBA -&gt; PHX -&gt; ATL -&gt; SRQ -&gt; ATL -&gt; HSV -&gt; ATL -&gt; MOB -&gt; ATL -&gt; VLD -&gt; ATL -&gt; MGM -&gt; ATL -&gt; EWN -&gt; ATL -&gt; MIA -&gt; DFW -&gt; SJT -&gt; DFW -&gt; OGG -&gt; LIH -&gt; DEN -&gt; PHF -&gt; DEN -&gt; MFR -&gt; SLC -&gt; HOU -&gt; PNS -&gt; ATL -&gt; AGS -&gt; ATL -&gt; XNA -&gt; ATL -&gt; CRW -&gt; ATL -&gt; TYS -&gt; DTW -&gt; BGM -&gt; DTW -&gt; MDT -&gt; ATL -&gt; MLU -&gt; ATL -&gt; VPS -&gt; DFW -&gt; DEN -&gt; COD -&gt; ORD -&gt; SCE -&gt; ATL -&gt; ABY -&gt; ATL -&gt; BHM -&gt; ATL -&gt; STL -&gt; MSP -&gt; RHI -&gt; MSP -&gt; BJI -&gt; MSP -&gt; HLN -&gt; DEN -&gt; DFW -&gt; GRI -&gt; DFW -&gt; MHK -&gt; ORD -&gt; CVG -&gt; DEN -&gt; DRO -&gt; DFW -&gt; PBI -&gt; MIA -&gt; MCO -&gt; PSE -&gt; MCO -&gt; ORD -&gt; TOL -&gt; ORD -&gt; EVV -&gt; DTW -&gt; CIU -&gt; DTW -&gt; ORD -&gt; LSE -&gt; ORD -&gt; AVL -&gt; ATL -&gt; RIC -&gt; MCO -&gt; ORH -&gt; MCO -&gt; LAS -&gt; SJC -&gt; MSP -&gt; MBS -&gt; ORD -&gt; DFW -&gt; PIB -&gt; DFW -&gt; TPA -&gt; DTW -&gt; ESC -&gt; DTW -&gt; DEN -&gt; RKS -&gt; DEN -&gt; MSP -&gt; RST -&gt; DTW -&gt; ABE -&gt; ATL -&gt; RSW -&gt; DEN -&gt; JMS -&gt; DEN -&gt; DTW -&gt; BTV -&gt; DTW -&gt; HPN -&gt; DTW -&gt; PLN -&gt; DTW -&gt; MSP -&gt; GFK -&gt; MSP -&gt; FAR -&gt; DFW -&gt; TYR -&gt; IAH -&gt; ATL -&gt; BQK -&gt; ATL -&gt; ABQ -&gt; ATL -&gt; GNV -&gt; ATL -&gt; SLC -&gt; TWF -&gt; SLC -&gt; DTW -&gt; SWF -&gt; DTW -&gt; ATL -&gt; TRI -&gt; ATL -&gt; PHX -&gt; BFL -&gt; IAH -&gt; AEX -&gt; DFW -&gt; DEN -&gt; SGU -&gt; SLC -&gt; SEA -&gt; KTN -&gt; WRG -&gt; PSG -&gt; JNU -&gt; ANC -&gt; OGG -&gt; ITO -&gt; LAX -&gt; IND -&gt; ORD -&gt; MSN -&gt; DEN -&gt; ONT -&gt; DEN -&gt; GUC -&gt; IAH -&gt; SJU -&gt; STX -&gt; ATL -&gt; DEN -&gt; HYS -&gt; DEN -&gt; ORD -&gt; PAH -&gt; ORD -&gt; CHA -&gt; ATL -&gt; SEA -&gt; BLI -&gt; SEA -&gt; DTW -&gt; ITH -&gt; DTW -&gt; ORD -&gt; FNT -&gt; MSP -&gt; GTF -&gt; DEN -&gt; ELP -&gt; SAT -&gt; DEN -&gt; BIS -&gt; MSP -&gt; ORF -&gt; MSP -&gt; ANC -&gt; ADK -&gt; ANC -&gt; ATL -&gt; DAB -&gt; ATL -&gt; DFW -&gt; MEI -&gt; DFW -&gt; SLC -&gt; WYS -&gt; SLC -&gt; SMF -&gt; MSP -&gt; DLH -&gt; MSP -&gt; BOS -&gt; MVY -&gt; BOS -&gt; MSP -&gt; DIK -&gt; MSP -&gt; IMT -&gt; MSP -&gt; DTW -&gt; ERI -&gt; DTW -&gt; DEN -&gt; GJT -&gt; DEN -&gt; MSP -&gt; INL -&gt; MSP -&gt; DEN -&gt; AMA -&gt; DEN -&gt; HDN -&gt; DEN -&gt; LIT -&gt; BWI -&gt; MHT -&gt; ATL -&gt; EYW -&gt; ATL -&gt; MTJ -&gt; ORD -&gt; TTN -&gt; ORD -&gt; EGE -&gt; IAH -&gt; HRL -&gt; IAH -&gt; HOB -&gt; IAH -&gt; FLL -&gt; BQN -&gt; FLL -&gt; MSY -&gt; SAN -&gt; FAT -&gt; SFO -&gt; OTH -&gt; SFO -&gt; SNA -&gt; SLC -&gt; FCA -&gt; SLC -&gt; PSP -&gt; DFW -&gt; CLL
+  Costo: 80387
+</code></pre></div>    </div>
+    <p>Con el set de datos de pruebas:
+Entrada:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  recorrer_mundo_aprox Gotica
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  BAT -&gt; LAN -&gt; JFK -&gt; ATL -&gt; WAC -&gt; NAR -&gt; ASH -&gt; WAC -&gt; RIV -&gt; SHE -&gt; ASH -&gt; BH6
+  Costo: 3765
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="viaje-de-n-lugares-">Viaje de N lugares (★★★)</h3>
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">vacaciones</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">origen</code>, y <code class="language-plaintext highlighter-rouge">n</code>.</li>
+  <li>Utilidad: Obtener algún recorrido que comience en <code class="language-plaintext highlighter-rouge">origen</code> y que termine en <code class="language-plaintext highlighter-rouge">origen</code> también, de largo <code class="language-plaintext highlighter-rouge">n</code> (sin contar la última vuelta al <code class="language-plaintext highlighter-rouge">origen</code>). No debe pasarse por un aeropuerto más de una vez (salvo el
+<code class="language-plaintext highlighter-rouge">origen</code>, cuando volvemos a éste). En caso de no encontrar un recorrido de dicho largo que vuelva
+luego al origen, imprimir <code class="language-plaintext highlighter-rouge">"No se encontro recorrido"</code>.</li>
+  <li>Ejemplo:</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(A^n)\).
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  vacaciones San Diego,6
+  vacaciones New York,15
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  SAN -&gt; ABQ -&gt; HOU -&gt; AUS -&gt; LAX -&gt; BNA -&gt; SAN
+  JFK -&gt; AUS -&gt; LAX -&gt; ASE -&gt; DEN -&gt; AMA -&gt; DAL -&gt; ABQ -&gt; HOU -&gt; BHM -&gt; MIA -&gt; BDL -&gt; IAD -&gt; ALB -&gt; MCO -&gt; JFK
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="itinerario-cultural-">Itinerario cultural (★★)</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">itinerario</code></li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">ruta</code>, la ruta el archivo del itinerario.</li>
+  <li>Utilidad: El archivo de <code class="language-plaintext highlighter-rouge">ruta</code> tiene el formato:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ciudad_1,ciudad_2,ciudad_3, ...,ciudad_N
+  ciudad_i,ciudad_j
+</code></pre></div>    </div>
+    <p>La primera línea indica las ciudades que se desean visitar. Las siguientes indican que la
+  <code class="language-plaintext highlighter-rouge">ciudad_i</code> debe visitarse <strong>sí o sí</strong> antes que la <code class="language-plaintext highlighter-rouge">ciudad_j</code>.
+  Se debe:</p>
+    <ol>
+      <li>Imprimir el orden en el que deben visitarse dichas ciudades.</li>
+      <li>Imprimir el camino mínimo en tiempo o escalas (según lo que se haya implementado en ese caso)
+a realizar.</li>
+    </ol>
+  </li>
+  <li>Complejidad: El cálculo de la obtención del itinerario debe realizarse en \(\mathcal{O}(I + R)\),
+siendo \(I\) la cantidad de ciudades a visitar, y \(R\) la cantidad de restricciones impuestas. Luego,
+el cálculo de los caminos debe realizarse en \(\mathcal{O}\left(I\times F \log (A)\right)\) o bien \(\mathcal{O}\left(I\times (A + F)\right)\), dependiendo de si se trata de un caso u otro.</li>
+  <li>Ejemplo, trabajando con <a href="itinerario_ejemplo.csv">itinerario_ejemplo.csv</a>,
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  itinerario itinerario_ejemplo.csv
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Asheville, Newburgh, Oakland, Wilmington, Jackson, Garden City, Kalispell, Hobbs, Aberdeen, Traverse City, Rhinelander, San Diego, Waco, Dallas-Fort Worth, New York, West Yellowstone
+  AVL -&gt; ATL -&gt; DTW -&gt; SWF
+  SWF -&gt; FLL -&gt; OAK
+  OAK -&gt; ABQ -&gt; MCO -&gt; ILG
+  ILG -&gt; MCO -&gt; DEN -&gt; JAC
+  JAC -&gt; DFW -&gt; GCK
+  GCK -&gt; DFW -&gt; DEN -&gt; FCA
+  FCA -&gt; ATL -&gt; IAH -&gt; HOB
+  HOB -&gt; IAH -&gt; MSP -&gt; ABR
+  ABR -&gt; MSP -&gt; TVC
+  TVC -&gt; MSP -&gt; RHI
+  RHI -&gt; MSP -&gt; LAX -&gt; CLD
+  CLD -&gt; LAX -&gt; DFW -&gt; ACT
+  ACT -&gt; DFW
+  DFW -&gt; JFK
+  JFK -&gt; SLC -&gt; WYS
+</code></pre></div>    </div>
+    <p>Si bien en este ejemplo no llega a notarse, no tiene por qué ser el mismo aeropuerto el de llegada
+que el de salida (si deben ser aeropuertos de la ciudad en la cual se está parando).</p>
+  </li>
+</ul>
+
+<h3 id="exportar-a-archivo-kml-">Exportar a archivo KML (★)</h3>
+
+<ul>
+  <li>Comando: <code class="language-plaintext highlighter-rouge">exportar_kml</code>.</li>
+  <li>Parámetros: <code class="language-plaintext highlighter-rouge">archivo</code>.</li>
+  <li>Utilidad: exporta el archivo KML con la ruta del último comando ejecutado (que incluya algún camino,
+o rutas áereas). Esto aplica para todos los comandos salvo el de estadísticas, u obtención de los
+aeropuertos más centrales. Contamos con un <a href="/algo2/material/apuntes/kml">apunte sobre cómo crear, usar y visualizar archivos KML</a>.</li>
+  <li>Complejidad: Este comando debe ejecutar en \(\mathcal{O}(A + F)\).</li>
+  <li>Ejemplo:
+Entrada:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  vacaciones San Diego,6
+  exportar_kml kml-ejemplo.kml
+</code></pre></div>    </div>
+    <p>Salida:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  SAN -&gt; ABQ -&gt; HOU -&gt; AUS -&gt; LAX -&gt; BNA -&gt; SAN
+  OK
+</code></pre></div>    </div>
+    <p><a href="kml-ejemplo.kml">Aquí</a> pueden encontrar el archivo KML exportado.</p>
+  </li>
+</ul>
+
+<h2 id="entrega">Entrega</h2>
+
+<p>Adicionalmente a los archivos propios del trabajo práctico debe agregarse un archivo <code class="language-plaintext highlighter-rouge">entrega.mk</code> que contenga la regla <code class="language-plaintext highlighter-rouge">flycombi</code> para generar el ejecutable de dicho programa (sea compilando o los comandos que fueren necesarios). Por ejemplo, teniendo un TP elaborado en Python, podría ser:</p>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">flycombi</span><span class="o">:</span> <span class="nf">flycombi.py grafo.py biblioteca.py</span>
+	<span class="nb">cp </span>flycombi.py flycombi
+	<span class="nb">chmod</span> +x flycombi
+</code></pre></div></div>
+
+<p><strong>Importante</strong>: En caso de recibir un error <code class="language-plaintext highlighter-rouge">FileNotFoundError: [Errno 2] No such file or directory: './flycombi': './flycombi'</code>, tener en cuenta que para el caso de enviar código escrito en Python es necesario además indicar la ruta del intérprete. Esto puede hacerse agregando como primera línea del archivo principal (en el ejemplo, sería <code class="language-plaintext highlighter-rouge">flycombi.py</code>) la línea: <code class="language-plaintext highlighter-rouge">#!/usr/bin/python3</code>.</p>
+
+<h2 id="criterios-de-aprobación">Criterios de aprobación</h2>
+
+<p>El código entregado debe ser claro y legible y ajustarse a las especificaciones
+de la consigna. Debe compilar sin advertencias y correr sin errores de memoria.</p>
+
+<p>La entrega incluye, obligatoriamente, los siguientes archivos de código:</p>
+
+<ul>
+  <li>el código del TDA Grafo programado, y cualquier otro TDA que fuere necesario.</li>
+  <li>el código de la solución del TP.</li>
+</ul>
+
+<p>La entrega se realiza:</p>
+
+<ol>
+  <li>en forma digital a través del <a href="https://algoritmos-rw.dijkstra.ar/entregas/">sistema de entregas</a>,
+con todos los archivos mencionados en un único archivo ZIP.</li>
+  <li>en papel durante la clase (si su ayudante lo requiere) el código del Trabajo
+en hoja A4 <strong>abrochadas, sin folio, informe ni carátula</strong>.</li>
+</ol>
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>
