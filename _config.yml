@@ -1,14 +1,10 @@
 # Site settings
-title: Algoritmos y Estructuras de Datos
+title: Redes Sociales (Complejas)
 description: >
-  Página de la materia Algoritmos y Estructuras de Datos, curso Buchwald.
+  Página de la materia Redes Complejas, curso Buchwald.
   Facultad de Ingeniería, Universidad de Buenos Aires.
 
-baseurl: "/algoritmos"
-entregas: "https://algoritmos-rw.dijkstra.ar/entregas/"
-notas: "https://algoritmos-rw.dijkstra.ar/notas/"
-skel: "https://algoritmos-rw.github.io/descargas"
-algo1: "https://algoritmos1rw.ddns.net/"
+baseurl: "/redes_sociales"
 # url: "https://algoritmos-rw.github.io"
 
 theme: minima
